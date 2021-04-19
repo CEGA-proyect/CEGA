@@ -9,9 +9,9 @@ public class Necesidad {
     private String estado; 
     private LocalDate fechaDeModificacion; 
     private String urgencia; 
-    private Categoria categoria ; 
+    private int categoria ;
 
-    public Necesidad(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado, String urgencia, Categoria categoria){
+    public Necesidad(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado, String urgencia, int categoria){
 
         this.nombre = nombre; 
         this.descripcion = descripcion; 
@@ -21,10 +21,10 @@ public class Necesidad {
         this.urgencia = urgencia; 
         this.categoria = categoria; 
     }    
-    public Categoria getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
     public String getDescripcion() {

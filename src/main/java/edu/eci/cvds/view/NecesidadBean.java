@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import com.google.inject.Inject;
 
+import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.samples.entities.Categoria;
 import edu.eci.cvds.samples.entities.Necesidad;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
@@ -31,7 +32,7 @@ public class NecesidadBean extends BasePageBean {
     private String estado; 
     private LocalDate fechaDeModificacion; 
     private String urgencia; 
-    private Categoria categoria ;
+    private int categoria ;
     private String message = "";
 
     public void comeBack() throws IOException{
@@ -59,10 +60,16 @@ public class NecesidadBean extends BasePageBean {
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
-    public Categoria getCategoria() {
+
+
+
+
+
+
+    public int getCategoria() {
         return categoria;
     }
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
     public String getDescripcion() {

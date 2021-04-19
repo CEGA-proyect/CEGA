@@ -10,17 +10,18 @@ public class LoggerShiroImplementation implements Logger {
     @Override
     public void login(String email, String password, boolean remember) throws SolidaridadEscuelaException{
         try {
+           
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(email,new Sha512Hash(password).toHex(), remember);
             subject.getSession().setAttribute("correo", email);
             subject.login(token);
+            System.out.println("-----entro------");
         } catch (UnknownAccountException e) {
             throw new SolidaridadEscuelaException("El usuario no esta registrado ", e);
         } catch (IncorrectCredentialsException e){
             throw new SolidaridadEscuelaException("Contraseña incorrecta", e);
         }
     }
-
     @Override
     public void logout() {
         SecurityUtils.getSubject().logout();

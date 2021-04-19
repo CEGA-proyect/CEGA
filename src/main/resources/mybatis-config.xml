@@ -8,6 +8,7 @@
         <typeAlias type="edu.eci.cvds.samples.entities.Usuario" alias="Usuario"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Categoria" alias="Categoria"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Necesidad" alias="Necesidad"/>
+        
     </typeAliases>
     <environments default="development">
         <environment id="development">

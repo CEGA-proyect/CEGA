@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import edu.eci.cvds.samples.services.ServicioUsuario;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import edu.eci.cvds.shiro.Logger;
+import edu.eci.cvds.shiro.LoggerShiroImplementation;
 
 @ManagedBean(name = "loginBean")
 @SessionScoped
@@ -17,7 +18,7 @@ public class LoginBean extends BasePageBean{
 
     private static final long serialVersionUID = 1L;
     @Inject 
-    private Logger logger;
+    private LoggerShiroImplementation logger;
 
     private String email;
     private String password;
@@ -28,6 +29,11 @@ public class LoginBean extends BasePageBean{
         boolean isLogger = logger.isLogged();
         try {
             if(!isLogger){
+            
+                System.out.println("========================================================"); 
+                System.out.println(email); 
+                System.out.println(password);
+                System.out.println("========================================================"); 
                 message = "Login Correcto";
                 logger.login(email, password, false);
                 redireccionamiento();

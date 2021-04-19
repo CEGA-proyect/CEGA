@@ -17,4 +17,6 @@ public class MyBatisNecesidadDAO implements NecesidadDAO {
             throw new PersistenceException(e.toString());
         }
     }
+
+
 }

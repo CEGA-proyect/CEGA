@@ -11,6 +11,7 @@
         <result property='estado' column='estado'/>
         <result property='fechaDeModificacion' column='fechaDeModificacion'/>
         <result property='urgencia' column='urgencia'/>
+        <result property='categoria' column='categoria'/>
     </resultMap>
 
     <insert id="crearNecesidad" parameterType="map">
@@ -19,5 +20,9 @@
         values
         (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria} );
     </insert>
+
+
+
+
     
 </mapper>

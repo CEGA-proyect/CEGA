@@ -5,7 +5,7 @@ import edu.eci.cvds.sampleprj.dao.CategoriaDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.CategoriaMapper;
 import edu.eci.cvds.samples.entities.Categoria;
-
+import java.util.List;
 
 public class MyBatisCategoriaDAO implements CategoriaDAO {
     @Inject
@@ -44,11 +44,29 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
     @Override
     public void actualizarNombreCategoria(String nombre, String nombreNuevo)throws PersistenceException {
         try{
-            categoriaMapper.actualizarEstadoCategoria(nombre, nombreNuevo);; 
+            categoriaMapper.actualizarNombreCategoria(nombre, nombreNuevo);;
         }catch(Exception e){
             throw new PersistenceException("Error al actualizar el nombre de la categoria"); 
         }
         
     }
-    
+
+    @Override
+    public Integer consultarIdcategoriaPorNombre(String nombre) throws PersistenceException {
+        try {
+            return categoriaMapper.consultarIdcategoriaPorNombre(nombre) ;
+        } catch (Exception e) {
+            throw new PersistenceException(e.toString());
+        }
+    }
+
+    @Override
+    public List<String> consultarNombresCategorias() throws PersistenceException {
+        try {
+            return categoriaMapper.consultarNombresCategorias() ;
+        } catch (Exception e) {
+            throw new PersistenceException(e.toString());
+        }
+    }
+
 }

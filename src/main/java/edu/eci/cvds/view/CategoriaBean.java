@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -59,8 +60,15 @@ public class CategoriaBean extends BasePageBean {
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
+    public int consultarIdcategoriaPorNombre(String nombre) throws SolidaridadEscuelaException {
+        return servicioCategoria.consultarIdcategoriaPorNombre(nombre);
+    }
 
-    void actualizarDescripcionCategoria(String nombre, String descripcion)throws SolidaridadEscuelaException{
+    public List<String> consultarNombresCategorias() throws SolidaridadEscuelaException{
+        return servicioCategoria.consultarNombresCategorias();
+    }
+
+    public void actualizarDescripcionCategoria(String nombre, String descripcion)throws SolidaridadEscuelaException{
         boolean nombreInvalido = true; 
         for(Categoria c : categorias){
             if(c.getNombre() == nombre){
@@ -72,9 +80,11 @@ public class CategoriaBean extends BasePageBean {
         if (nombreInvalido) {
             message = "el nombre de la categoria no existe";
             throw new SolidaridadEscuelaException("el nombre de la categoria no existe");  
+        }else{
+            servicioCategoria.actualizarDescripcionCategoria(nombre,descripcion);
         }
     }
-    void actualizarEstadoCategoria( String nombre, String estado )throws SolidaridadEscuelaException{
+    public void actualizarEstadoCategoria( String nombre, String estado )throws SolidaridadEscuelaException{
         boolean nombreInvalido = true; 
         for(Categoria c : categorias){
             if(c.getNombre() == nombre){
@@ -87,9 +97,13 @@ public class CategoriaBean extends BasePageBean {
             message = "el nombre de la categoria no existe";
             throw new SolidaridadEscuelaException("el nombre de la categoria no existe");  
         }
+        else{
+            servicioCategoria.actualizarEstadoCategoria(nombre,estado);
+
+        }
     } 
 
-    void actualizarNombreCategoria( String nombre, String nombreNuevo )throws SolidaridadEscuelaException{
+    public void actualizarNombreCategoria( String nombre, String nombreNuevo )throws SolidaridadEscuelaException{
         boolean nombreInvalido = true , nombreRepetido = false ; 
         for(Categoria c : categorias){
             if(c.getNombre() == nombre){
@@ -107,6 +121,8 @@ public class CategoriaBean extends BasePageBean {
         if (nombreInvalido) {
             message = "el nombre de la categoria no existe";
             throw new SolidaridadEscuelaException("el nombre de la categoria no existe");  
+        }else{
+            servicioCategoria.actualizarNombreCategoria(nombre, nombreNuevo);
         }
     }
 

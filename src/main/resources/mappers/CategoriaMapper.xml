@@ -20,5 +20,33 @@
         (#{categoria.nombre},#{categoria.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE);
 
     </insert>
+    <select id = "consultarIdcategoriaPorNombre" resultType ="Integer">
+        SELECT c.id
+        FROM categoria as c
+        WHERE c.nombre = #{nombre};
+    </select>
+
+    <select parameterType="map" id="consultarNombresCategorias" resultMap="CategoriaResultMap">
+        SELECT c.nombre
+        FROM categoria as c;
+    </select>
+
+    <update id="actualizarDescripcionCategoria" parameterType="String">
+        UPDATE categoria
+        SET descripcion = #{descripcion}
+        WHERE nombre = #{nombre};
+    </update>
+
+    <update id="actualizarEstadoCategoria" parameterType="String">
+        UPDATE categoria
+        SET estado = #{estado}
+        WHERE nombre = #{nombre};
+    </update>
+    <update id="actualizarNombreCategoria" parameterType="String">
+        UPDATE categoria
+        SET nombre = #{nombre}
+        WHERE nombre = #{nombre};
+    </update>
+
     
 </mapper>
