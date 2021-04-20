@@ -12,7 +12,8 @@ public class LoggerShiroImplementation implements Logger {
         try {
            
             Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(email,new Sha512Hash(password).toHex(), remember);
+            //new Sha512Hash(password).toHex()
+            UsernamePasswordToken token = new UsernamePasswordToken(email,password, remember);
             subject.getSession().setAttribute("correo", email);
             subject.login(token);
             System.out.println("-----entro------");

@@ -8,6 +8,6 @@ public interface CategoriaDAO {
     void actualizarEstadoCategoria( String nombre, String estado )throws PersistenceException; 
     void actualizarNombreCategoria( String nombre, String nombreNuevo )throws PersistenceException;
     Integer consultarIdcategoriaPorNombre(String nombre) throws PersistenceException;
-    List<String> consultarNombresCategorias() throws PersistenceException;
+    List<Categoria> consultarNombresCategorias() throws PersistenceException;
 
 }

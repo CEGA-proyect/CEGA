@@ -3,11 +3,15 @@ package edu.eci.cvds.samples.entities;
 import java.time.LocalDate;
 
 public class Categoria {
+    private int id ;
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeCreacion;
     private String estado; 
     private LocalDate fechaDeModificacion; 
+    public Categoria(){
+        super();
+    }
 
      public Categoria(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado){ 
         this.nombre = nombre; 
@@ -47,6 +51,12 @@ public class Categoria {
      public String getNombre() {
          return nombre;
      }
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

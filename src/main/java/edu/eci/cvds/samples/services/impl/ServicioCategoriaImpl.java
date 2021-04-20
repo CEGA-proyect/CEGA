@@ -15,6 +15,7 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
     @Override
     public void crearCategoria(Categoria c) throws SolidaridadEscuelaException {
         try {
+            // consultar por id (verification)
             categoriaDAO.crearCategoria(c);
         } catch (Exception e) {
             throw new SolidaridadEscuelaException(e.getMessage());
@@ -30,7 +31,7 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
     }
 
     @Override
-    public List<String> consultarNombresCategorias() throws SolidaridadEscuelaException {
+    public List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException {
         try {
             return categoriaDAO.consultarNombresCategorias();
         } catch (Exception e) {

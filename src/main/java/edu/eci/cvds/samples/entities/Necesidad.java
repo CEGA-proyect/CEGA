@@ -10,7 +10,9 @@ public class Necesidad {
     private LocalDate fechaDeModificacion; 
     private String urgencia; 
     private int categoria ;
-
+    public Necesidad(){
+        super();
+    }
     public Necesidad(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado, String urgencia, int categoria){
 
         this.nombre = nombre; 

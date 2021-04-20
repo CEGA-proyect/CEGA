@@ -30,7 +30,7 @@ public class CategoriaBean extends BasePageBean {
     private String estado; 
     private LocalDate fechaDeModificacion; 
     private String message = "";
-    private ArrayList<Categoria> categorias = new ArrayList<Categoria>(); 
+    private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
 
    
     public void comeBack() throws IOException{
@@ -54,7 +54,7 @@ public class CategoriaBean extends BasePageBean {
             Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado);
             servicioCategoria.crearCategoria(categoria);
             message = "Categoria creada ";
-            categorias.add(categoria); 
+            categorias.add(categoria);
         } catch (Exception e) {
             message = "Error al crear la categoria";
             throw new SolidaridadEscuelaException(e.getMessage());
@@ -64,7 +64,7 @@ public class CategoriaBean extends BasePageBean {
         return servicioCategoria.consultarIdcategoriaPorNombre(nombre);
     }
 
-    public List<String> consultarNombresCategorias() throws SolidaridadEscuelaException{
+    public List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException{
         return servicioCategoria.consultarNombresCategorias();
     }
 
@@ -126,24 +126,6 @@ public class CategoriaBean extends BasePageBean {
         }
     }
 
-    public String generarId(){
-        String cadena; 
-        int num = categorias.size(); 
-
-        if(num > 9999){
-            cadena = Integer.toString(num); 
-        }
-        else if(num > 999){
-            cadena = "0" + Integer.toString(num); 
-        }
-        else if(num > 99){
-            cadena = "00" + Integer.toString(num); 
-        }
-        else {
-            cadena = "000" + Integer.toString(num); 
-        } 
-        return cadena; 
-    }
     
     public String getDescripcion() {
         return descripcion;

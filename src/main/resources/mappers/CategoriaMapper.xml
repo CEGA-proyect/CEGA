@@ -26,8 +26,8 @@
         WHERE c.nombre = #{nombre};
     </select>
 
-    <select parameterType="map" id="consultarNombresCategorias" resultMap="CategoriaResultMap">
-        SELECT c.nombre
+    <select parameterType="map" id="consultarNombresCategorias" resultMap="CategoriaResult">
+        SELECT c.id,c.nombre
         FROM categoria as c;
     </select>
 
@@ -48,5 +48,4 @@
         WHERE nombre = #{nombre};
     </update>
 
-    
 </mapper>

@@ -4,25 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.NecesidadMapper">
-    <resultMap type='Necesidad' id='NecesidadResult'>
+    <resultMap type='necesidad' id='NecesidadResult'>
+        <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>
         <result property='descripcion' column='descripcion'/>
-        <result property='fechaDeCreacion' column='fechaDeCreacion'/>
+        <result property='fechadecreacion' column='fechadecreacion'/>
         <result property='estado' column='estado'/>
-        <result property='fechaDeModificacion' column='fechaDeModificacion'/>
+        <result property='fechaDemodificacion' column='fechademodificacion'/>
         <result property='urgencia' column='urgencia'/>
-        <result property='categoria' column='categoria'/>
+        <result property='categoria_id' column='categoria_id'/>
     </resultMap>
+
 
     <insert id="crearNecesidad" parameterType="map">
         INSERT INTO necesidad
-        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,urgencia,categoria)
-        values
-        (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria} );
+        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,urgencia,categoria_id)
+        VALUES
+        (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria});
     </insert>
-
-
-
-
-    
 </mapper>
