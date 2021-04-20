@@ -33,18 +33,18 @@
 
     <update id="actualizarDescripcionCategoria" parameterType="String">
         UPDATE categoria
-        SET descripcion = #{descripcion}
+        SET descripcion = #{descripcion}, fechademodificacion = CURRENT_DATE
         WHERE nombre = #{nombre};
     </update>
 
     <update id="actualizarEstadoCategoria" parameterType="String">
         UPDATE categoria
-        SET estado = #{estado}
+        SET estado = #{estado}, fechademodificacion = CURRENT_DATE
         WHERE nombre = #{nombre};
     </update>
     <update id="actualizarNombreCategoria" parameterType="String">
         UPDATE categoria
-        SET nombre = #{nombre}
+        SET nombre = #{nombre}, fechademodificacion = CURRENT_DATE
         WHERE nombre = #{nombre};
     </update>
 

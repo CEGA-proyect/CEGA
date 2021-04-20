@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <p:selectOneMenu id="NecesidadNames" value="#{NecesidadBean.categoria_id}" class="form-control" >
                             <f:selectItem itemLabel="Seleccionar Categoria" noSelectionOption="true"/>
-                            <f:selectItems value="#{NecesidadBean.categoria}"/>
+                            <f:selectItems value="#{CategoriaBean.categoria}"/>
                         </p:selectOneMenu>
                     </div>
                     <h:outputLabel for="nombre" value="Nombre: "/>
@@ -30,7 +30,7 @@
 
                     <p:selectOneMenu id="UrgenciaNames" value="#{NecesidadBean.urgencia}" class="form-control">
                         <f:selectItem itemLabel="Seleccionar Urgencia" noSelectionOption="true"/>
-                        <f:selectItem  itemLabel="ALta" itemValue="Alta"  />
+                        <f:selectItem  itemLabel="Alta" itemValue="Alta"  />
                         <f:selectItem  itemLabel="Baja" itemValue="Baja"/>
 
                     </p:selectOneMenu>

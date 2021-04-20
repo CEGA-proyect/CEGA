@@ -2,7 +2,9 @@ package edu.eci.cvds.view;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -30,7 +32,7 @@ public class CategoriaBean extends BasePageBean {
     private String estado; 
     private LocalDate fechaDeModificacion; 
     private String message = "";
-    private ArrayList<Categoria> categorias = new ArrayList<Categoria>();
+    private Map<String,Integer  > categoria ;
 
    
     public void comeBack() throws IOException{
@@ -54,7 +56,6 @@ public class CategoriaBean extends BasePageBean {
             Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado);
             servicioCategoria.crearCategoria(categoria);
             message = "Categoria creada ";
-            categorias.add(categoria);
         } catch (Exception e) {
             message = "Error al crear la categoria";
             throw new SolidaridadEscuelaException(e.getMessage());
@@ -69,61 +70,18 @@ public class CategoriaBean extends BasePageBean {
     }
 
     public void actualizarDescripcionCategoria(String nombre, String descripcion)throws SolidaridadEscuelaException{
-        boolean nombreInvalido = true; 
-        for(Categoria c : categorias){
-            if(c.getNombre() == nombre){
-                c.setFechaDeModificacion(LocalDate.now());
-                c.setDescripcion(descripcion);
-                nombreInvalido = true; 
-            }
-        }
-        if (nombreInvalido) {
-            message = "el nombre de la categoria no existe";
-            throw new SolidaridadEscuelaException("el nombre de la categoria no existe");  
-        }else{
-            servicioCategoria.actualizarDescripcionCategoria(nombre,descripcion);
-        }
+        System.out.print("--------entro a descripcion categoria-------------");
+        servicioCategoria.actualizarDescripcionCategoria(nombre,descripcion);
     }
     public void actualizarEstadoCategoria( String nombre, String estado )throws SolidaridadEscuelaException{
-        boolean nombreInvalido = true; 
-        for(Categoria c : categorias){
-            if(c.getNombre() == nombre){
-                c.setFechaDeModificacion(LocalDate.now());
-                c.setEstado(estado);
-                nombreInvalido = false; 
-            }
-        }
-        if (nombreInvalido) {
-            message = "el nombre de la categoria no existe";
-            throw new SolidaridadEscuelaException("el nombre de la categoria no existe");  
-        }
-        else{
-            servicioCategoria.actualizarEstadoCategoria(nombre,estado);
-
-        }
+        System.out.print("--------entro a estado categoria-------------");
+        servicioCategoria.actualizarEstadoCategoria(nombre,estado);
     } 
 
     public void actualizarNombreCategoria( String nombre, String nombreNuevo )throws SolidaridadEscuelaException{
-        boolean nombreInvalido = true , nombreRepetido = false ; 
-        for(Categoria c : categorias){
-            if(c.getNombre() == nombre){
-                for(Categoria f : categorias){
-                    if(f.getNombre() == nombreNuevo && f.getNombre() != c.getNombre() ){
-                        nombreRepetido = true ;  
-                    }
-                }
-                if(!nombreRepetido){
-                    c.setDescripcion(descripcion);
-                    nombreInvalido = false; 
-                }
-            }
-        }
-        if (nombreInvalido) {
-            message = "el nombre de la categoria no existe";
-            throw new SolidaridadEscuelaException("el nombre de la categoria no existe");  
-        }else{
-            servicioCategoria.actualizarNombreCategoria(nombre, nombreNuevo);
-        }
+
+        servicioCategoria.actualizarNombreCategoria(nombre, nombreNuevo);
+
     }
 
     
@@ -131,6 +89,7 @@ public class CategoriaBean extends BasePageBean {
         return descripcion;
     }
     public void setDescripcion(String descripcion) {
+        System.out.println("------------------puso descripcion" +  descripcion+ "--------------------" );
         this.descripcion = descripcion;
     }
     public String getMessage() {
@@ -143,6 +102,7 @@ public class CategoriaBean extends BasePageBean {
         return nombre;
     }
     public void setNombre(String nombre) {
+        System.out.println("------------------puso nombre " +  nombre + "--------------------" );
         this.nombre = nombre;
     }
 
@@ -170,10 +130,12 @@ public class CategoriaBean extends BasePageBean {
         return estado;
     }
 
-    public ArrayList<Categoria> getCategorias() {
-        return categorias;
-    }
-    public void setCategorias(ArrayList<Categoria> categorias) {
-        this.categorias = categorias;
+    public Map<String,Integer> getCategoria() throws  SolidaridadEscuelaException{
+        categoria = new HashMap<String,Integer>();
+        List<Categoria> cate = servicioCategoria.consultarNombresCategorias();
+        for (Categoria c: cate) {
+            categoria.put(c.getNombre(),c.getId());
+        }
+        return categoria;
     }
 }

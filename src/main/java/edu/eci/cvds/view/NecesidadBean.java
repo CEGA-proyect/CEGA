@@ -38,7 +38,7 @@ public class NecesidadBean extends BasePageBean {
     private String estado; 
     private LocalDate fechaDeModificacion; 
     private String urgencia; 
-    private Map<String,Integer  > categoria ;
+
     private String message = "";
     private int categoria_id;
 
@@ -68,14 +68,7 @@ public class NecesidadBean extends BasePageBean {
         }
     }
 
-    public Map<String,Integer> getCategoria() throws  SolidaridadEscuelaException{
-        categoria = new HashMap<String,Integer>();
-        List<Categoria> cate = serviciocategoria.consultarNombresCategorias();
-        for (Categoria c: cate) {
-            categoria.put(c.getNombre(),c.getId());
-        }
-        return categoria;
-    }
+
     public String getDescripcion() {
         return descripcion;
     }
