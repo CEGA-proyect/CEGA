@@ -18,7 +18,7 @@ public class LoginBean extends BasePageBean{
 
     private static final long serialVersionUID = 1L;
     @Inject 
-    private LoggerShiroImplementation logger;
+    private Logger logger;
 
     private String email;
     private String password;
@@ -36,13 +36,13 @@ public class LoginBean extends BasePageBean{
                 System.out.println("========================================================"); 
                 message = "Login Correcto";
                 logger.login(email, password, false);
-                redireccionamiento();
+                //redireccionamiento();
             } else{
                 sesionActiva();
             }
         } catch (Exception e) {
             message = "Credenciales incorrectas";
-            throw new SolidaridadEscuelaException("Credenciales incorrectas");
+            throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
 

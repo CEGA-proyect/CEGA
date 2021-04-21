@@ -12,7 +12,6 @@
         <result property='estado' column='estado'/>
         <result property='fechaDeModificacion' column='fechaDeModificacion'/>
     </resultMap>
-
     <insert id="crearCategoria" parameterType="map">
         INSERT INTO categoria
         (nombre,descripcion,fechadecreacion,estado,fechademodificacion)
@@ -20,32 +19,30 @@
         (#{categoria.nombre},#{categoria.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE);
 
     </insert>
-    <select id = "consultarIdcategoriaPorNombre" resultType ="Integer">
-        SELECT c.id
-        FROM categoria as c
-        WHERE c.nombre = #{nombre};
-    </select>
 
     <select parameterType="map" id="consultarNombresCategorias" resultMap="CategoriaResult">
         SELECT c.id,c.nombre
-        FROM categoria as c;
+        FROM categoria as c
+        WHERE c.estado = 'Activa';
+
     </select>
 
-    <update id="actualizarDescripcionCategoria" parameterType="String">
+    <update id="actualizarDescripcionCategoria" >
         UPDATE categoria
         SET descripcion = #{descripcion}, fechademodificacion = CURRENT_DATE
-        WHERE nombre = #{nombre};
+        WHERE id = #{id};
     </update>
 
-    <update id="actualizarEstadoCategoria" parameterType="String">
+    <update id="actualizarEstadoCategoria" >
         UPDATE categoria
         SET estado = #{estado}, fechademodificacion = CURRENT_DATE
-        WHERE nombre = #{nombre};
+        WHERE id = #{id};
     </update>
-    <update id="actualizarNombreCategoria" parameterType="String">
+
+    <update id="actualizarNombreCategoria" >
         UPDATE categoria
         SET nombre = #{nombre}, fechademodificacion = CURRENT_DATE
-        WHERE nombre = #{nombre};
+        WHERE id = #{id};
     </update>
 
 </mapper>

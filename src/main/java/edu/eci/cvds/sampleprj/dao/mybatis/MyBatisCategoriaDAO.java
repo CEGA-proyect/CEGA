@@ -22,9 +22,9 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
     }
 
     @Override
-    public void actualizarDescripcionCategoria(String nombre, String descripcion) throws PersistenceException{
+    public void actualizarDescripcionCategoria(int id, String descripcion) throws PersistenceException{
         try{
-            categoriaMapper.actualizarDescripcionCategoria(nombre, descripcion);; 
+            categoriaMapper.actualizarDescripcionCategoria(id, descripcion);;
         }catch(Exception e){
             throw new PersistenceException("Error al actualizar al descripcion de la categoria"); 
         }
@@ -32,33 +32,26 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
     }
 
     @Override
-    public void actualizarEstadoCategoria(String nombre, String estado) throws PersistenceException {
+    public void actualizarEstadoCategoria(int id, String estado) throws PersistenceException {
         try{
-            categoriaMapper.actualizarEstadoCategoria(nombre, estado);; 
+            categoriaMapper.actualizarEstadoCategoria(id, estado);;
         }catch(Exception e){
-            throw new PersistenceException("Error al actualizar el esado de la categoria"); 
+            throw new PersistenceException(e.getMessage());
         }
         
     }
 
     @Override
-    public void actualizarNombreCategoria(String nombre, String nombreNuevo)throws PersistenceException {
+    public void actualizarNombreCategoria(int id, String nombreNuevo)throws PersistenceException {
         try{
-            categoriaMapper.actualizarNombreCategoria(nombre, nombreNuevo);;
+            categoriaMapper.actualizarNombreCategoria(id, nombreNuevo);;
         }catch(Exception e){
             throw new PersistenceException("Error al actualizar el nombre de la categoria"); 
         }
         
     }
 
-    @Override
-    public Integer consultarIdcategoriaPorNombre(String nombre) throws PersistenceException {
-        try {
-            return categoriaMapper.consultarIdcategoriaPorNombre(nombre) ;
-        } catch (Exception e) {
-            throw new PersistenceException(e.toString());
-        }
-    }
+
 
     @Override
     public List<Categoria> consultarNombresCategorias() throws PersistenceException {

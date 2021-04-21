@@ -21,14 +21,7 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
-    @Override
-    public Integer consultarIdcategoriaPorNombre(String nombre) throws SolidaridadEscuelaException {
-        try {
-            return categoriaDAO.consultarIdcategoriaPorNombre(nombre) ;
-        } catch (Exception e) {
-            throw new SolidaridadEscuelaException(e.toString());
-        }
-    }
+
 
     @Override
     public List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException {
@@ -40,9 +33,9 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
     }
 
     @Override
-    public void actualizarDescripcionCategoria(String nombre, String descripcion) throws SolidaridadEscuelaException{
+    public void actualizarDescripcionCategoria(int id, String descripcion) throws SolidaridadEscuelaException{
         try {
-            categoriaDAO.actualizarDescripcionCategoria(nombre, descripcion);
+            categoriaDAO.actualizarDescripcionCategoria(id, descripcion);
         } catch (Exception e) {
             throw new SolidaridadEscuelaException("Error actualizar la descripcion de la categoria");
         }
@@ -50,21 +43,22 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
     }
 
     @Override
-    public void actualizarEstadoCategoria(String nombre, String estado) throws SolidaridadEscuelaException {
+    public void actualizarEstadoCategoria(int id, String estado) throws SolidaridadEscuelaException {
         try {
-            categoriaDAO.actualizarEstadoCategoria(nombre, estado);
+            categoriaDAO.actualizarEstadoCategoria(id, estado);
         } catch (Exception e) {
-            throw new SolidaridadEscuelaException("Error actualizar la descripcion de la categoria");
+
+            throw new SolidaridadEscuelaException(e.getMessage());
         }
         
     }
 
     @Override
-    public void actualizarNombreCategoria(String nombre, String nombreNuevo) throws SolidaridadEscuelaException {
+    public void actualizarNombreCategoria(int id, String nombre) throws SolidaridadEscuelaException {
         try {
-            categoriaDAO.actualizarNombreCategoria(nombre, nombreNuevo);
+            categoriaDAO.actualizarNombreCategoria(id, nombre);
         } catch (Exception e) {
-            throw new SolidaridadEscuelaException("Error actualizar la descripcion de la categoria");
+            throw new SolidaridadEscuelaException(e.getMessage());
         }
         
     }

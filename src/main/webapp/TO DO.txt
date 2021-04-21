@@ -1,0 +1,9 @@
+<!-- <div class="form-group">
+                            <h:outputLabel for="nombre" value="nuevo nombre: "/>
+                            <p:inputText class="form-control" type="String" id="nombre" value="#{CategoriaBean.nombre}"/>
+
+                        </div>
+                        <div class="btn-group " role="group" aria-label="Basic example">
+                            <p:commandButton class="btn btn-primary" value="Actualizar Nombre" actionListener="#{CategoriaBean.actualizarNombreCategoria}" />
+                        </div>
+                        -->

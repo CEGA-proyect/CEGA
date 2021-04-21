@@ -25,7 +25,8 @@ public class CategoriaBean extends BasePageBean {
     private ServicioCategoria servicioCategoria;
     @Inject
     private Logger logger;  
-    
+
+    private int id;
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeCreacion ;
@@ -47,7 +48,6 @@ public class CategoriaBean extends BasePageBean {
             facesContext.getExternalContext().redirect("../user.xhtml");
         }
     }
-
     public void crearCategoria() throws SolidaridadEscuelaException{
         try {
             fechaDeCreacion = LocalDate.now(); 
@@ -61,35 +61,30 @@ public class CategoriaBean extends BasePageBean {
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
-    public int consultarIdcategoriaPorNombre(String nombre) throws SolidaridadEscuelaException {
-        return servicioCategoria.consultarIdcategoriaPorNombre(nombre);
-    }
 
     public List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException{
         return servicioCategoria.consultarNombresCategorias();
     }
 
-    public void actualizarDescripcionCategoria(String nombre, String descripcion)throws SolidaridadEscuelaException{
-        System.out.print("--------entro a descripcion categoria-------------");
-        servicioCategoria.actualizarDescripcionCategoria(nombre,descripcion);
+    public void actualizarDescripcionCategoria()throws SolidaridadEscuelaException{
+
+        servicioCategoria.actualizarDescripcionCategoria(id,descripcion);
     }
-    public void actualizarEstadoCategoria( String nombre, String estado )throws SolidaridadEscuelaException{
-        System.out.print("--------entro a estado categoria-------------");
-        servicioCategoria.actualizarEstadoCategoria(nombre,estado);
+    public void actualizarEstadoCategoria()throws SolidaridadEscuelaException{
+
+        servicioCategoria.actualizarEstadoCategoria( id,estado);
     } 
 
-    public void actualizarNombreCategoria( String nombre, String nombreNuevo )throws SolidaridadEscuelaException{
+    public void actualizarNombreCategoria()throws SolidaridadEscuelaException{
 
-        servicioCategoria.actualizarNombreCategoria(nombre, nombreNuevo);
+        servicioCategoria.actualizarNombreCategoria(id, nombre);
 
     }
 
-    
     public String getDescripcion() {
         return descripcion;
     }
     public void setDescripcion(String descripcion) {
-        System.out.println("------------------puso descripcion" +  descripcion+ "--------------------" );
         this.descripcion = descripcion;
     }
     public String getMessage() {
@@ -102,7 +97,7 @@ public class CategoriaBean extends BasePageBean {
         return nombre;
     }
     public void setNombre(String nombre) {
-        System.out.println("------------------puso nombre " +  nombre + "--------------------" );
+        System.out.println("------------------puso nombre" + nombre + "--------------------" );
         this.nombre = nombre;
     }
 
@@ -138,4 +133,14 @@ public class CategoriaBean extends BasePageBean {
         }
         return categoria;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+
+        this.id = id;
+    }
+
 }
