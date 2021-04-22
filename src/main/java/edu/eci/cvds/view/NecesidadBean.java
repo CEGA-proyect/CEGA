@@ -31,7 +31,8 @@ public class NecesidadBean extends BasePageBean {
     private ServicioCategoria serviciocategoria;
     @Inject
     private Logger logger;  
-    
+
+    private int id;
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeCreacion ;
@@ -41,6 +42,8 @@ public class NecesidadBean extends BasePageBean {
 
     private String message = "";
     private int categoria_id;
+
+    private Map<String,Integer> necesidades ;
 
     public void comeBack() throws IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -115,4 +118,34 @@ public class NecesidadBean extends BasePageBean {
     public void setCategoria_id(int categoria_id) {
         this.categoria_id = categoria_id;
     }
+
+    public List<Necesidad> consultarNombresNecesidad() throws SolidaridadEscuelaException{
+        return servicioNecesidad.consultarNombresNecesidad();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Map<String,Integer> getNecesidades() throws  SolidaridadEscuelaException{
+        necesidades = new HashMap<String,Integer>();
+        List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidad();
+        for (Necesidad n: nece) {
+            necesidades.put(n.getNombre(),n.getId());
+        }
+        return necesidades;
+    }
+
 }

@@ -8,6 +8,8 @@ import edu.eci.cvds.samples.entities.Necesidad;
 import edu.eci.cvds.samples.services.ServicioNecesidad;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 
+import java.util.List;
+
 public class ServicioNecesidadImpl implements ServicioNecesidad{
     @Inject 
     private NecesidadDAO necesidadDAO;
@@ -18,6 +20,15 @@ public class ServicioNecesidadImpl implements ServicioNecesidad{
             necesidadDAO.crearNecesidad(n);
         } catch (Exception e) {
             throw new SolidaridadEscuelaException(e.getMessage());
+        }
+    }
+
+    public List<Necesidad> consultarNombresNecesidad() throws SolidaridadEscuelaException {
+        try {
+            return necesidadDAO.consultarNombresNecesidad();
+        } catch (Exception e) {
+            throw new SolidaridadEscuelaException(e.getMessage());
+
         }
     }
 

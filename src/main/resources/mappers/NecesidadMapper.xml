@@ -22,4 +22,13 @@
         VALUES
         (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria});
     </insert>
+
+
+    <select parameterType="map" id="consultarNombresNecesidad" resultMap="NecesidadResult">
+        SELECT n.id,n.nombre
+        FROM necesidad as n
+        WHERE n.estado = 'Activa';
+
+    </select>
+
 </mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.OfertaMapper">
+    <resultMap type='oferta' id='OfertaResult'>
+        <id property='id' column='id'/>
+        <result property='nombre' column='nombre'/>
+        <result property='descripcion' column='descripcion'/>
+        <result property='fechadecreacion' column='fechadecreacion'/>
+        <result property='estado' column='estado'/>
+        <result property='fechaDemodificacion' column='fechademodificacion'/>
+        <result property='categoria_id' column='categoria_id'/>
+    </resultMap>
+
+    <insert id="crearOferta" parameterType="map">
+        INSERT INTO oferta
+        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,categoria_id)
+        VALUES
+        (#{oferta.nombre},#{oferta.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE, #{oferta.categoria_id});
+    </insert>
+
+    <select parameterType="map" id="consultarNombresOfertas" resultMap="OfertaResult">
+        SELECT o.id,o.nombre
+        FROM oferta as o
+        WHERE o.estado = 'Activa';
+
+    </select>
+</mapper>

@@ -3,6 +3,8 @@ package edu.eci.cvds.samples.entities;
 import java.time.LocalDate;
 
 public class Necesidad {
+
+    private int id;
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeCreacion;
@@ -65,6 +67,12 @@ public class Necesidad {
     public void setUrgencia(String urgencia) {
         this.urgencia = urgencia;
     }
-    
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
