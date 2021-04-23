@@ -9,6 +9,7 @@
         <typeAlias type="edu.eci.cvds.samples.entities.Categoria" alias="Categoria"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Necesidad" alias="Necesidad"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Oferta" alias="Oferta"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Respuesta" alias="Respuesta"/>
         
     </typeAliases>
     <environments default="development">
@@ -27,5 +28,6 @@
         <mapper resource="mappers/CategoriaMapper.xml"></mapper>
         <mapper resource="mappers/NecesidadMapper.xml"></mapper>
         <mapper resource="mappers/OfertaMapper.xml"></mapper>
+        <mapper resource="mappers/RespuestaMapper.xml"></mapper>
     </mappers>
 </configuration>

@@ -19,8 +19,6 @@ import java.util.Map;
 public class OfertaBean extends BasePageBean{
     @Inject
     private ServicioOferta servicioOferta;
-    @Inject
-    private Logger logger;
 
     private int categoria_id;
     private String nombre;
@@ -37,7 +35,6 @@ public class OfertaBean extends BasePageBean{
             fechaDeCreacion = LocalDate.now();
             estado = "activo";
             fechaDeModificacion = LocalDate.now();
-
             Oferta oferta = new Oferta(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado,categoria_id);
             servicioOferta.crearOferta(oferta);
             message = "Oferta creada";

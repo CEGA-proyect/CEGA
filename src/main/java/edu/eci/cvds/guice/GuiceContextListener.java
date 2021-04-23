@@ -2,22 +2,10 @@ package edu.eci.cvds.guice;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import edu.eci.cvds.sampleprj.dao.CategoriaDAO;
-import edu.eci.cvds.sampleprj.dao.NecesidadDAO;
-import edu.eci.cvds.sampleprj.dao.OfertaDAO;
-import edu.eci.cvds.sampleprj.dao.UsuarioDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisCategoriaDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisNecesidadDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisOfertaDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBatisUsuarioDAO;
-import edu.eci.cvds.samples.services.ServicioCategoria;
-import edu.eci.cvds.samples.services.ServicioNecesidad;
-import edu.eci.cvds.samples.services.ServicioOferta;
-import edu.eci.cvds.samples.services.ServicioUsuario;
-import edu.eci.cvds.samples.services.impl.ServicioCategoriaImpl;
-import edu.eci.cvds.samples.services.impl.ServicioNecesidadImpl;
-import edu.eci.cvds.samples.services.impl.ServicioOfertaImpl;
-import edu.eci.cvds.samples.services.impl.ServicioUsuarioImpl;
+import edu.eci.cvds.sampleprj.dao.*;
+import edu.eci.cvds.sampleprj.dao.mybatis.*;
+import edu.eci.cvds.samples.services.*;
+import edu.eci.cvds.samples.services.impl.*;
 import edu.eci.cvds.shiro.Logger;
 import edu.eci.cvds.shiro.LoggerShiroImplementation;
 import edu.eci.cvds.view.BasePageBean;
@@ -46,6 +34,7 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(CategoriaDAO.class).to(MyBatisCategoriaDAO.class);
                 bind(NecesidadDAO.class).to(MyBatisNecesidadDAO.class);
                 bind(OfertaDAO.class).to(MyBatisOfertaDAO.class);
+                bind(RespuestaDAO.class).to(MyBatisRespuestaDAO.class);
                 //logger
                 bind(BasePageBean.class).to(LoginBean.class);
                 bind(Logger.class).to(LoggerShiroImplementation.class);
@@ -54,6 +43,7 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(ServicioCategoria.class).to(ServicioCategoriaImpl.class);
                 bind(ServicioNecesidad.class).to(ServicioNecesidadImpl.class);
                 bind(ServicioOferta.class).to(ServicioOfertaImpl.class);
+                bind(ServicioRespuesta.class).to(ServicioRespuestaImpl.class);
                 
             }
         });
