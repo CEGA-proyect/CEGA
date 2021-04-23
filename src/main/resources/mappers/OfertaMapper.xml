@@ -12,19 +12,36 @@
         <result property='estado' column='estado'/>
         <result property='fechaDemodificacion' column='fechademodificacion'/>
         <result property='categoria_id' column='categoria_id'/>
+        <result property='usuario_id' column='usuario_id'/>
+
     </resultMap>
 
     <insert id="crearOferta" parameterType="map">
         INSERT INTO oferta
-        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,categoria_id)
+        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,categoria_id,usuario_id)
         VALUES
-        (#{oferta.nombre},#{oferta.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE, #{oferta.categoria_id});
+        (#{oferta.nombre},#{oferta.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE, #{oferta.categoria_id},#{oferta.usuario_id});
     </insert>
 
     <select parameterType="map" id="consultarNombresOfertas" resultMap="OfertaResult">
         SELECT o.id,o.nombre
         FROM oferta as o
-        WHERE o.estado = 'Activa';
+        WHERE o.estado = 'Activa' OR o.estado = 'En Proceso';
 
     </select>
+
+    <update id="actualizarEstadoOferta" >
+        UPDATE oferta
+        SET estado = #{estado}, fechademodificacion = CURRENT_DATE
+        WHERE id = #{id};
+    </update>
+
+    <select parameterType = "map" id = "consultarNumeroOfertasUsuario" resultType="Integer">
+        SELECT COUNT(*)
+        FROM oferta as o
+        WHERE o.usuario_id = #{usuario_id}
+    </select>
+
+
+
 </mapper>

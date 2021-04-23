@@ -29,18 +29,26 @@ public class OfertaBean extends BasePageBean{
     private int id;
     private String message = "";
     private Map<String,Integer> ofertas;
+    private String usuario_id = "1000950506";
+    private int maximoOfertas = 10;
+
 
     public void crearOferta() throws SolidaridadEscuelaException {
-        try {
-            fechaDeCreacion = LocalDate.now();
-            estado = "activo";
-            fechaDeModificacion = LocalDate.now();
-            Oferta oferta = new Oferta(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado,categoria_id);
-            servicioOferta.crearOferta(oferta);
-            message = "Oferta creada";
-        } catch (Exception e) {
-            message = "Error al crear la Oferta";
-            throw new SolidaridadEscuelaException(e.getMessage());
+        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas ) {
+            try {
+                fechaDeCreacion = LocalDate.now();
+                estado = "activo";
+                fechaDeModificacion = LocalDate.now();
+                Oferta oferta = new Oferta(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, categoria_id, usuario_id);
+                servicioOferta.crearOferta(oferta);
+                message = "Oferta creada";
+            } catch (Exception e) {
+                message = "Error al crear la Oferta";
+                throw new SolidaridadEscuelaException(e.getMessage());
+            }
+        }else{
+            message = "Numero de ofertas creadas exedido";
+            System.out.println(message);
         }
 
     }
@@ -114,6 +122,10 @@ public class OfertaBean extends BasePageBean{
 
     public List<Oferta> consultarNombresOfertas() throws SolidaridadEscuelaException {
         return servicioOferta.consultarNombresOfertas();
+    }
+
+    public void actulizarEstadoOferta() throws SolidaridadEscuelaException {
+        servicioOferta.actualizarEstadoOferta(id,estado);
     }
     public Map<String,Integer> getOfertas() throws  SolidaridadEscuelaException{
         ofertas = new HashMap<String,Integer>();

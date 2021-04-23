@@ -11,6 +11,7 @@ import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import java.util.List;
 
 public class ServicioNecesidadImpl implements ServicioNecesidad{
+
     @Inject 
     private NecesidadDAO necesidadDAO;
 
@@ -23,6 +24,8 @@ public class ServicioNecesidadImpl implements ServicioNecesidad{
         }
     }
 
+
+
     public List<Necesidad> consultarNombresNecesidad() throws SolidaridadEscuelaException {
         try {
             return necesidadDAO.consultarNombresNecesidad();
@@ -32,6 +35,23 @@ public class ServicioNecesidadImpl implements ServicioNecesidad{
         }
     }
 
+    @Override
+    public void actualizarEstadoNecesidad(int id , String estado) throws SolidaridadEscuelaException{
+        try{
+            necesidadDAO.actualizarEstadoNecesidad(id,estado);
+        }catch(Exception e){
+            throw new SolidaridadEscuelaException(e.toString());
+        }
+
+    }
+    @Override
+    public int consultarNumeroNecesidadesUsuario(String usuario_id) throws SolidaridadEscuelaException{
+        try{
+            return necesidadDAO.consultarNumeroNecesidadesUsuario(usuario_id);
+        }catch(Exception e){
+            throw new SolidaridadEscuelaException(e.toString());
+        }
+    }
 
 
 }

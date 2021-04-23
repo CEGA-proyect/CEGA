@@ -10,25 +10,38 @@
         <result property='descripcion' column='descripcion'/>
         <result property='fechadecreacion' column='fechadecreacion'/>
         <result property='estado' column='estado'/>
-        <result property='fechaDemodificacion' column='fechademodificacion'/>
+        <result property='fechademodificacion' column='fechademodificacion'/>
         <result property='urgencia' column='urgencia'/>
         <result property='categoria_id' column='categoria_id'/>
+        <result property='usuario_id' column='usuario_id'/>
     </resultMap>
 
 
     <insert id="crearNecesidad" parameterType="map">
         INSERT INTO necesidad
-        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,urgencia,categoria_id)
+        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,urgencia,categoria_id,usuario_id)
         VALUES
-        (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria});
+        (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria},#{necesidad.usuario_id});
     </insert>
 
 
     <select parameterType="map" id="consultarNombresNecesidad" resultMap="NecesidadResult">
         SELECT n.id,n.nombre
         FROM necesidad as n
-        WHERE n.estado = 'Activa';
+        WHERE n.estado = 'Activa' OR n.estado = 'En Proceso';
 
+    </select>
+
+    <update id="actualizarEstadoNecesidad" >
+        UPDATE necesidad
+        SET estado = #{estado}, fechademodificacion = CURRENT_DATE
+        WHERE id = #{id};
+    </update>
+
+    <select parameterType = "map" id = "consultarNumeroNecesidadesUsuario" resultType="Integer">
+        SELECT COUNT(*)
+        FROM necesidad as n
+        WHERE n.usuario_id = #{usuario_id}
     </select>
 
 </mapper>

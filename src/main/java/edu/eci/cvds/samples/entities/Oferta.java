@@ -10,13 +10,14 @@ public class Oferta {
     private LocalDate fechaDeModificacion;
     private String estado;
     private int id;
+    private String usuario_id;
 
 
     public Oferta(){
         super() ;
     }
 
-    public Oferta(String nombre, String descripcion,LocalDate fechaDeCreacion, LocalDate fechaDeModificacion , String estado, int categoria_id){
+    public Oferta(String nombre, String descripcion,LocalDate fechaDeCreacion, LocalDate fechaDeModificacion , String estado, int categoria_id, String usuario_id){
 
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -24,7 +25,8 @@ public class Oferta {
         this.fechaDeModificacion = fechaDeModificacion;
         this.estado = estado;
         this.categoria_id = categoria_id;
-        System.out.println(categoria_id);
+        this.usuario_id = usuario_id ;
+
 
     }
 
@@ -82,5 +84,13 @@ public class Oferta {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(String usuario_id) {
+        this.usuario_id = usuario_id;
     }
 }

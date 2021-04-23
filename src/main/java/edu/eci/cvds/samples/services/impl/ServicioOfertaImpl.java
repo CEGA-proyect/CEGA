@@ -20,6 +20,7 @@ public class ServicioOfertaImpl implements ServicioOferta{
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
+    @Override
     public List<Oferta> consultarNombresOfertas() throws SolidaridadEscuelaException{
         try {
             return ofertaDAO.consultarNombresOfertas();
@@ -27,6 +28,24 @@ public class ServicioOfertaImpl implements ServicioOferta{
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
+
+    @Override
+    public void actualizarEstadoOferta(int id, String estado) throws SolidaridadEscuelaException {
+        try{
+            ofertaDAO.actualizarEstadoOferta(id,estado);
+        }catch(Exception e){
+            throw new SolidaridadEscuelaException(e.getMessage());
+        }
+    }
+    @Override
+    public int consultarNumeroOfertasUsuario(String usuario_id) throws SolidaridadEscuelaException{
+        try{
+            return ofertaDAO.consultarNumeroOfertasUsuario(usuario_id);
+        }catch (Exception e){
+            throw new SolidaridadEscuelaException(e.getMessage());
+        }
+    }
+
 
 
 }

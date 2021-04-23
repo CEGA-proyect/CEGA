@@ -97,7 +97,6 @@ public class CategoriaBean extends BasePageBean {
         return nombre;
     }
     public void setNombre(String nombre) {
-        System.out.println("------------------puso nombre" + nombre + "--------------------" );
         this.nombre = nombre;
     }
 

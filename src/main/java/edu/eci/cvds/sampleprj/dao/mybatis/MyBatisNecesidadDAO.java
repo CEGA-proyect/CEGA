@@ -19,6 +19,7 @@ public class MyBatisNecesidadDAO implements NecesidadDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    @Override
     public List<Necesidad> consultarNombresNecesidad() throws PersistenceException{
         try{
             return necesidadMapper.consultarNombresNecesidad();
@@ -26,6 +27,23 @@ public class MyBatisNecesidadDAO implements NecesidadDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    @Override
+    public void actualizarEstadoNecesidad(int id , String estado) throws PersistenceException{
+        try{
+            necesidadMapper.actualizarEstadoNecesidad(id,estado);
+        }catch(Exception e){
+            throw new PersistenceException(e.toString());
+        }
+    }
+    @Override
+    public int consultarNumeroNecesidadesUsuario(String usuario_id) throws PersistenceException{
+        try{
+            return necesidadMapper.consultarNumeroNecesidadesUsuario(usuario_id);
+        }catch (Exception e){
+            throw new PersistenceException(e.toString());
+        }
+    }
+
 
 
 }

@@ -29,13 +29,14 @@ public class RespuestaBean extends BasePageBean {
     private String tipo = "";
     private String comentario;
     private String message = "";
+    private String usuario_id = "1000950506";
     Map<String,Integer> listado = null;
 
 
     public void crearRespuesta() throws SolidaridadEscuelaException {
         try {
             fechaDeCreacion = LocalDate.now();
-            Respuesta respuesta = new Respuesta(nombre,comentario,fechaDeCreacion,tipo,tipo_id);
+            Respuesta respuesta = new Respuesta(nombre,comentario,fechaDeCreacion,tipo,tipo_id,usuario_id);
             servicioRespuesta.crearRespuesta(respuesta);
             message = "respuesta creada";
         } catch (Exception e) {

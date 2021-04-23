@@ -38,7 +38,9 @@ public class NecesidadBean extends BasePageBean {
     private LocalDate fechaDeCreacion ;
     private String estado; 
     private LocalDate fechaDeModificacion; 
-    private String urgencia; 
+    private String urgencia;
+    private String usuario_id = "1000950506";
+    private int maxNecesidades = 10;
 
     private String message = "";
     private int categoria_id;
@@ -58,19 +60,29 @@ public class NecesidadBean extends BasePageBean {
         }
     }
     public void crearNecesidad() throws SolidaridadEscuelaException{
-        try {
-            fechaDeCreacion = LocalDate.now(); 
-            estado = "activo"; 
-            fechaDeModificacion = LocalDate.now();
-            Necesidad necesidad = new Necesidad(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado,urgencia,categoria_id);
-            servicioNecesidad.crearNecesidad(necesidad);
-            message = "Necesidad creada";
-        } catch (Exception e) {
-            message = "Error al crear la Necesidad";
-            throw new SolidaridadEscuelaException(e.getMessage());
+        if(servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) < maxNecesidades) {
+            try {
+                fechaDeCreacion = LocalDate.now();
+                estado = "activo";
+                fechaDeModificacion = LocalDate.now();
+                Necesidad necesidad = new Necesidad(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, urgencia, categoria_id, usuario_id);
+                servicioNecesidad.crearNecesidad(necesidad);
+                message = "Necesidad creada";
+            } catch (Exception e) {
+                message = "Error al crear la Necesidad";
+                throw new SolidaridadEscuelaException(e.getMessage());
+            }
+        }else{
+            message = "numero de necesidades creadas excedido";
+            System.out.print(message);
         }
     }
 
+    public void actualizarEstadoNecesidad() throws SolidaridadEscuelaException {
+        System.out.println(id);
+        System.out.println(estado);
+        servicioNecesidad.actualizarEstadoNecesidad(id,estado);
+    }
 
     public String getDescripcion() {
         return descripcion;

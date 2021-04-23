@@ -9,17 +9,19 @@ public class Respuesta {
     private int tipo_id;
     private String tipo;
     private String comentario;
+    private String usuario_id;
 
     public Respuesta(){
         super();
     }
 
-    public Respuesta(String nombre,String comentario , LocalDate fechaDeCreacion, String tipo , int tipo_id){
+    public Respuesta(String nombre,String comentario , LocalDate fechaDeCreacion, String tipo , int tipo_idm, String usuario_id){
         this.nombre = nombre;
         this.fechaDeCreacion = fechaDeCreacion;
         this.tipo = tipo;
         this.tipo_id = tipo_id;
         this.comentario = comentario;
+        this.usuario_id = usuario_id;
 
     }
 
@@ -72,4 +74,11 @@ public class Respuesta {
         return tipo;
     }
 
+    public String getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(String usuario_id) {
+        this.usuario_id = usuario_id;
+    }
 }

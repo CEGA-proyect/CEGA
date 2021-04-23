@@ -7,4 +7,6 @@ import java.util.List;
 public interface OfertaDAO {
     void crearOferta(Oferta o) throws PersistenceException;
     List<Oferta> consultarNombresOfertas() throws PersistenceException;
+    void actualizarEstadoOferta(int id, String estado) throws PersistenceException;
+    int consultarNumeroOfertasUsuario(String usuario_id) throws  PersistenceException;
 }

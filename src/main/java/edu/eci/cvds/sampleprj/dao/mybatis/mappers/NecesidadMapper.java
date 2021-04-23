@@ -7,4 +7,6 @@ import java.util.List;
 public interface NecesidadMapper {
     void crearNecesidad(@Param("necesidad") Necesidad n);
     List<Necesidad> consultarNombresNecesidad();
+    void actualizarEstadoNecesidad(@Param("id") int id, @Param("estado") String estado );
+    int consultarNumeroNecesidadesUsuario(@Param("usuario_id") String usuario_id);
 }

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ServicioOferta {
     void crearOferta(Oferta o) throws SolidaridadEscuelaException;
     List<Oferta> consultarNombresOfertas() throws SolidaridadEscuelaException;
+    void actualizarEstadoOferta(int id, String estado) throws SolidaridadEscuelaException;
+    int consultarNumeroOfertasUsuario(String usuario_id) throws  SolidaridadEscuelaException;
 }

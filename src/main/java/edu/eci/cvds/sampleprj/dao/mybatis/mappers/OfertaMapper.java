@@ -9,4 +9,6 @@ import java.util.List;
 public interface OfertaMapper {
     void crearOferta(@Param("oferta") Oferta o);
     List<Oferta> consultarNombresOfertas();
+    void actualizarEstadoOferta(@Param("id") int id , @Param("estado") String estado );
+    int consultarNumeroOfertasUsuario(@Param("usuario_id") String usuario_id);
 }

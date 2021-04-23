@@ -11,12 +11,14 @@
         <result property='fechadecreacion' column='fechadecreacion'/>
         <result property='tipo' column='tipo'/>
         <result property='tipo_id' column='tipo_id'/>
+        <result property='usuario_id' column='usuario_id'/>
+
     </resultMap>
 
     <insert id="crearRespuesta" parameterType="map">
         INSERT INTO respuesta
-        (nombre,comentario,fechadecreacion,tipo,tipo_id)
+        (nombre,comentario,fechadecreacion,tipo,tipo_id,usuario_id)
         VALUES
-        (#{respuesta.nombre},#{respuesta.comentario},CURRENT_DATE,#{respuesta.tipo}, #{respuesta.tipo_id});
+        (#{respuesta.nombre},#{respuesta.comentario},CURRENT_DATE,#{respuesta.tipo}, #{respuesta.tipo_id},#{respuesta.usuario_id});
     </insert>
 </mapper>

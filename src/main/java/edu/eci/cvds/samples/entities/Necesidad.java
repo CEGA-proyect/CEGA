@@ -12,16 +12,17 @@ public class Necesidad {
     private LocalDate fechaDeModificacion; 
     private String urgencia; 
     private int categoria ;
+    private String usuario_id;
     public Necesidad(){
         super();
     }
-    public Necesidad(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado, String urgencia, int categoria){
-
+    public Necesidad(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado, String urgencia, int categoria, String usuario_id){
+        this.usuario_id = usuario_id;
         this.nombre = nombre; 
         this.descripcion = descripcion; 
         this.fechaDeCreacion = fechaDeCreacion; 
         this.estado = estado; 
-        this.fechaDeModificacion = fechaDeCreacion;
+        this.fechaDeModificacion = fechaDeModificacion;
         this.urgencia = urgencia; 
         this.categoria = categoria; 
     }    
@@ -74,5 +75,13 @@ public class Necesidad {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(String usuario_id) {
+        this.usuario_id = usuario_id;
     }
 }

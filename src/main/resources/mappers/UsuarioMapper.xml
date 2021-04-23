@@ -13,6 +13,7 @@
         <result property='correo' column='correo'/>
         <result property='rol' column='rol'/>
         <result property='fechaRegistro' column='fechaRegistro'/>
+
     </resultMap>
 
     <select id="consultarIdUsuarioPorCorreo" parameterType="map" resultMap="UsuarioResult">

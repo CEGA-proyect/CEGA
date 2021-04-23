@@ -31,5 +31,24 @@ public class MyBatisOfertaDAO implements OfertaDAO {
         }
     }
 
+    @Override
+    public void actualizarEstadoOferta(int id , String estado) throws PersistenceException {
+        try{
+            ofertaMapper.actualizarEstadoOferta(id,estado);
+        }catch (Exception e){
+            throw  new PersistenceException(e.toString());
+        }
+
+    }
+    @Override
+
+    public int consultarNumeroOfertasUsuario(String usuario_id) throws PersistenceException{
+        try{
+            return ofertaMapper.consultarNumeroOfertasUsuario(usuario_id);
+        }catch (Exception e){
+            throw new PersistenceException(e.toString());
+        }
+    }
+
 
 }
