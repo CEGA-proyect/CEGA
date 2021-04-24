@@ -17,8 +17,8 @@
 
     <insert id="crearRespuesta" parameterType="map">
         INSERT INTO respuesta
-        (nombre,comentario,fechadecreacion,tipo,tipo_id,usuario_id)
+        (nombre,comentario,fechadecreacion,necesidad_id,oferta_id,usuario_id)
         VALUES
-        (#{respuesta.nombre},#{respuesta.comentario},CURRENT_DATE,#{respuesta.tipo}, #{respuesta.tipo_id},#{respuesta.usuario_id});
+        (#{respuesta.nombre},#{respuesta.comentario},CURRENT_DATE,#{respuesta.necesidad_id}, #{respuesta.oferta_id},#{respuesta.usuario_id});
     </insert>
 </mapper>

@@ -6,8 +6,8 @@ public class Respuesta {
     private int id;
     private String nombre;
     private LocalDate fechaDeCreacion;
-    private int tipo_id;
-    private String tipo;
+    private Integer necesidad_id;
+    private Integer oferta_id;
     private String comentario;
     private String usuario_id;
 
@@ -15,11 +15,11 @@ public class Respuesta {
         super();
     }
 
-    public Respuesta(String nombre,String comentario , LocalDate fechaDeCreacion, String tipo , int tipo_idm, String usuario_id){
+    public Respuesta(String nombre,String comentario , LocalDate fechaDeCreacion, Integer necesidad_id, Integer oferta_id, String usuario_id){
         this.nombre = nombre;
         this.fechaDeCreacion = fechaDeCreacion;
-        this.tipo = tipo;
-        this.tipo_id = tipo_id;
+        this.oferta_id = oferta_id;
+        this.necesidad_id = necesidad_id;
         this.comentario = comentario;
         this.usuario_id = usuario_id;
 
@@ -32,53 +32,40 @@ public class Respuesta {
     public int getId() {
         return id;
     }
-
     public void setFechaDeCreacion(LocalDate fechaDeCreacion) {
         this.fechaDeCreacion = fechaDeCreacion;
     }
-
     public LocalDate getFechaDeCreacion() {
         return fechaDeCreacion;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getNombre() {
         return nombre;
     }
-
-
     public String getComentario() {
         return comentario;
     }
-
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-
-    public void setTipo_id(int tipo_id) {
-        this.tipo_id = tipo_id;
-    }
-
-    public int getTipo_id() {
-        return tipo_id;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
     public String getUsuario_id() {
         return usuario_id;
     }
-
     public void setUsuario_id(String usuario_id) {
         this.usuario_id = usuario_id;
+    }
+    public Integer getOferta_id() {
+        return oferta_id;
+    }
+    public void setOferta_id(Integer oferta_id) {
+        this.oferta_id = oferta_id;
+    }
+    public Integer getNecesidad_id() {
+        return necesidad_id;
+    }
+    public void setNecesidad_id(Integer necesidad_id) {
+        this.necesidad_id = necesidad_id;
     }
 }

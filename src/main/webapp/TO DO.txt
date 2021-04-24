@@ -1,9 +1,12 @@
-<!-- <div class="form-group">
-                            <h:outputLabel for="nombre" value="nuevo nombre: "/>
-                            <p:inputText class="form-control" type="String" id="nombre" value="#{CategoriaBean.nombre}"/>
+Host
+ec2-3-233-7-12.compute-1.amazonaws.com
 
-                        </div>
-                        <div class="btn-group " role="group" aria-label="Basic example">
-                            <p:commandButton class="btn btn-primary" value="Actualizar Nombre" actionListener="#{CategoriaBean.actualizarNombreCategoria}" />
-                        </div>
-                        -->
+
+Password
+696d65463569a973f469eb4ecf40fa501f73dda8709878a860f4c44643bdb5bc
+
+Port
+5432
+
+URI
+postgres://brrlyybiheohdb:696d65463569a973f469eb4ecf40fa501f73dda8709878a860f4c44643bdb5bc@ec2-3-233-7-12.compute-1.amazonaws.com:5432/ddcvu5tsjj9ist

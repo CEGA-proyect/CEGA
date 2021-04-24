@@ -19,18 +19,13 @@
 
                 <div class="form-group">
 
-                    <p:selectOneMenu id="UrgenciaNames" value="#{RespuestaBean.tipo}" class="form-control">
-                        <f:selectItem itemLabel="Seleccionar Categoria: " noSelectionOption="true"/>
-                        <f:selectItem  itemLabel="Oferta" itemValue="Oferta"  />
-                        <f:selectItem  itemLabel="Necesidad" itemValue="Necesidad"/>
-                    </p:selectOneMenu>
 
-                    <p:selectOneMenu id="NecesidadNames" value="#{RespuestaBean.tipo_id}" class="form-control" >
+                    <p:selectOneMenu id="NecesidadNames" value="#{RespuestaBean.necesidad_id}" class="form-control" >
                         <f:selectItem itemLabel="Seleccionar Necesidad: " noSelectionOption="true"/>
                         <f:selectItems value="#{NecesidadBean.necesidades}"/>
                     </p:selectOneMenu>
                     o
-                    <p:selectOneMenu id="OfertaNames" value="#{RespuestaBean.tipo_id}" class="form-control" >
+                    <p:selectOneMenu id="OfertaNames" value="#{RespuestaBean.oferta_id}" class="form-control" >
                         <f:selectItem itemLabel="Seleccionar Oferta: " noSelectionOption="true"/>
                         <f:selectItems value="#{OfertaBean.ofertas}"/>
                     </p:selectOneMenu>

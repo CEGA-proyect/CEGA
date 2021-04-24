@@ -40,7 +40,6 @@ CREATE TABLE public.necesidad (
 alter sequence necesidad_id_seq owned by necesidad.id;
 
 
-
 create sequence respuesta_id_seq ;
 
 CREATE TABLE public.respuesta (
@@ -48,11 +47,13 @@ CREATE TABLE public.respuesta (
 	nombre varchar(60) NOT NULL,
 	comentario varchar(200) NOT NULL,
 	fechadecreacion date NOT NULL,
-	tipo varchar(20) NOT NULL,
-	tipo_id int4 NOT NULL ,
+	necesidad_id int4 ,
+	oferta_id int4,
 	usuario_id varchar(50) not null,
 	CONSTRAINT respuesta_pk PRIMARY key (id),
-	CONSTRAINT respuesta_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES usuario(documento)
+	CONSTRAINT respuesta_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES usuario(documento),
+	CONSTRAINT respuesta_necesidad_id_fkey FOREIGN KEY (necesidad_id) REFERENCES necesidad(id),
+	CONSTRAINT respuesta_oferta_id_fkey FOREIGN KEY (oferta_id) REFERENCES oferta(id)
 );
 
 alter sequence respuesta_id_seq owned by respuesta.id;
