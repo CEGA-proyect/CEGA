@@ -39,9 +39,7 @@
     <select parameterType = "map" id = "consultarNumeroOfertasUsuario" resultType="Integer">
         SELECT COUNT(*)
         FROM oferta as o
-        WHERE o.usuario_id = #{usuario_id}
+        WHERE o.usuario_id = #{usuario_id}  AND (o.estado = 'Activa' OR o.estado = 'En Proceso');
     </select>
-
-
 
 </mapper>

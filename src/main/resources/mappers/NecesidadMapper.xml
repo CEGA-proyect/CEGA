@@ -29,7 +29,6 @@
         SELECT n.id,n.nombre
         FROM necesidad as n
         WHERE n.estado = 'Activa' OR n.estado = 'En Proceso';
-
     </select>
 
     <update id="actualizarEstadoNecesidad" >
@@ -41,7 +40,7 @@
     <select parameterType = "map" id = "consultarNumeroNecesidadesUsuario" resultType="Integer">
         SELECT COUNT(*)
         FROM necesidad as n
-        WHERE n.usuario_id = #{usuario_id}
+        WHERE n.usuario_id = #{usuario_id} AND (n.estado = 'Activa' OR n.estado = 'En Proceso');
     </select>
 
 </mapper>

@@ -24,6 +24,7 @@ public class LoginBean extends BasePageBean{
     private String password;
     private Boolean remember;
     private String message;
+    private HttpSession session;
 
     public void login() throws IOException, SolidaridadEscuelaException{
         boolean isLogger = logger.isLogged();
@@ -36,7 +37,7 @@ public class LoginBean extends BasePageBean{
                 System.out.println("========================================================"); 
                 message = "Login Correcto";
                 logger.login(email, password, false);
-                //redireccionamiento();
+                redireccionamiento();
             } else{
                 sesionActiva();
             }
@@ -50,46 +51,49 @@ public class LoginBean extends BasePageBean{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         message = "Login correcto";
         if(logger.isAdmin()){
-            
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            System.out.println("==========================admin==============================");
+            session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("email", email);
-            facesContext.getExternalContext().redirect("../admin.xhtml");
+
+            facesContext.getExternalContext().redirect("./admin.xhtml");
         }
         if(logger.isStudent()){
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("email", email);
-            facesContext.getExternalContext().redirect("../Student.xhtml");
+
+            facesContext.getExternalContext().redirect("./student.xhtml");
         }
         if(logger.isUser()){
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+            session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("email", email);
-            facesContext.getExternalContext().redirect("../user.xhtml");
+
+            facesContext.getExternalContext().redirect("./user.xhtml");
         }
     }
 
     public void sesionActiva() throws IOException{
         this.message = "El nombre de ususario ya existe ";
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        facesContext.getExternalContext().redirect("");
+        facesContext.getExternalContext().redirect("./login.xhtml");
     }
 
 
     public void logout() throws IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        facesContext.getExternalContext().redirect("../Login.xhtml");
+        facesContext.getExternalContext().redirect("./login.xhtml");
         logger.logout();
     }
 
     public void comeBack() throws IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if(logger.isAdmin()){
-            facesContext.getExternalContext().redirect("../admin.xhtml");
+            facesContext.getExternalContext().redirect("./admin.xhtml");
         }
         if(logger.isStudent()){
-            facesContext.getExternalContext().redirect("../Student.xhtml");
+            facesContext.getExternalContext().redirect("./student.xhtml");
         }
         if(logger.isUser()){
-            facesContext.getExternalContext().redirect("../user.xhtml");
+            facesContext.getExternalContext().redirect("./user.xhtml");
         }
     }
 
@@ -128,5 +132,14 @@ public class LoginBean extends BasePageBean{
     public void info() {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, "message"));
     }
+
+    public HttpSession getSession() {
+        return session;
+    }
+
+    public void setSession(HttpSession session) {
+        this.session = session;
+    }
+
 
 }

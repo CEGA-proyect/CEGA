@@ -18,7 +18,7 @@ public class ValidacionSesion extends AccessControlFilter{
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception{
-        welcomeurl = "/Login.xhtml";
+        welcomeurl = "faces/login.xhtml";
         WebUtils.issueRedirect(request, response, welcomeurl);
         return false;
     }
