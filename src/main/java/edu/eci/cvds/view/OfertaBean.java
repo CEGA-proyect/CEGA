@@ -9,6 +9,8 @@ import edu.eci.cvds.shiro.Logger;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,9 @@ public class OfertaBean extends BasePageBean{
 
 
     public void crearOferta() throws SolidaridadEscuelaException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
+        usuario_id = (String) httpSession.getAttribute("email");
         if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas ) {
             try {
                 fechaDeCreacion = LocalDate.now();

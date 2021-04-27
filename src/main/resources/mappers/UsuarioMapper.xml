@@ -21,5 +21,10 @@
         FROM usuario u
         WHERE u.correo = #{correo};
     </select>
-    
+
+    <select id="consultarNombreUsuarioPorCorreo" parameterType="map" resultType="String" >
+        SELECT u.nombre
+        FROM usuario u
+        WHERE u.correo = #{correo};
+    </select>
 </mapper>

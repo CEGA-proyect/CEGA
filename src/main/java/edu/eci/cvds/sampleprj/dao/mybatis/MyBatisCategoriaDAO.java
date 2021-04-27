@@ -61,5 +61,13 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    @Override
+    public String consultarCategoriaPorId(int id) throws PersistenceException{
+        try{
+            return categoriaMapper.consultarCategoriaPorId(id);
+        }catch(Exception e ){
+            throw  new PersistenceException(e.toString());
+        }
+    }
 
 }

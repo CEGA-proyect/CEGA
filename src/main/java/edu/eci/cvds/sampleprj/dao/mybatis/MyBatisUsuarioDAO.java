@@ -16,4 +16,12 @@ public class MyBatisUsuarioDAO implements UsuarioDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    @Override
+    public String consultarNombreUsuarioPorCorreo(String correo) throws  PersistenceException{
+        try{
+            return usuarioMapper.consultarNombreUsuarioPorCorreo(correo);
+        }catch (Exception e){
+            throw new PersistenceException(e.toString());
+        }
+    }
 }

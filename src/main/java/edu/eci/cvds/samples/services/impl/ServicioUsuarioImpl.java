@@ -19,5 +19,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
             throw new SolidaridadEscuelaException("Error al consultar usuario con correo "+correo);
         }
     }
+    @Override
+    public String consultarNombreUsuarioPorCorreo(String correo) throws SolidaridadEscuelaException{
+        try{
+            return  usuarioDAO.consultarNombreUsuarioPorCorreo(correo);
+        }
+        catch (Exception e){
+            throw  new SolidaridadEscuelaException(e.getMessage());
+        }
+    }
 
 }

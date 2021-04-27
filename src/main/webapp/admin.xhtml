@@ -27,28 +27,26 @@
                 <input type="button" value="Actualizar Ofertas" />
             </a>
 
-
-
-
-
-
-
-
-        </div>
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
     <h:form class="justify-content-center">
         <div class="btn-group " role="group" aria-label="Basic example">
-            <p:commandButton class="btn btn-primary" value="crear"  actionListener="#{loginBean.logout()}" >
-                logout
-            </p:commandButton>
+            <p:commandButton class="btn btn-primary" value="logout"  actionListener="#{loginBean.logout()}" />
         </div>
+
+        <div class="btn-group " role="group" aria-label="Basic example">
+            <p:commandButton class="btn btn-primary" value="crear Exel" actionListener="#{NecesidadBean.crearExel}" />
+        </div>
+
+        <br/>
+
+        <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 70%;margin-left: 15%;border-radius: 10px;background-color: white; color: black;" type="pie" id="pie2"
+                 responsive="true"
+                 model="#{NecesidadBean.generarEstadisticaEstado()}"
+
+        />
+
+        <br/>
     </h:form>
+    </div>
     </div>
 </h:body>
 </html>

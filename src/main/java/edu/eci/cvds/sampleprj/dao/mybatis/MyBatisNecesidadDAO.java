@@ -28,6 +28,14 @@ public class MyBatisNecesidadDAO implements NecesidadDAO {
         }
     }
     @Override
+    public List<Necesidad> consultarNombresNecesidadGeneral() throws PersistenceException{
+        try{
+            return necesidadMapper.consultarNombresNecesidadGeneral();
+        }catch(Exception e){
+            throw new PersistenceException(e.toString());
+        }
+    }
+    @Override
     public void actualizarEstadoNecesidad(int id , String estado) throws PersistenceException{
         try{
             necesidadMapper.actualizarEstadoNecesidad(id,estado);

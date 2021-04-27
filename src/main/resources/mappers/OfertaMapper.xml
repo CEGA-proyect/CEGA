@@ -24,7 +24,7 @@
     </insert>
 
     <select parameterType="map" id="consultarNombresOfertas" resultMap="OfertaResult">
-        SELECT o.id,o.nombre
+        SELECT *
         FROM oferta as o
         WHERE o.estado = 'Activa' OR o.estado = 'En Proceso';
 

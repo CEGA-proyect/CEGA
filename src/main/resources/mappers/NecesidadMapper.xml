@@ -21,14 +21,19 @@
         INSERT INTO necesidad
         (nombre,descripcion,fechadecreacion,estado,fechademodificacion,urgencia,categoria_id,usuario_id)
         VALUES
-        (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria},#{necesidad.usuario_id});
+        (#{necesidad.nombre},#{necesidad.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{necesidad.urgencia}, #{necesidad.categoria_id},#{necesidad.usuario_id});
     </insert>
 
 
     <select parameterType="map" id="consultarNombresNecesidad" resultMap="NecesidadResult">
-        SELECT n.id,n.nombre
+        SELECT *
         FROM necesidad as n
         WHERE n.estado = 'Activa' OR n.estado = 'En Proceso';
+    </select>
+
+    <select parameterType="map" id="consultarNombresNecesidadGeneral" resultMap="NecesidadResult">
+        SELECT *
+        FROM necesidad as n
     </select>
 
     <update id="actualizarEstadoNecesidad" >

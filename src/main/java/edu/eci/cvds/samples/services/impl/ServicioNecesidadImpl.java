@@ -53,5 +53,15 @@ public class ServicioNecesidadImpl implements ServicioNecesidad{
         }
     }
 
+    @Override
+    public List<Necesidad> consultarNombresNecesidadGeneral() throws SolidaridadEscuelaException {
+        try {
+            return necesidadDAO.consultarNombresNecesidadGeneral();
+        } catch (Exception e) {
+            throw new SolidaridadEscuelaException(e.getMessage());
+
+        }
+    }
+
 
 }

@@ -6,6 +6,8 @@ import edu.eci.cvds.samples.services.ServicioRespuesta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -26,6 +28,10 @@ public class RespuestaBean extends BasePageBean {
 
 
     public void crearRespuesta() throws SolidaridadEscuelaException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
+        usuario_id = (String) httpSession.getAttribute("email");
+
         try {
             fechaDeCreacion = LocalDate.now();
             if(necesidad_id == 0){

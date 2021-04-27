@@ -51,7 +51,6 @@ public class LoginBean extends BasePageBean{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         message = "Login correcto";
         if(logger.isAdmin()){
-            System.out.println("==========================admin==============================");
             session = (HttpSession) facesContext.getExternalContext().getSession(true);
             session.setAttribute("email", email);
 
@@ -69,6 +68,9 @@ public class LoginBean extends BasePageBean{
 
             facesContext.getExternalContext().redirect("./user.xhtml");
         }
+
+        System.out.println(email);
+        System.out.println(session.getAttribute("email"));
     }
 
     public void sesionActiva() throws IOException{

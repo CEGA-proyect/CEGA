@@ -9,6 +9,7 @@ public interface NecesidadDAO {
     void actualizarEstadoNecesidad(int id, String estado) throws  PersistenceException;
     List<Necesidad> consultarNombresNecesidad() throws PersistenceException;
     int consultarNumeroNecesidadesUsuario(String usuario_id) throws PersistenceException;
+    List<Necesidad> consultarNombresNecesidadGeneral() throws PersistenceException;
 
 
 }

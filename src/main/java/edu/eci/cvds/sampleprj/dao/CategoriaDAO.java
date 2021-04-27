@@ -10,5 +10,6 @@ public interface CategoriaDAO {
     void actualizarEstadoCategoria( int id, String estado )throws PersistenceException;
     void actualizarNombreCategoria( int id, String nombre )throws PersistenceException;
     List<Categoria> consultarNombresCategorias() throws PersistenceException;
+    String consultarCategoriaPorId(int id) throws PersistenceException;
 
 }
