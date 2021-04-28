@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+</h:head>
+<h:body style="font-family: 'Oswald', sans-serif; background-color:rgba(218, 218, 221, 0.932);">
+<div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+    <div class="px-2">
+        <p:messages>
+            <p:autoUpdate />
+        </p:messages>
+        <h:form class="justify-content-center">
+            <div class="form-group">
+                <h:outputLabel for="nombre" value="Nombre: "/>
+                <p:inputText class="form-control" type="String" id="nombre" value="#{CategoriaBean.nombre}"/>
+                
+                <h:outputLabel for="descripcion" value="descripcion: "/>
+                <p:inputText class="form-control" type="String" id="descripcion" value="#{CategoriaBean.descripcion}"/>
+            </div>
+            
+            <div class="btn-group " role="group" aria-label="Basic example">
+                <p:commandButton class="btn btn-primary" value="crear" actionListener="#{CategoriaBean.crearCategoria}" />
+                
+            </div>
+        </h:form>
+    </div>
+</div>
+</h:body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADMIN</title>
+</h:head>
+<h:body style="font-family: 'Oswald', sans-serif; background-color:rgba(218, 218, 221, 0.932);">
+    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+        <div class="px-2">
+
+            <a href="/faces/CrearCategoria.xhtml">
+                <input type="button" value="Crear Categoria" />
+            </a>
+            <a href="/faces/ActualizarCategoria.xhtml">
+                <input type="button" value="Actualizar Categoria" />
+            </a>
+
+            <a href="/faces/ActualizarNecesidades.xhtml">
+                <input type="button" value="Actualizar Necesidad" />
+            </a>
+            <a href="/faces/ActualizarOferta.xhtml">
+                <input type="button" value="Actualizar Ofertas" />
+            </a>
+
+    <h:form class="justify-content-center">
+        <div class="btn-group " role="group" aria-label="Basic example">
+            <p:commandButton class="btn btn-primary" value="logout"  actionListener="#{loginBean.logout()}" />
+        </div>
+
+        <div class="btn-group " role="group" aria-label="Basic example">
+            <p:commandButton class="btn btn-primary" value="crear Exel" actionListener="#{NecesidadBean.crearExel}" />
+        </div>
+
+        <br/>
+
+        <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 70%;margin-left: 15%;border-radius: 10px;background-color: white; color: black;" type="pie" id="pie2"
+                 responsive="true"
+                 model="#{NecesidadBean.generarEstadisticaEstado()}"
+
+        />
+
+        <br/>
+    </h:form>
+    </div>
+    </div>
+</h:body>
+</html>
