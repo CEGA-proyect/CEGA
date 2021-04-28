@@ -81,6 +81,7 @@ public class LoginBean extends BasePageBean{
 
 
     public void logout() throws IOException{
+        System.out.print("LOGOUT");
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.getExternalContext().redirect("./login.xhtml");
         logger.logout();

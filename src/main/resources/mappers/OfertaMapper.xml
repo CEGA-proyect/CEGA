@@ -10,7 +10,7 @@
         <result property='descripcion' column='descripcion'/>
         <result property='fechadecreacion' column='fechadecreacion'/>
         <result property='estado' column='estado'/>
-        <result property='fechaDemodificacion' column='fechademodificacion'/>
+        <result property='fechademodificacion' column='fechademodificacion'/>
         <result property='categoria_id' column='categoria_id'/>
         <result property='usuario_id' column='usuario_id'/>
 

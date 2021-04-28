@@ -6,8 +6,8 @@ public class Oferta {
     private int categoria_id;
     private  String nombre;
     private  String descripcion;
-    private LocalDate fechaDeCreacion;
-    private LocalDate fechaDeModificacion;
+    private LocalDate fechadecreacion;
+    private LocalDate fechademodificacion;
     private String estado;
     private int id;
     private String usuario_id;
@@ -17,12 +17,12 @@ public class Oferta {
         super() ;
     }
 
-    public Oferta(String nombre, String descripcion,LocalDate fechaDeCreacion, LocalDate fechaDeModificacion , String estado, int categoria_id, String usuario_id){
+    public Oferta(String nombre, String descripcion,LocalDate fechadecreacion, LocalDate fechademodificacion , String estado, int categoria_id, String usuario_id){
 
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fechaDeCreacion = fechaDeCreacion;
-        this.fechaDeModificacion = fechaDeModificacion;
+        this.fechadecreacion = fechadecreacion;
+        this.fechademodificacion = fechademodificacion;
         this.estado = estado;
         this.categoria_id = categoria_id;
         this.usuario_id = usuario_id ;
@@ -38,12 +38,12 @@ public class Oferta {
         this.categoria_id = categoria_id;
     }
 
-    public LocalDate getFechaDeCreacion() {
-        return fechaDeCreacion;
+    public LocalDate getFechadecreacion() {
+        return fechadecreacion;
     }
 
-    public void setFechaDeCreacion(LocalDate fechaDeCreacion) {
-        this.fechaDeCreacion = fechaDeCreacion;
+    public void setFechadecreacion(LocalDate fechadecreacion) {
+        this.fechadecreacion = fechadecreacion;
     }
 
     public String getDescripcion() {
@@ -62,12 +62,12 @@ public class Oferta {
         this.estado = estado;
     }
 
-    public LocalDate getFechaDeModificacion() {
-        return fechaDeModificacion;
+    public LocalDate getFechademodificacion() {
+        return fechademodificacion;
     }
 
-    public void setFechaDeModificacion(LocalDate fechaDeModificacion) {
-        this.fechaDeModificacion = fechaDeModificacion;
+    public void setFechademodificacion(LocalDate fechademodificacion) {
+        this.fechademodificacion = fechademodificacion;
     }
 
     public String getNombre() {
