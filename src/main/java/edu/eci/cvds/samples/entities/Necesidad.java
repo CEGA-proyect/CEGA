@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Necesidad {
 
+
     private int id;
     private String nombre;
     private String descripcion;

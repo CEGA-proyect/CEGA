@@ -56,7 +56,7 @@ public class CategoriaBean extends BasePageBean {
             Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado);
             servicioCategoria.crearCategoria(categoria);
             message = "Categoria creada ";
-        } catch (Exception e) {
+        } catch (SolidaridadEscuelaException e) {
             message = "Error al crear la categoria";
             throw new SolidaridadEscuelaException(e.getMessage());
         }
@@ -141,5 +141,7 @@ public class CategoriaBean extends BasePageBean {
 
         this.id = id;
     }
+
+
 
 }

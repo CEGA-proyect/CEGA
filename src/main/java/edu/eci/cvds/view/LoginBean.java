@@ -27,6 +27,10 @@ public class LoginBean extends BasePageBean{
     private HttpSession session;
 
     public void login() throws IOException, SolidaridadEscuelaException{
+        System.out.println("========================================================");
+        System.out.println(email);
+        System.out.println(password);
+        System.out.println("========================================================");
         boolean isLogger = logger.isLogged();
         try {
             if(!isLogger){
