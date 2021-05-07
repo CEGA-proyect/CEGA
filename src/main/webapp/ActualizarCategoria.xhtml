@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <script name="jquery/jquery.js" library="primefaces"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Login</title>
+    <title>ActualizarCategoria</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,11 +39,8 @@
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Actualizar Categoría</h1>
                             <h:form class="my-login-validation" id="formulario">
                                 <h:selectOneMenu id="CategoriaNames" value="#{CategoriaBean.id}" class="form-control" >
-
                                     <f:selectItem itemLabel="Seleccionar Categoría: " noSelectionOption="true"/>
-
                                     <f:selectItems value="#{CategoriaBean.categoria}"/>
-
                                 </h:selectOneMenu>
 
                                 <p>

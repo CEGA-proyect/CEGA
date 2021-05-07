@@ -32,7 +32,7 @@ public class OfertaBean extends BasePageBean{
     private String message = "";
     private Map<String,Integer> ofertas;
     private String usuario_id = "1000950506";
-    private int maximoOfertas = 10;
+    private int maximoOfertas = 4;
 
 
     public void crearOferta() throws SolidaridadEscuelaException {

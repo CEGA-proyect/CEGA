@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <script name="jquery/jquery.js" library="primefaces"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Login</title>
+    <title>admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,9 +29,12 @@
     </div>
     <br></br>
 
+
     <section class="h-200" style="margin:auto ; padding:130px">
+
         <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
         <div class="px-2">
+
 
         <a href="/faces/CrearCategoria.xhtml">
             <input type="button" value="Crear Categoria" />
@@ -70,26 +73,28 @@
                                         <f:ajax execute="@form" render="nombre descripcion" />
 
                                     </p:commandButton>
+
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
                                                      value="Log Out" actionListener="#{loginBean.logout()}">
                                         <f:ajax execute="@form" render="nombre descripcion" />
 
                                     </p:commandButton>
 
+
                                 </div>
+
+
                             </h:form>
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
 
     </section>
-    <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 70%;margin-left: 15%;border-radius: 10px;background-color: white; color: black;" type="pie" id="pie2"
-             responsive="true"
-             model="#{NecesidadBean.generarEstadisticaEstado()}"
 
-    />
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -102,5 +107,6 @@
     <script src="resources/js/my-login.js"></script>
 
 </h:body>
+
 
 </html>
