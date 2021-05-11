@@ -45,28 +45,6 @@
                                 <div class="form-group">
 
 
-                                    <label for="nombre" style="font-size:250%">Nombre</label>
-                                    <input style=" height: 50px ; font-size: 40px" id="nombre" type="String"
-                                           class="form-control" name="nombre" value="#{RespuestaBean.nombre}" required="true" autofocus="true"
-                                           jsf:value="#{RespuestaBean.nombre}"/>
-
-
-                                    <label for="descripcion" style="font-size:250%">Descripción</label>
-                                    <input style=" height: 300px ; font-size: 40px " id="descripcion" type="String"
-                                           class="form-control" name="descripcion" value = "#{RespuestaBean.comentario}" required="true" data-eye="true"
-                                           jsf:value="#{RespuestaBean.comentario}" />
-
-
-
-
-                                    <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Crear Respuesta" actionListener="#{RespuestaBean.crearRespuesta}">
-                                        <f:ajax execute="@form" render="nombre descripcion" />
-
-                                    </p:commandButton>
-
-                                </div>
-
                                 <h2>ofertas</h2>
                                 <h:dataTable value="#{OfertaBean.ofertasObjeto}" var="oferta" border="2">
                                     <h:column>
@@ -91,7 +69,7 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header"></f:facet>
-                                        <a href="/faces/CrearRespuesta.xhtml">
+                                        <a href="/faces/CrearRespuestaEspecifica.xhtml">
                                             <input type="button" value="Responder" />
                                         </a>
                                     </h:column>
@@ -121,19 +99,23 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header"></f:facet>
-                                        <a href="/faces/CrearRespuesta.xhtml">
+                                        <a href= "#{RespuestaBean.redireccionamiento(necesidad.id)}">
                                             <input type="button" value="Responder" />
                                         </a>
-                                    </h:column>
 
+                                    </h:column>
                                 </h:dataTable>
+                                </div>
                             </h:form>
+
+
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

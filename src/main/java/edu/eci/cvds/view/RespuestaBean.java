@@ -113,6 +113,9 @@ public class RespuestaBean extends BasePageBean {
         return oferta_id;
     }
 
+    public String redireccionamiento(int num){
+        return "/faces/CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num);
+    }
 
 }
 
