@@ -20,14 +20,18 @@
     <link href="resources/img/tabicon.svg" rel="icon" />
     <title>CEGA</title>
 </h:head>
+
+
 <h:body class="my-login-page">
     <body style = "background:#005A80">
+
     </body>
     <br></br>
     <div style="padding:30px; width:100%; background:#4169E1; color:white; font-size:500%;">
         <center>CEGA</center>
     </div>
     <br></br>
+
 
     <section class="h-200" style="margin:auto ; padding:130px">
         <div class="container h-200">
@@ -45,6 +49,9 @@
                                     <f:selectItems value="#{NecesidadBean.necesidades}"/>
 
                                 </h:selectOneMenu>
+
+
+
                                 <center><label for="nombre" style="font-size:250%"  >ó</label></center>
 
 
@@ -81,8 +88,52 @@
 
                                 </div>
 
+                                <h2>ofertas</h2>
+                                <h:dataTable value="#{OfertaBean.ofertasObjeto}" var="oferta" border="10">
+                                    <h:column>
+                                        <f:facet name="header">nombre</f:facet>
+                                        #{oferta.nombre}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">descripcion</f:facet>
+                                        #{oferta.descripcion}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">estado</f:facet>
+                                        #{oferta.estado}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">usuario</f:facet>
+                                        #{oferta.usuario_id}
+                                    </h:column>
+                                </h:dataTable>
 
+                                <h2>Necesidades</h2>
+                                <h:dataTable value="#{NecesidadBean.necesidadesObjeto}" var="necesidad" border="10">
+                                    <h:column>
+                                        <f:facet name="header">nombre</f:facet>
+                                        #{necesidad.nombre}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">descripcion</f:facet>
+                                        #{necesidad.descripcion}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">estado</f:facet>
+                                        #{necesidad.estado}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">urgencia</f:facet>
+                                        #{necesidad.urgencia}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">usuario</f:facet>
+                                        #{necesidad.usuario_id}
+                                    </h:column>
+
+                                </h:dataTable>
                             </h:form>
+
                         </div>
                     </div>
                 </div>
@@ -101,5 +152,6 @@
     <script src="resources/js/my-login.js"></script>
 
 </h:body>
+
 
 </html>

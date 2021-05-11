@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +32,12 @@ public class OfertaBean extends BasePageBean{
     private int id;
     private String message = "";
     private Map<String,Integer> ofertas;
+    private List<Oferta> ofertasObjeto ;
     private String usuario_id = "1000950506";
     private int maximoOfertas = 4;
+
+    public OfertaBean() throws SolidaridadEscuelaException {
+    }
 
 
     public void crearOferta() throws SolidaridadEscuelaException {
@@ -140,4 +145,10 @@ public class OfertaBean extends BasePageBean{
         }
         return ofertas;
     }
+
+    public List<Oferta> getOfertasObjeto() throws SolidaridadEscuelaException{
+        return servicioOferta.consultarNombresOfertas();
+    }
+
+
 }

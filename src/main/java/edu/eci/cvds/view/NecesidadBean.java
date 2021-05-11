@@ -53,6 +53,7 @@ public class NecesidadBean extends BasePageBean {
     private int categoria_id;
 
     private Map<String, Integer> necesidades;
+    private List<Necesidad> necesidadesObjeto;
 
     public void comeBack() throws IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -180,6 +181,10 @@ public class NecesidadBean extends BasePageBean {
             necesidades.put(n.getNombre(), n.getId());
         }
         return necesidades;
+    }
+
+    public List<Necesidad> getNecesidadesObjeto() throws SolidaridadEscuelaException{
+        return servicioNecesidad.consultarNombresNecesidad();
     }
 
     public void crearExel() throws SolidaridadEscuelaException {
