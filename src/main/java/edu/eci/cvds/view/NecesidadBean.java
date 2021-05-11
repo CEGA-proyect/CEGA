@@ -177,8 +177,24 @@ public class NecesidadBean extends BasePageBean {
     public Map<String, Integer> getNecesidades() throws SolidaridadEscuelaException {
         necesidades = new HashMap<String, Integer>();
         List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidad();
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
+        String temp  = (String) httpSession.getAttribute("email");
+
         for (Necesidad n : nece) {
-            necesidades.put(n.getNombre(), n.getId());
+
+            System.out.println(temp);
+            System.out.println(n.getUsuario_id());
+
+            if(logger.isAdmin()) {
+                necesidades.put(n.getNombre(), n.getId());
+            }
+            else if(logger.isStudent()){
+                if(temp.equals(n.getUsuario_id())){
+                    necesidades.put(n.getNombre(), n.getId());
+                }
+            }
         }
         return necesidades;
     }

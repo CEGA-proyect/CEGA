@@ -42,27 +42,6 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Respuesta</h1>
                             <h:form class="my-login-validation" id="formulario">
-                                <h:selectOneMenu id="NecesidadNames" value="#{RespuestaBean.necesidad_id}" class="form-control" >
-
-                                    <f:selectItem itemLabel="Seleccionar Necesidad: " noSelectionOption="true"/>
-
-                                    <f:selectItems value="#{NecesidadBean.necesidades}"/>
-
-                                </h:selectOneMenu>
-
-
-
-                                <center><label for="nombre" style="font-size:250%"  >ó</label></center>
-
-
-                                <h:selectOneMenu id="OfertaNames" value="#{RespuestaBean.oferta_id}" class="form-control" >
-
-                                    <f:selectItem itemLabel="Seleccionar Oferta: " noSelectionOption="true"/>
-
-                                    <f:selectItems value="#{OfertaBean.ofertas}"/>
-
-                                </h:selectOneMenu>
-
                                 <div class="form-group">
 
 
@@ -89,7 +68,7 @@
                                 </div>
 
                                 <h2>ofertas</h2>
-                                <h:dataTable value="#{OfertaBean.ofertasObjeto}" var="oferta" border="10">
+                                <h:dataTable value="#{OfertaBean.ofertasObjeto}" var="oferta" border="2">
                                     <h:column>
                                         <f:facet name="header">nombre</f:facet>
                                         #{oferta.nombre}
@@ -103,13 +82,23 @@
                                         #{oferta.estado}
                                     </h:column>
                                     <h:column>
+                                        <f:facet name="header">urgencia</f:facet>
+                                        No Aplica
+                                    </h:column>
+                                    <h:column>
                                         <f:facet name="header">usuario</f:facet>
                                         #{oferta.usuario_id}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"></f:facet>
+                                        <a href="/faces/CrearRespuesta.xhtml">
+                                            <input type="button" value="Responder" />
+                                        </a>
                                     </h:column>
                                 </h:dataTable>
 
                                 <h2>Necesidades</h2>
-                                <h:dataTable value="#{NecesidadBean.necesidadesObjeto}" var="necesidad" border="10">
+                                <h:dataTable value="#{NecesidadBean.necesidadesObjeto}" var="necesidad" border="2">
                                     <h:column>
                                         <f:facet name="header">nombre</f:facet>
                                         #{necesidad.nombre}
@@ -129,6 +118,12 @@
                                     <h:column>
                                         <f:facet name="header">usuario</f:facet>
                                         #{necesidad.usuario_id}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"></f:facet>
+                                        <a href="/faces/CrearRespuesta.xhtml">
+                                            <input type="button" value="Responder" />
+                                        </a>
                                     </h:column>
 
                                 </h:dataTable>
