@@ -263,8 +263,8 @@
   </dependencies>
 
   <build>
-    <finalName>CEGA</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <finalName>cega</finalName>
+    <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
             <!-- clean project (also local H2 database)-->
             <plugin>
@@ -394,6 +394,6 @@
               </configuration>
           </plugin>
       </plugins>
-    </pluginManagement>
+
   </build>
 </project>
