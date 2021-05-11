@@ -10,6 +10,8 @@ import edu.eci.cvds.shiro.Logger;
 import org.apache.poi.hssf.record.chart.ChartRecord;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.usermodel.HSSFChart;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
 import javax.enterprise.context.SessionScoped;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -204,68 +207,36 @@ public class NecesidadBean extends BasePageBean {
     }
 
     public void crearExel() throws SolidaridadEscuelaException {
-        //crear columnas
         HSSFWorkbook libro = new HSSFWorkbook();
-        HSSFSheet hoja = libro.createSheet();
+        HSSFSheet hoja = libro.createSheet("Necesidades");
         List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
-        HSSFRow id = hoja.createRow(0);
-        HSSFRow categoria = hoja.createRow(1);
-        HSSFRow nombre = hoja.createRow(2);
-        HSSFRow descripcion = hoja.createRow(3);
-        HSSFRow fechadecreacion = hoja.createRow(4);
-        HSSFRow estado = hoja.createRow(5);
-        HSSFRow fechademodificacion = hoja.createRow(6);
-        HSSFRow nombreusuario = hoja.createRow(7);
+        int cont = 1 ;
+        Row rowi = hoja.createRow(0);
+        rowi.createCell(0).setCellValue("ID");
+        rowi.createCell(1).setCellValue("CATEGORIA");
+        rowi.createCell(2).setCellValue("NOMBRE");
+        rowi.createCell(3).setCellValue("DESCRIPCION");
+        rowi.createCell(4).setCellValue("FECHA DE CREACION");
+        rowi.createCell(5).setCellValue("ESTADO");
+        rowi.createCell(6).setCellValue("FECHA DE MODIFICACION");
+        rowi.createCell(7).setCellValue("NOMBRE USUARIO");
 
+        for(Necesidad n : nece ){
+            Row row  = hoja.createRow(cont++);
+            row.createCell(0).setCellValue(n.getId());
+            row.createCell(1).setCellValue(servicioCategoria.consultarCategoriaPorId( n.getCategoria_id()));
+            row.createCell(2).setCellValue(n.getNombre());
+            row.createCell(3).setCellValue(n.getDescripcion());
+            row.createCell(4).setCellValue( n.getFechadecreacion().toString());
+            row.createCell(5).setCellValue(n.getEstado());
+            row.createCell(6).setCellValue( n.getFechademodificacion().toString());
+            row.createCell(7).setCellValue(servicioUsuario.consultarNombreUsuarioPorCorreo(n.getUsuario_id()));
 
-        for (int i = 0; i <= nece.size(); i++) {
-            //crear celdas
-            HSSFCell celdaid = id.createCell((short) i);
-            HSSFCell celdacategoria = categoria.createCell((short) i);
-            HSSFCell celdanombre = nombre.createCell((short) i);
-            HSSFCell celdadescripcion = descripcion.createCell((short) i);
-            HSSFCell celdafechadecreacion = fechadecreacion.createCell((short) i);
-            HSSFCell celdaestado = estado.createCell((short) i);
-            HSSFCell celdafechademodificacion = fechademodificacion.createCell((short) i);
-            HSSFCell celdanombreusuario = nombreusuario.createCell((short) i);
-            if (i == 0) {
-                HSSFRichTextString textoid = new HSSFRichTextString("ID : ");
-                celdaid.setCellValue(textoid);
-                HSSFRichTextString textocategoria = new HSSFRichTextString("CATEGOERIA");
-                celdacategoria.setCellValue(textocategoria);
-                HSSFRichTextString textodescripcion = new HSSFRichTextString("DESCRIPCION");
-                celdadescripcion.setCellValue(textodescripcion);
-                HSSFRichTextString textonombre = new HSSFRichTextString("NOMBRE");
-                celdanombre.setCellValue(textonombre);
-                HSSFRichTextString textofechadecreacion = new HSSFRichTextString("FECHA DE CREACION");
-                celdafechadecreacion.setCellValue(textofechadecreacion);
-                HSSFRichTextString textoestado = new HSSFRichTextString("ESTADO");
-                celdaestado.setCellValue(textoestado);
-                HSSFRichTextString textofechademodificacion = new HSSFRichTextString("FECHA DE MODIFICACION");
-                celdafechademodificacion.setCellValue(textofechademodificacion);
-                HSSFRichTextString textonombreusuario = new HSSFRichTextString("NOMBRE DE USUARIO");
-                celdanombreusuario.setCellValue(textonombreusuario);
-            } else {
-                //llenar celdas
-                HSSFRichTextString textoid = new HSSFRichTextString(String.valueOf(nece.get(i - 1).getId()));
-                celdaid.setCellValue(textoid);
-
-                HSSFRichTextString textocategoria = new HSSFRichTextString(servicioCategoria.consultarCategoriaPorId(nece.get(i - 1).getCategoria_id()));
-                celdacategoria.setCellValue(textocategoria);
-                HSSFRichTextString textodescripcion = new HSSFRichTextString(nece.get(i - 1).getDescripcion());
-                celdadescripcion.setCellValue(textodescripcion);
-                HSSFRichTextString textonombre = new HSSFRichTextString(nece.get(i - 1).getNombre());
-                celdanombre.setCellValue(textonombre);
-                HSSFRichTextString textofechadecreacion = new HSSFRichTextString(nece.get(i - 1).getFechadecreacion().toString());
-                celdafechadecreacion.setCellValue(textofechadecreacion);
-                HSSFRichTextString textoestado = new HSSFRichTextString(nece.get(i - 1).getEstado());
-                celdaestado.setCellValue(textoestado);
-                HSSFRichTextString textofechademodificacion = new HSSFRichTextString(nece.get(i - 1).getFechademodificacion().toString());
-                celdafechademodificacion.setCellValue(textofechademodificacion);
-                HSSFRichTextString textonombreusuario = new HSSFRichTextString(servicioUsuario.consultarNombreUsuarioPorCorreo(nece.get(i - 1).getUsuario_id()));
-                celdanombreusuario.setCellValue(textonombreusuario);
-            }
         }
+        for(int i = 0 ; i<= 7 ; i++ ){
+            hoja.autoSizeColumn(i);
+        }
+
         try {
             FileOutputStream elFichero = new FileOutputStream("ResumenNecesidades.xls");
             libro.write(elFichero);
