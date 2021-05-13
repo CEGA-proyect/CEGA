@@ -7,10 +7,7 @@ import edu.eci.cvds.samples.services.ServicioNecesidad;
 import edu.eci.cvds.samples.services.ServicioUsuario;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import edu.eci.cvds.shiro.Logger;
-import org.apache.poi.hssf.record.chart.ChartRecord;
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.usermodel.HSSFChart;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
@@ -21,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
