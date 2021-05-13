@@ -37,7 +37,7 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
         try {
             categoriaDAO.actualizarDescripcionCategoria(id, descripcion);
         } catch (Exception e) {
-            throw new SolidaridadEscuelaException("Error actualizar la descripcion de la categoria");
+            throw new SolidaridadEscuelaException(e.getMessage());
         }
         
     }

@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
 
+import edu.eci.cvds.samples.entities.Necesidad;
 import edu.eci.cvds.samples.entities.Oferta;
 import edu.eci.cvds.samples.services.ServicioOferta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
@@ -22,6 +23,8 @@ import java.util.Map;
 public class OfertaBean extends BasePageBean{
     @Inject
     private ServicioOferta servicioOferta;
+    @Inject
+    private Logger logger;
 
     private int categoria_id;
     private String nombre;
@@ -140,8 +143,18 @@ public class OfertaBean extends BasePageBean{
     public Map<String,Integer> getOfertas() throws  SolidaridadEscuelaException{
         ofertas = new HashMap<String,Integer>();
         List<Oferta> ofe = servicioOferta.consultarNombresOfertas();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
+        String temp  = (String) httpSession.getAttribute("email");
         for (Oferta o: ofe) {
-            ofertas.put(o.getNombre(),o.getId());
+            if(logger.isAdmin()) {
+                ofertas.put(o.getNombre(), o.getId());
+            }
+            else{
+                if(temp.equals(o.getUsuario_id())){
+                    ofertas.put(o.getNombre(), o.getId());
+                }
+            }
         }
         return ofertas;
     }

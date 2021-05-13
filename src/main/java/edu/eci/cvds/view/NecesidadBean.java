@@ -186,10 +186,6 @@ public class NecesidadBean extends BasePageBean {
         String temp  = (String) httpSession.getAttribute("email");
 
         for (Necesidad n : nece) {
-
-            System.out.println(temp);
-            System.out.println(n.getUsuario_id());
-
             if(logger.isAdmin()) {
                 necesidades.put(n.getNombre(), n.getId());
             }

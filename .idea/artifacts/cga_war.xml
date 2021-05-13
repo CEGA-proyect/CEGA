@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="CEGA.war">
+    <root id="archive" name="cega.war">
       <element id="artifact" artifact-name="cga:war exploded" />
     </root>
   </artifact>

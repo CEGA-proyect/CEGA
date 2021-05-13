@@ -6,22 +6,28 @@ import edu.eci.cvds.samples.services.ServicioRespuesta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.Map;
 
+
 @ManagedBean(name = "RespuestaBean")
+
 @SessionScoped
+
 public class RespuestaBean extends BasePageBean {
+    @ManagedProperty(value = "#{param.necesidad_id}")
+    private Integer necesidad_id;
+    @ManagedProperty(value = "#{param.oferta_id}")
+    private Integer oferta_id;
+
     @Inject
     ServicioRespuesta servicioRespuesta;
-
     private int id;
     private String nombre;
     private LocalDate fechaDeCreacion;
-    private Integer oferta_id;
-    private Integer necesidad_id;
     private String comentario;
     private String message = "";
     private String usuario_id = "1000950506";
@@ -34,6 +40,9 @@ public class RespuestaBean extends BasePageBean {
 
         try {
             fechaDeCreacion = LocalDate.now();
+            System.out.print(necesidad_id.getClass().getSimpleName());
+            System.out.print(necesidad_id);
+
             if(necesidad_id == 0){
                 necesidad_id = null;
             }
@@ -113,8 +122,10 @@ public class RespuestaBean extends BasePageBean {
         return oferta_id;
     }
 
-    public String redireccionamiento(int num){
-        return "/faces/CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num);
+    public String redireccionamiento(Integer num,Integer num2){
+
+        return "/faces/CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num)+"&oferta_id="+String.valueOf(num2);
+
     }
 
 }

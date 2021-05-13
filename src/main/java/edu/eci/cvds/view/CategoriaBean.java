@@ -1,3 +1,4 @@
+
 package edu.eci.cvds.view;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -24,18 +25,18 @@ public class CategoriaBean extends BasePageBean {
     @Inject
     private ServicioCategoria servicioCategoria;
     @Inject
-    private Logger logger;  
+    private Logger logger;
 
     private int id;
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeCreacion ;
-    private String estado; 
-    private LocalDate fechaDeModificacion; 
+    private String estado;
+    private LocalDate fechaDeModificacion;
     private String message = "";
     private Map<String,Integer  > categoria ;
 
-   
+
     public void comeBack() throws IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if(logger.isAdmin()){
@@ -50,8 +51,8 @@ public class CategoriaBean extends BasePageBean {
     }
     public void crearCategoria() throws SolidaridadEscuelaException{
         try {
-            fechaDeCreacion = LocalDate.now(); 
-            estado = "activo"; 
+            fechaDeCreacion = LocalDate.now();
+            estado = "activo";
             fechaDeModificacion = LocalDate.now();
             Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado);
             servicioCategoria.crearCategoria(categoria);
@@ -73,10 +74,10 @@ public class CategoriaBean extends BasePageBean {
     public void actualizarEstadoCategoria()throws SolidaridadEscuelaException{
 
         servicioCategoria.actualizarEstadoCategoria( id,estado);
-    } 
+    }
 
     public void actualizarNombreCategoria()throws SolidaridadEscuelaException{
-
+        System.out.println("Entro");
         servicioCategoria.actualizarNombreCategoria(id, nombre);
 
     }
@@ -140,6 +141,9 @@ public class CategoriaBean extends BasePageBean {
     public void setId(int id) {
 
         this.id = id;
+    }
+    public void eliminarCategoria(int categoria) throws SolidaridadEscuelaException {
+        servicioCategoria.actualizarEstadoCategoria( categoria,"Inactiva");
     }
 
 
