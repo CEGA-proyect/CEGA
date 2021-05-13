@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:composite="http://java.sun.com/jsf/composite" lang="es">
+<h:head>
+    <meta charset="utf-8" />
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CrearRespuesta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </meta>
+    <link rel="stylesheet" type="text/css" href="resources/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link href="resources/img/tabicon.svg" rel="icon" />
+    <title>CEGA</title>
+</h:head>
+
+
+<h:body class="my-login-page">
+    <body style = "background:#005A80">
+
+    </body>
+    <br></br>
+    <div style="padding:30px; width:100%; background:#4169E1; color:white; font-size:500%;">
+        <center>CEGA</center>
+    </div>
+    <br></br>
+
+
+    <section class="h-200" style="margin:auto ; padding:130px">
+        <div class="container h-200">
+            <div class="row justify-content-md-center h-200">
+                <div class="card-wrapper">
+
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Respuesta</h1>
+                            <h:form class="my-login-validation" id="formulario">
+                                <div class="form-group">
+
+
+
+                                    <label for="nombre" style="font-size:250%">Nombre</label>
+                                    <input style=" height: 50px ; font-size: 40px" id="nombre" type="String"
+                                           class="form-control" name="nombre" value="#{RespuestaBean.nombre}" required="true" autofocus="true"
+                                           jsf:value="#{RespuestaBean.nombre}"/>
+
+                                    <label for="descripcion" style="font-size:250%">Descripción</label>
+                                    <input style=" height: 300px ; font-size: 40px " id="descripcion" type="String"
+                                           class="form-control" name="descripcion" value = "#{RespuestaBean.comentario}" required="true" data-eye="true"
+                                           jsf:value="#{RespuestaBean.comentario}" />
+
+                                    <p:commandButton type="submit" class="btn btn-primary btn-block"
+                                                     value="Crear Respuesta" actionListener="#{RespuestaBean.crearRespuesta}" onclick="location.reload()">
+                                        <f:ajax execute="@form" render="nombre descripcion" />
+
+                                    </p:commandButton>
+
+                                </div>
+
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</h:body>
+
+
+</html>
+
+

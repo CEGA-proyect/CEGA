@@ -176,101 +176,24 @@
 
   <build>
     <finalName>cega</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-            <!-- clean project (also local H2 database)-->
-            <plugin>
-              <artifactId>maven-clean-plugin</artifactId>
-              <version>2.6.1</version>
-              <executions>
-                  <execution>
-                      <id>auto-clean</id>
-                      <phase>initialize</phase>
-                      <goals>
-                          <goal>clean</goal>
-                      </goals>
-                  </execution>
-              </executions>
-          </plugin>
-
-          <!-- create local H2 database -->
+    <plugins>
           <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>sql-maven-plugin</artifactId>
-              <version>1.5</version>
-              <dependencies>
-                  <dependency>
-                      <groupId>com.h2database</groupId>
-                      <artifactId>h2</artifactId>
-                      <version>1.4.184</version>
-                  </dependency>
-              </dependencies>
-              <configuration>
-                  <driver>org.h2.Driver</driver>
-                  <url>jdbc:h2:file:./target/db/testdb;MODE=MYSQL</url>
-                  <username>anonymous</username>
-                  <password>anonymous</password>
-                  <autocommit>false</autocommit>
-                  <skip>${maven.test.skip}</skip>
-              </configuration>
-              <executions>
-                  <execution>
-                      <id>create-db</id>
-                      <phase>process-test-resources</phase>
-                      <goals>
-                          <goal>execute</goal>
-                      </goals>
-                      <configuration>
-                          <srcFiles>
-                              <srcFile>tables.sql</srcFile>
-                          </srcFiles>
-                      </configuration>
-                  </execution>
-              </executions>
-          </plugin>
-
-
-
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <version>3.6.0</version>
-              <configuration>
-                  <source>1.8</source>
-                  <target>1.8</target>
-                  <failOnMissingWebXml>false</failOnMissingWebXml>
-                  <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
-                  <warName>${project.artifactId}</warName>
-              </configuration>
-          </plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+          </configuration>
+      </plugin>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-war-plugin</artifactId>
-              <version>2.6</version>
+              <version>2.3</version>
               <configuration>
                   <failOnMissingWebXml>false</failOnMissingWebXml>
               </configuration>
           </plugin>
-	<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-dependency-plugin</artifactId>
-    <executions>
-        <execution>
-            <phase>package</phase>
-            <goals><goal>copy</goal></goals>
-            <configuration>
-                <artifactItems>
-                    <artifactItem>
-                        <groupId>com.heroku</groupId>
-                        <artifactId>webapp-runner</artifactId>
-                        <version>9.0.41.0</version>
-                        <destFileName>webapp-runner.jar</destFileName>
-                    </artifactItem>
-                </artifactItems>
-            </configuration>
-        </execution>
-    </executions>
-	</plugin>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-dependency-plugin</artifactId>
@@ -282,6 +205,7 @@
                           <goal>copy</goal>
                       </goals>
                       <configuration>
+                          <silent>true</silent>
                           <artifactItems>
                               <artifactItem>
                                   <groupId>com.github.jsimone</groupId>
@@ -306,6 +230,6 @@
               </configuration>
           </plugin>
       </plugins>
-    </pluginManagement>
+
   </build>
 </project>
