@@ -8,6 +8,9 @@ import edu.eci.cvds.samples.services.ServicioUsuario;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import edu.eci.cvds.shiro.Logger;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
@@ -157,6 +160,10 @@ public class NecesidadBean extends BasePageBean {
         return servicioNecesidad.consultarNombresNecesidad();
     }
 
+    public List<Necesidad> consultarNombresNecesidadGeneral() throws SolidaridadEscuelaException {
+        return servicioNecesidad.consultarNombresNecesidadGeneral();
+    }
+
     public int getId() {
         return id;
     }
@@ -179,14 +186,13 @@ public class NecesidadBean extends BasePageBean {
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
-        String temp  = (String) httpSession.getAttribute("email");
+        String temp = (String) httpSession.getAttribute("email");
 
         for (Necesidad n : nece) {
-            if(logger.isAdmin()) {
+            if (logger.isAdmin()) {
                 necesidades.put(n.getNombre(), n.getId());
-            }
-            else if(logger.isStudent()){
-                if(temp.equals(n.getUsuario_id())){
+            } else if (logger.isStudent()) {
+                if (temp.equals(n.getUsuario_id())) {
                     necesidades.put(n.getNombre(), n.getId());
                 }
             }
@@ -194,73 +200,26 @@ public class NecesidadBean extends BasePageBean {
         return necesidades;
     }
 
-    public List<Necesidad> getNecesidadesObjeto() throws SolidaridadEscuelaException{
+    public List<Necesidad> getNecesidadesObjeto() throws SolidaridadEscuelaException {
         return servicioNecesidad.consultarNombresNecesidad();
     }
 
-    public void crearExel() throws SolidaridadEscuelaException {
-        HSSFWorkbook libro = new HSSFWorkbook();
-        HSSFSheet hoja = libro.createSheet("Necesidades");
-        List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
-        int cont = 1 ;
-        Row rowi = hoja.createRow(0);
-        rowi.createCell(0).setCellValue("ID");
-        rowi.createCell(1).setCellValue("CATEGORIA");
-        rowi.createCell(2).setCellValue("NOMBRE");
-        rowi.createCell(3).setCellValue("DESCRIPCION");
-        rowi.createCell(4).setCellValue("FECHA DE CREACION");
-        rowi.createCell(5).setCellValue("ESTADO");
-        rowi.createCell(6).setCellValue("FECHA DE MODIFICACION");
-        rowi.createCell(7).setCellValue("NOMBRE USUARIO");
-
-        for(Necesidad n : nece ){
-            Row row  = hoja.createRow(cont++);
-            row.createCell(0).setCellValue(n.getId());
-            row.createCell(1).setCellValue(servicioCategoria.consultarCategoriaPorId( n.getCategoria_id()));
-            row.createCell(2).setCellValue(n.getNombre());
-            row.createCell(3).setCellValue(n.getDescripcion());
-            row.createCell(4).setCellValue( n.getFechadecreacion().toString());
-            row.createCell(5).setCellValue(n.getEstado());
-            row.createCell(6).setCellValue( n.getFechademodificacion().toString());
-            row.createCell(7).setCellValue(servicioUsuario.consultarNombreUsuarioPorCorreo(n.getUsuario_id()));
-
-        }
-        for(int i = 0 ; i<= 7 ; i++ ){
-            hoja.autoSizeColumn(i);
-        }
-
-        try {
-            FileOutputStream elFichero = new FileOutputStream("ResumenNecesidades.xls");
-            libro.write(elFichero);
-            elFichero.close();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-    }
 
     public PieChartModel generarEstadisticaEstado() throws SolidaridadEscuelaException {
         PieChartModel model = new PieChartModel();
-        int activo=0, proceso = 0 , resuelta = 0, cerrada = 0 ;
+        int activo = 0, proceso = 0, resuelta = 0, cerrada = 0;
 
         List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
 
         for (Necesidad n : nece) {
             if (n.getEstado().equals("Activa")) {
                 activo++;
-            }
-            else if (n.getEstado().equals("En Proceso")) {
+            } else if (n.getEstado().equals("En Proceso")) {
                 proceso++;
-            }
-            else if (n.getEstado().equals("Cerrada")) {
+            } else if (n.getEstado().equals("Cerrada")) {
                 cerrada++;
 
-            }
-            else if (n.getEstado().equals("Resuelta")) {
+            } else if (n.getEstado().equals("Resuelta")) {
                 resuelta++;
 
 
@@ -268,10 +227,10 @@ public class NecesidadBean extends BasePageBean {
         }
 
 
-        model.set("Activas",activo);
+        model.set("Activas", activo);
         model.set("En proceso ", proceso);
-        model.set("Resueltas",resuelta);
-        model.set("cerradas",cerrada);
+        model.set("Resueltas", resuelta);
+        model.set("cerradas", cerrada);
         model.setTitle("Estado Necesidades");
         model.setShowDataLabels(true);
         model.setDataLabelFormatString("%dK");
@@ -282,5 +241,27 @@ public class NecesidadBean extends BasePageBean {
         model.setDataLabelFormatString("%d");
         return model;
     }
+
+    public String consultarNombreUsuarioPorCorreo(String num) throws SolidaridadEscuelaException {
+        return servicioUsuario.consultarNombreUsuarioPorCorreo(num);
+    }
+
+    public String consultarNombreNecesidadPorId(int num) throws SolidaridadEscuelaException{
+        return servicioNecesidad.consultarNombreNecesidadPorId(num);
+    }
+    public void postProcessXLS(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        CellStyle style = wb.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                cell.setCellValue(cell.getStringCellValue().toUpperCase());
+                cell.setCellStyle(style);
+            }
+        }
+    }
+
 }
 

@@ -48,4 +48,10 @@
         WHERE n.usuario_id = #{usuario_id} AND (n.estado = 'Activa' OR n.estado = 'En Proceso');
     </select>
 
+    <select id="consultarNombreNecesidadPorId"  resultType="String">
+        select n.nombre
+        from necesidad as n
+        where n.id = #{id}
+    </select>
+
 </mapper>

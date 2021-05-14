@@ -145,6 +145,9 @@ public class CategoriaBean extends BasePageBean {
     public void eliminarCategoria(int categoria) throws SolidaridadEscuelaException {
         servicioCategoria.actualizarEstadoCategoria( categoria,"Inactiva");
     }
+    public String consultarCategoriaPorId(int num) throws SolidaridadEscuelaException{
+        return servicioCategoria.consultarCategoriaPorId(num);
+    }
 
 
 

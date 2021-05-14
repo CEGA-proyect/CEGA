@@ -46,6 +46,24 @@ public class ServicioOfertaImpl implements ServicioOferta{
         }
     }
 
+    public List<Oferta> consultarNombresOfertasGeneral() throws SolidaridadEscuelaException{
+        try{
+            return ofertaDAO.consultarNombresOfertasGeneral();
+        }catch (Exception e){
+            throw new SolidaridadEscuelaException(e.getMessage());
+
+        }
+    }
+
+    public String consultarNombreOfertaPorId(int num) throws SolidaridadEscuelaException{
+        try{
+            return ofertaDAO.consultarNombreOfertaPorId(num);
+        }catch (Exception e){
+            throw new SolidaridadEscuelaException(e.getMessage());
+
+        }
+    }
+
 
 
 }

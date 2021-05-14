@@ -11,4 +11,5 @@ public interface ServicioNecesidad {
     List<Necesidad> consultarNombresNecesidad() throws SolidaridadEscuelaException;
     List<Necesidad> consultarNombresNecesidadGeneral() throws SolidaridadEscuelaException;
     int consultarNumeroNecesidadesUsuario(String usuario_id ) throws SolidaridadEscuelaException;
+    String consultarNombreNecesidadPorId(int num) throws SolidaridadEscuelaException;
 }

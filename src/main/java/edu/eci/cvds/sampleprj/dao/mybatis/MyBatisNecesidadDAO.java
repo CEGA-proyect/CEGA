@@ -51,6 +51,14 @@ public class MyBatisNecesidadDAO implements NecesidadDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    @Override
+    public String consultarNombreNecesidadPorId(int num) throws PersistenceException{
+        try{
+            return necesidadMapper.consultarNombreNecesidadPorId(num);
+        }catch (Exception e){
+            throw new PersistenceException(e.toString());
+        }
+    }
 
 
 

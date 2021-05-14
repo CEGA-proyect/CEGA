@@ -5,6 +5,7 @@ import edu.eci.cvds.sampleprj.dao.OfertaDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.OfertaMapper;
 import edu.eci.cvds.samples.entities.Oferta;
+import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 
 import java.util.List;
 
@@ -47,6 +48,24 @@ public class MyBatisOfertaDAO implements OfertaDAO {
             return ofertaMapper.consultarNumeroOfertasUsuario(usuario_id);
         }catch (Exception e){
             throw new PersistenceException(e.toString());
+        }
+    }
+    @Override
+    public List<Oferta> consultarNombresOfertasGeneral() throws PersistenceException {
+        try{
+            return ofertaMapper.consultarNombresOfertasGeneral();
+        }catch (Exception e){
+            throw new PersistenceException(e.getMessage());
+
+        }
+    }
+    @Override
+    public String consultarNombreOfertaPorId(int num) throws PersistenceException{
+        try{
+            return ofertaMapper.consultarNombreOfertaPorId(num);
+        }catch (Exception e){
+            throw new PersistenceException(e.getMessage());
+
         }
     }
 

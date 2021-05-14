@@ -63,5 +63,15 @@ public class ServicioNecesidadImpl implements ServicioNecesidad{
         }
     }
 
+    @Override
+    public String consultarNombreNecesidadPorId(int num) throws SolidaridadEscuelaException{
+        try{
+            return  necesidadDAO.consultarNombreNecesidadPorId(num);
+        }
+        catch (Exception e){
+            throw new SolidaridadEscuelaException(e.getMessage());
+        }
+    }
+
 
 }

@@ -58,6 +58,10 @@
 
         </a>
 
+            <a href="/faces/Reportes.xhtml">
+                <input type="button" value="Reportes" />
+
+            </a>
         </div>
         </div>
         <div class="container h-200">
@@ -77,11 +81,6 @@
                                 </p>
                                 <div class="form-group">
 
-                                    <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Crear Excel" actionListener="#{NecesidadBean.crearExel}">
-                                        <f:ajax execute="@form" render="nombre descripcion" />
-
-                                    </p:commandButton>
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
                                                      value="Log Out" actionListener="#{loginBean.logout()}">

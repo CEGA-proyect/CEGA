@@ -4,12 +4,20 @@ import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Respuesta;
 import edu.eci.cvds.samples.services.ServicioRespuesta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 
@@ -128,5 +136,21 @@ public class RespuestaBean extends BasePageBean {
 
     }
 
+    public List<Respuesta> getRespuestas() throws SolidaridadEscuelaException {
+        return servicioRespuesta.consultarRespuestas();
+    }
+    public void postProcessXLS(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        CellStyle style = wb.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                cell.setCellValue(cell.getStringCellValue().toUpperCase());
+                cell.setCellStyle(style);
+            }
+        }
+    }
 }
 

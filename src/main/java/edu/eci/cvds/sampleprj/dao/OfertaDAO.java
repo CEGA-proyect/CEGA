@@ -9,4 +9,7 @@ public interface OfertaDAO {
     List<Oferta> consultarNombresOfertas() throws PersistenceException;
     void actualizarEstadoOferta(int id, String estado) throws PersistenceException;
     int consultarNumeroOfertasUsuario(String usuario_id) throws  PersistenceException;
+    List<Oferta> consultarNombresOfertasGeneral() throws PersistenceException;
+    String consultarNombreOfertaPorId(int num) throws PersistenceException;
+
 }

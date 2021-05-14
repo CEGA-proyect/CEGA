@@ -30,6 +30,11 @@
 
     </select>
 
+    <select parameterType="map" id="consultarNombresOfertasGeneral" resultMap="OfertaResult">
+        select *
+        from oferta as o
+    </select>
+
     <update id="actualizarEstadoOferta" >
         UPDATE oferta
         SET estado = #{estado}, fechademodificacion = CURRENT_DATE
@@ -39,7 +44,16 @@
     <select parameterType = "map" id = "consultarNumeroOfertasUsuario" resultType="Integer">
         SELECT COUNT(*)
         FROM oferta as o
-        WHERE o.usuario_id = #{usuario_id}  AND (o.estado = 'Activa' OR o.estado = 'En Proceso');
+        WHERE o.usuario_id = #{usuario_id} ;
     </select>
+
+
+
+    <select id="consultarNombreOfertaPorId" resultType="String">
+        select o.nombre
+        from oferta as o
+        where o.id = #{id};
+    </select>
+
 
 </mapper>

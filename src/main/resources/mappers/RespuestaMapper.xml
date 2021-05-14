@@ -8,7 +8,7 @@
         <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>
         <result property='comentario' column='comentario'/>
-        <result property='fechadecreacion' column='fechadecreacion'/>
+        <result property='fechaDeCreacion' column='fechadecreacion'/>
         <result property='tipo' column='tipo'/>
         <result property='tipo_id' column='tipo_id'/>
         <result property='usuario_id' column='usuario_id'/>
@@ -21,4 +21,16 @@
         VALUES
         (#{respuesta.nombre},#{respuesta.comentario},CURRENT_DATE,#{respuesta.necesidad_id}, #{respuesta.oferta_id},#{respuesta.usuario_id});
     </insert>
+
+    <select id="consultarNombreRespuestaPorId" resultType="String">
+        SELECT r.nombre
+        FROM respuesta r
+        WHERE r.id = #{id};
+
+    </select>
+
+    <select id="consultarRespuestas" resultMap="RespuestaResult">
+        SELECT *
+        FROM respuesta
+    </select>
 </mapper>
