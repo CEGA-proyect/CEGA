@@ -44,120 +44,161 @@
                                 <div class="form-group">
 
 
-                                    <h2>Necesidades</h2>
-                                    <h:dataTable value="#{NecesidadBean.consultarNombresNecesidadGeneral()}" var="necesidad" border="2">
-                                        <h:column>
-                                            <f:facet name="header">Id</f:facet>
-                                            #{necesidad.id}
-                                        </h:column>
+                                    <h1>Necesidades</h1>
+                                    <p:dataTable id = "necesidades" value="#{NecesidadBean.consultarNombresNecesidadGeneral()}" var="necesidad" border="2">
+                                        <p:column>
+                                            <f:facet name="header" >Id</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{necesidad.id}" />
 
-                                        <h:column>
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Nombre</f:facet>
-                                            #{necesidad.nombre}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{necesidad.nombre}" />
+                                        </p:column>
 
-                                        <h:column>
+                                        <p:column>
                                             <f:facet name="header">Categoria</f:facet>
-                                            #{CategoriaBean.consultarCategoriaPorId(necesidad.categoria_id)}
-                                        </h:column>
-                                        <h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{CategoriaBean.consultarCategoriaPorId(necesidad.categoria_id)}" />
+
+                                        </p:column>
+                                        <p:column>
                                             <f:facet name="header">Descripcion </f:facet>
-                                            #{necesidad.descripcion}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{necesidad.descripcion}" />
 
-                                        <h:column>
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">Urgencia </f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{necesidad.urgencia}" />
+
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Estado</f:facet>
-                                            #{necesidad.estado}
-                                        </h:column>
-                                        <h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{necesidad.estado}" />
+
+                                        </p:column>
+                                        <p:column>
                                             <f:facet name="header">Usuario</f:facet>
-                                            #{NecesidadBean.consultarNombreUsuarioPorCorreo(necesidad.usuario_id)}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{NecesidadBean.consultarNombreUsuarioPorCorreo(necesidad.usuario_id)}" />
+
+                                        </p:column>
 
 
-                                    </h:dataTable>
+                                    </p:dataTable>
 
 
-
-                                    <h:commandLink class="m-3">
+                                    <h5>Guardar como: </h5>
+                                    <h:commandLink class="m-3" title="Pdf" >
+                                        <p:graphicImage value="./icons/pdf.png" style="width:50px; height:50px;" />
+                                        <p:dataExporter type="pdf" target="necesidades" fileName="ReporteNecesidades"  />
+                                    </h:commandLink>
+                                    <h:commandLink class="m-3" title="Excel">
                                         <p:graphicImage value="./icons/excel.png" style="width:50px; height:50px;" />
                                         <p:dataExporter type="xls" postProcessor="#{NecesidadBean.postProcessXLS}"
-                                                        target="mydata" fileName="needReport" />
+                                                        target="necesidades" fileName="ReporteNecesidades" />
                                     </h:commandLink>
+                                    <br/>
+                                    <br/>
+                                    <br/>
 
-                                    <h2>Ofertas</h2>
-                                    <h:dataTable value="#{OfertaBean.getOfertasObjeto()}" var="oferta" border="2">
-                                    <h:column>
+
+                                    <h1>Ofertas</h1>
+                                    <p:dataTable id="ofertas" value="#{OfertaBean.getOfertasObjeto()}" var="oferta" border="2">
+                                    <p:column>
                                         <f:facet name="header">Id</f:facet>
-                                        #{oferta.id}
-                                    </h:column>
-                                        <h:column>
+                                        <h:outputText class="text-center mx-auto" value="#{oferta.id}" />
+
+                                    </p:column>
+                                        <p:column>
                                             <f:facet name="header">nombre</f:facet>
-                                            #{oferta.nombre}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{oferta.nombre}" />
 
-                                        <h:column>
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Categoria</f:facet>
-                                            #{CategoriaBean.consultarCategoriaPorId(oferta.categoria_id)}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{CategoriaBean.consultarCategoriaPorId(oferta.categoria_id)}" />
 
-                                        <h:column>
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Descripcion</f:facet>
-                                            #{oferta.descripcion}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{oferta.descripcion}" />
 
-                                        <h:column>
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Estado</f:facet>
-                                            #{oferta.estado}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{oferta.estado}" />
 
-                                        <h:column>
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Usuario</f:facet>
-                                            #{NecesidadBean.consultarNombreUsuarioPorCorreo(oferta.usuario_id)}
-                                        </h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{NecesidadBean.consultarNombreUsuarioPorCorreo(oferta.usuario_id)}" />
 
-                                    </h:dataTable>
-                                    <h:commandLink class="m-3">
+                                        </p:column>
+
+                                    </p:dataTable>
+                                    <h5>Guardar como: </h5>
+                                    <h:commandLink class="m-3" title="Pdf">
+                                        <p:graphicImage value="./icons/pdf.png" style="width:50px; height:50px;" />
+                                        <p:dataExporter type="pdf" target="ofertas" fileName="ReporteOfertas" />
+                                    </h:commandLink>
+                                    <p:commandLink class="m-3" title="Excel">
                                         <p:graphicImage value="./icons/excel.png" style="width:50px; height:50px;" />
                                         <p:dataExporter type="xls" postProcessor="#{OfertaBean.postProcessXLS}"
-                                                        target="mydata" fileName="needReport" />
-                                    </h:commandLink>
-
-                                    <h2>Respuestas</h2>
-                                    <h:dataTable value="#{RespuestaBean.respuestas}" var="respuesta" border="2">
-                                        <h:column>
+                                                        target="ofertas" fileName="ReporteOfertas" />
+                                    </p:commandLink>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <h1>Respuestas</h1>
+                                    <p:dataTable id="respuestas" value="#{RespuestaBean.respuestas}" var="respuesta" border="2">
+                                        <p:column>
                                             <f:facet name="header">Id</f:facet>
-                                            #{respuesta.id}
-                                        </h:column>
-                                    <h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{respuesta.id}" />
+
+                                        </p:column>
+                                    <p:column>
                                         <f:facet name="header">Nombre</f:facet>
-                                        #{respuesta.nombre}
-                                    </h:column>
-                                        <h:column>
+                                        <h:outputText class="text-center mx-auto" value="#{respuesta.nombre}" />
+
+                                    </p:column>
+                                        <p:column>
                                             <f:facet name="header">Comentario</f:facet>
-                                            #{respuesta.comentario}
-                                        </h:column>
-                                        <h:column>
+                                            <h:outputText class="text-center mx-auto" value="#{respuesta.comentario}" />
+
+                                        </p:column>
+                                        <p:column>
                                             <f:facet name="header">Oferta</f:facet>
-                                            #{OfertaBean.consultarNombreOfertaPorId(respuesta.oferta_id)}
+                                            <h:outputText class="text-center mx-auto" value="#{OfertaBean.consultarNombreOfertaPorId(respuesta.oferta_id)}" />
 
 
-                                        </h:column>
 
-                                        <h:column>
+                                        </p:column>
+
+                                        <p:column>
                                             <f:facet name="header">Necesidad</f:facet>
-                                            #{NecesidadBean.consultarNombreNecesidadPorId(respuesta.necesidad_id)}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">Usuario</f:facet>
-                                            #{NecesidadBean.consultarNombreUsuarioPorCorreo(respuesta.usuario_id)}
-                                        </h:column>
-                                    </h:dataTable>
+                                            <h:outputText class="text-center mx-auto" value="#{NecesidadBean.consultarNombreNecesidadPorId(respuesta.necesidad_id)}" />
 
-                                    <h:commandLink class="m-3">
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header">Usuario</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{NecesidadBean.consultarNombreUsuarioPorCorreo(respuesta.usuario_id)}" />
+
+                                        </p:column>
+                                    </p:dataTable>
+                                    <h5>Guardar como: </h5>
+                                    <h:commandLink class="m-3" title="Pdf">
+                                        <p:graphicImage value="./icons/pdf.png" style="width:50px; height:50px;" />
+                                        <p:dataExporter type="pdf" target="respuestas" fileName="ReporteRespuestas" />
+                                    </h:commandLink>
+                                    <h:commandLink class="m-3" title="Excel">
                                         <p:graphicImage value="./icons/excel.png" style="width:50px; height:50px;" />
                                         <p:dataExporter type="xls" postProcessor="#{RespuestaBean.postProcessXLS}"
-                                                        target="mydata" fileName="needReport" />
+                                                        target="respuestas" fileName="ReporteRespuestas" />
                                     </h:commandLink>
 
 
