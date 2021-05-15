@@ -5,6 +5,8 @@ import edu.eci.cvds.sampleprj.dao.CategoriaDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.CategoriaMapper;
 import edu.eci.cvds.samples.entities.Categoria;
+import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
+
 import java.util.List;
 
 public class MyBatisCategoriaDAO implements CategoriaDAO {
@@ -67,6 +69,13 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
             return categoriaMapper.consultarCategoriaPorId(id);
         }catch(Exception e ){
             throw  new PersistenceException(e.toString());
+        }
+    }
+    public List<Categoria> consultarNombresCategoriasGeneral() throws PersistenceException{
+        try {
+            return categoriaMapper.consultarNombresCategoriasGeneral() ;
+        } catch (Exception e) {
+            throw new PersistenceException(e.toString());
         }
     }
 

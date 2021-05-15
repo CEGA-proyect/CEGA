@@ -12,9 +12,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.*;
+import edu.eci.cvds.samples.services.ServicioNecesidad;
+import edu.eci.cvds.samples.services.ServicioOferta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import edu.eci.cvds.shiro.Logger;
 import edu.eci.cvds.samples.services.ServicioCategoria;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.primefaces.model.chart.PieChartModel;
 
 @ManagedBean(name = "CategoriaBean")
 @SessionScoped
@@ -24,6 +33,10 @@ public class CategoriaBean extends BasePageBean {
 
     @Inject
     private ServicioCategoria servicioCategoria;
+    @Inject
+    private ServicioOferta servicioOferta;
+    @Inject
+    private ServicioNecesidad servicioNecesidad;
     @Inject
     private Logger logger;
 
@@ -65,6 +78,9 @@ public class CategoriaBean extends BasePageBean {
 
     public List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException{
         return servicioCategoria.consultarNombresCategorias();
+    }
+    public List<Categoria> consultarNombresCategoriasGeneral() throws SolidaridadEscuelaException{
+        return servicioCategoria.consultarNombresCategoriasGeneral();
     }
 
     public void actualizarDescripcionCategoria()throws SolidaridadEscuelaException{
@@ -148,6 +164,89 @@ public class CategoriaBean extends BasePageBean {
     public String consultarCategoriaPorId(int num) throws SolidaridadEscuelaException{
         return servicioCategoria.consultarCategoriaPorId(num);
     }
+
+    public PieChartModel generarEstadisticaSolicitud() throws SolidaridadEscuelaException {
+        PieChartModel model = new PieChartModel();
+        List<Oferta> ofe = servicioOferta.consultarNombresOfertasGeneral();
+        List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
+        List<Categoria> cate = servicioCategoria.consultarNombresCategoriasGeneral();
+        List<Integer> contadores = new ArrayList<Integer>();
+        for(int i = 0 ; i < cate.size(); i++){
+            contadores.add(0);
+        }
+        for(Oferta o : ofe){
+            for(int i = 0 ; i < cate.size(); i++){
+                if(o.getCategoria_id() == cate.get(i).getId()){
+                    contadores.set(i,contadores.get(i)+1);
+                }
+            }
+        }
+        for(Necesidad n : nece){
+            for(int i = 0 ; i < cate.size(); i++){
+                if(n.getCategoria_id() == cate.get(i).getId()){
+                    contadores.set(i,contadores.get(i)+1);
+                }
+            }
+        }
+        for(int i = 0 ; i < cate.size(); i++) {
+            if(contadores.get(i) != 0) {
+                model.set(cate.get(i).getNombre(), contadores.get(i));
+            }
+        }
+        model.setTitle("Categorias Mas Solicitadas");
+        model.setShowDataLabels(true);
+        model.setDataLabelFormatString("%dK");
+        model.setLegendPosition("e");
+        model.setShowDatatip(true);
+        model.setShowDataLabels(true);
+        model.setDataFormat("value");
+        model.setDataLabelFormatString("%d");
+        return model;
+    }
+
+    public int ofertasAsociadasCategoria(int id) throws SolidaridadEscuelaException {
+        int num  = 0;
+        List<Oferta> ofe = servicioOferta.consultarNombresOfertasGeneral();
+        for(Oferta o : ofe){
+            if(o.getCategoria_id() == id){
+                num++;
+            }
+
+        }
+        return num;
+    }
+    public int necesidadesAsociadasCategoria(int id) throws SolidaridadEscuelaException {
+        int num  = 0;
+        List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
+        for(Necesidad n : nece){
+            if(n.getCategoria_id() == id){
+                num++;
+            }
+        }
+        return num;
+    }
+
+    public int totalAsociadasCategoria(int id) throws SolidaridadEscuelaException {
+        return necesidadesAsociadasCategoria(id) + ofertasAsociadasCategoria(id);
+    }
+    public void postProcessXLS(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        CellStyle style = wb.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                cell.setCellValue(cell.getStringCellValue().toUpperCase());
+                cell.setCellStyle(style);
+            }
+        }
+
+        for(int i = 0 ; i<= 10 ; i++ ){
+            sheet.autoSizeColumn(i);
+        }
+    }
+
 
 
 

@@ -13,7 +13,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-
+import org.primefaces.model.chart.PieChartModel;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -184,6 +184,43 @@ public class OfertaBean extends BasePageBean{
                 cell.setCellStyle(style);
             }
         }
+        for(int i = 0 ; i<= 10 ; i++ ){
+            sheet.autoSizeColumn(i);
+        }
+    }
+
+    public PieChartModel generarEstadisticaEstado() throws SolidaridadEscuelaException {
+        PieChartModel model = new PieChartModel();
+        int activo = 0, proceso = 0, resuelta = 0, cerrada = 0;
+        List<Oferta> ofe = servicioOferta.consultarNombresOfertasGeneral();
+        for (Oferta o: ofe) {
+            if (o.getEstado().equals("Activa")) {
+                activo++;
+            } else if (o.getEstado().equals("En Proceso")) {
+                proceso++;
+            } else if (o.getEstado().equals("Cerrada")) {
+                cerrada++;
+
+            } else if (o.getEstado().equals("Resuelta")) {
+                resuelta++;
+
+
+            }
+        }
+
+        model.set("Activas", activo);
+        model.set("En proceso ", proceso);
+        model.set("Resueltas", resuelta);
+        model.set("cerradas", cerrada);
+        model.setTitle("Estado Ofertas");
+        model.setShowDataLabels(true);
+        model.setDataLabelFormatString("%dK");
+        model.setLegendPosition("e");
+        model.setShowDatatip(true);
+        model.setShowDataLabels(true);
+        model.setDataFormat("value");
+        model.setDataLabelFormatString("%d");
+        return model;
     }
 
 

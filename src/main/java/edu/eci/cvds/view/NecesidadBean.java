@@ -48,7 +48,7 @@ public class NecesidadBean extends BasePageBean {
     private LocalDate fechaDeModificacion;
     private String urgencia;
     private String usuario_id = "";
-    //private String usuario_id = loginBean.getEmail();
+
     private int maxNecesidades = 10;
 
     private String message = "";
@@ -259,9 +259,15 @@ public class NecesidadBean extends BasePageBean {
             for (Cell cell : row) {
                 cell.setCellValue(cell.getStringCellValue().toUpperCase());
                 cell.setCellStyle(style);
+
             }
+
+        }
+        for(int i = 0 ; i<= 10 ; i++ ){
+            sheet.autoSizeColumn(i);
         }
     }
+
 
 }
 

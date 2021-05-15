@@ -70,4 +70,12 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
             throw new SolidaridadEscuelaException(e.getMessage());
         }
     }
+    @Override
+    public List<Categoria> consultarNombresCategoriasGeneral() throws SolidaridadEscuelaException{
+        try {
+            return categoriaDAO.consultarNombresCategoriasGeneral();
+        } catch (Exception e) {
+            throw new SolidaridadEscuelaException(e.toString());
+        }
+    }
 }

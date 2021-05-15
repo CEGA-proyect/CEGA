@@ -1,6 +1,5 @@
 package edu.eci.cvds.sampleprj.dao;
 import edu.eci.cvds.samples.entities.Categoria;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,5 +10,6 @@ public interface CategoriaDAO {
     void actualizarNombreCategoria( int id, String nombre )throws PersistenceException;
     List<Categoria> consultarNombresCategorias() throws PersistenceException;
     String consultarCategoriaPorId(int id) throws PersistenceException;
+    List<Categoria> consultarNombresCategoriasGeneral() throws PersistenceException;
 
 }

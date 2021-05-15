@@ -146,11 +146,11 @@
                                         <p:graphicImage value="./icons/pdf.png" style="width:50px; height:50px;" />
                                         <p:dataExporter type="pdf" target="ofertas" fileName="ReporteOfertas" />
                                     </h:commandLink>
-                                    <p:commandLink class="m-3" title="Excel">
+                                    <h:commandLink class="m-3" title="Excel">
                                         <p:graphicImage value="./icons/excel.png" style="width:50px; height:50px;" />
                                         <p:dataExporter type="xls" postProcessor="#{OfertaBean.postProcessXLS}"
                                                         target="ofertas" fileName="ReporteOfertas" />
-                                    </p:commandLink>
+                                    </h:commandLink>
                                     <br/>
                                     <br/>
                                     <br/>
@@ -199,6 +199,42 @@
                                         <p:graphicImage value="./icons/excel.png" style="width:50px; height:50px;" />
                                         <p:dataExporter type="xls" postProcessor="#{RespuestaBean.postProcessXLS}"
                                                         target="respuestas" fileName="ReporteRespuestas" />
+                                    </h:commandLink>
+
+                                    <h1>Categorias</h1>
+                                    <p:dataTable id = "categorias" value="#{CategoriaBean.consultarNombresCategoriasGeneral()}" var="categoria" border="2">
+                                        <p:column>
+                                            <f:facet name="header" >Id</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{categoria.id}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header" >nombre</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{categoria.nombre}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header" >Necesidades Asociadas</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{CategoriaBean.necesidadesAsociadasCategoria(categoria.id)}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header" >Ofertas Asociadas</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{CategoriaBean.ofertasAsociadasCategoria(categoria.id)}" />
+                                        </p:column>
+                                        <p:column>
+                                            <f:facet name="header" >Total</f:facet>
+                                            <h:outputText class="text-center mx-auto" value="#{CategoriaBean.totalAsociadasCategoria(categoria.id)}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+                                    <h5>Guardar como: </h5>
+                                    <h:commandLink class="m-3" title="Pdf">
+                                        <p:graphicImage value="./icons/pdf.png" style="width:50px; height:50px;" />
+                                        <p:dataExporter type="pdf" target="categorias" fileName="ReporteCategorias" />
+                                    </h:commandLink>
+                                    <h:commandLink class="m-3" title="Excel">
+                                        <p:graphicImage value="./icons/excel.png" style="width:50px; height:50px;" />
+                                        <p:dataExporter type="xls" postProcessor="#{CategoriaBean.postProcessXLS}"
+                                                        target="categorias" fileName="ReporteCategorias" />
                                     </h:commandLink>
 
 

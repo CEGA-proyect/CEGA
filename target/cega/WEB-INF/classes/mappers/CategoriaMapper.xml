@@ -52,5 +52,10 @@
         SET nombre = #{nombre}, fechademodificacion = CURRENT_DATE
         WHERE id = #{id};
     </update>
+    <select parameterType="map" id="consultarNombresCategoriasGeneral" resultMap="CategoriaResult">
+        SELECT *
+        FROM categoria as c
+    </select>
+
 
 </mapper>

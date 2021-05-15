@@ -1,6 +1,7 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Oferta;
 import edu.eci.cvds.samples.entities.Respuesta;
 import edu.eci.cvds.samples.services.ServicioRespuesta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
@@ -151,6 +152,13 @@ public class RespuestaBean extends BasePageBean {
                 cell.setCellStyle(style);
             }
         }
+
+        for(int i = 0 ; i<= 10 ; i++ ){
+            sheet.autoSizeColumn(i);
+        }
     }
+
+
+
 }
 

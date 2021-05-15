@@ -9,4 +9,5 @@ public interface ServicioCategoria {
     void actualizarNombreCategoria( int id, String nombre )throws SolidaridadEscuelaException;
     List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException;
     String consultarCategoriaPorId(int id ) throws SolidaridadEscuelaException;
+    List<Categoria> consultarNombresCategoriasGeneral() throws SolidaridadEscuelaException;
 }

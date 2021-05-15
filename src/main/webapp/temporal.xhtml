@@ -1,41 +1,53 @@
 
-
-        <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:composite="http://java.sun.com/jsf/composite" lang="es">
 <h:head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laboratory</title>
-    <link rel="stylesheet" href="../style/bootstrap.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald;family=Staatliches;display=swap" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="../style/style.css"/>
+    <meta charset="utf-8" />
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CrearNecesidad</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </meta>
+    <link rel="stylesheet" type="text/css" href="resources/css/login.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link href="resources/img/tabicon.svg" rel="icon" />
+    <title>CEGA</title>
 </h:head>
-<h:body style="font-family: 'Oswald', sans-serif; background-color:rgba(218, 218, 221, 0.932);">
-    <div class="container h-100">
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="d-flex flex-column">
-                <div class="p-0 btn-group justify-content-lg-center">
+<h:body >
+    <body style = "background:#005A80">
+    </body>
+    <br></br>
+    <div style="padding:30px; width:100%; background:#4169E1; color:white; font-size:500%;">
+        <center>CEGA</center>
+    </div>
+    <br></br>
 
-                    <div class="btn-group jumbotron justify-content-center" style="background-color: #000000; color: #ffffff; font-family: Consolas;">
+    <section class="h-200" style="margin:auto ; padding:130px">
+    <div class="container h-200">
+    <div class="row justify-content-md-center h-200">
+    <div class="card-wrapper">
 
-                    </div>
-                </div>
-                <h:form>
+        <div class="card fat">
+            <div class="card-body">
+                <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Necesidad</h1>
+                <h:form class="my-login-validation" id="formulario">
 
-                    <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 70%;margin-left: 15%;border-radius: 10px;background-color: white; color: black;" type="pie" id="pie"
-                             responsive="true"
-                             model="#{NecesidadBean.generarEstadisticaEstado()}">
 
-                    </p:chart>
 
                 </h:form>
             </div>
         </div>
     </div>
+    </div>
+    </div>
+    </section>
+
 </h:body>
 </html>
