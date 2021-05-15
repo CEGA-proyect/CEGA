@@ -170,7 +170,7 @@
           <version>3.8.1</version>
           <type>maven-plugin</type>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+      <!-- https://mvnrepository.com/artifact/org.apache.poi/poi
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi</artifactId>
@@ -181,9 +181,9 @@
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <version>8.0.22</version>
-          <!-- put a copy in /usr/share/tomcat7/lib -->
+           put a copy in /usr/share/tomcat7/lib
           <scope>provided</scope>
-      </dependency>
+      </dependency> -->
 
 
 
