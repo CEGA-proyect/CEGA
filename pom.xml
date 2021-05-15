@@ -177,6 +177,14 @@
           <version>4.1.2</version>
       </dependency>
 
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>8.0.22</version>
+          <!-- put a copy in /usr/share/tomcat7/lib -->
+          <scope>provided</scope>
+      </dependency>
+
 
 
   </dependencies>
