@@ -47,6 +47,7 @@ public class CategoriaBean extends BasePageBean {
     private String estado;
     private LocalDate fechaDeModificacion;
     private String message = "";
+    private String valida;
     private Map<String,Integer  > categoria ;
 
 
@@ -67,7 +68,7 @@ public class CategoriaBean extends BasePageBean {
             fechaDeCreacion = LocalDate.now();
             estado = "activo";
             fechaDeModificacion = LocalDate.now();
-            Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado);
+            Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado,valida);
             servicioCategoria.crearCategoria(categoria);
             message = "Categoria creada ";
         } catch (SolidaridadEscuelaException e) {
@@ -163,6 +164,14 @@ public class CategoriaBean extends BasePageBean {
     }
     public String consultarCategoriaPorId(int num) throws SolidaridadEscuelaException{
         return servicioCategoria.consultarCategoriaPorId(num);
+    }
+
+    public String getValida() {
+        return valida;
+    }
+
+    public void setValida(String valida) {
+        this.valida = valida;
     }
 
     public PieChartModel generarEstadisticaSolicitud() throws SolidaridadEscuelaException {

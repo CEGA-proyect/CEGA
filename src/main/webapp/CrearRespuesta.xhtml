@@ -97,12 +97,10 @@
                                         <f:facet name="header">usuario</f:facet>
                                         #{necesidad.usuario_id}
                                     </h:column>
-                                    <h:column>
-                                        <f:facet name="header"></f:facet>
-                                        <a href= "#{RespuestaBean.redireccionamiento(necesidad.id,0)}">
-                                            <input type="button" value="Responder" />
-                                        </a>
-
+                                        <h:column>
+                                        <p:commandButton type="submit" class="btn btn-primary btn-block"
+                                                         value="Responder" actionListener="#{RespuestaBean.redireccionamiento(necesidad.id,0)}">
+                                        </p:commandButton>
                                     </h:column>
                                 </h:dataTable>
                                 </div>

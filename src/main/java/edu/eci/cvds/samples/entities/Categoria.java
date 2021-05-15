@@ -7,18 +7,20 @@ public class Categoria {
     private String nombre;
     private String descripcion;
     private LocalDate fechaDeCreacion;
-    private String estado; 
+    private String estado;
+    private String valida;
     private LocalDate fechaDeModificacion; 
     public Categoria(){
         super();
     }
 
-     public Categoria(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado){ 
+     public Categoria(String nombre, String descripcion , LocalDate fechaDeCreacion,LocalDate fechaDeModificacion , String estado, String valida){
         this.nombre = nombre; 
         this.descripcion = descripcion; 
         this.fechaDeCreacion = fechaDeCreacion; 
         this.estado = estado; 
-        this.fechaDeModificacion = fechaDeCreacion; 
+        this.fechaDeModificacion = fechaDeCreacion;
+        this.valida = valida;
      }
 
      public void setDescripcion(String descripcion) {
@@ -59,4 +61,13 @@ public class Categoria {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getValida() {
+        return valida;
+    }
+
+    public void setValida(String valida) {
+        this.valida = valida;
+    }
+
 }

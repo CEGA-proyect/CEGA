@@ -78,5 +78,12 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    public String validarCategoriaPorId(int id) throws PersistenceException{
+        try{
+            return categoriaMapper.validarCategoriaPorId(id);
+        }catch (Exception e) {
+            throw new PersistenceException(e.toString());
+        }
+    }
 
 }

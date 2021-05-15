@@ -11,5 +11,6 @@ public interface CategoriaDAO {
     List<Categoria> consultarNombresCategorias() throws PersistenceException;
     String consultarCategoriaPorId(int id) throws PersistenceException;
     List<Categoria> consultarNombresCategoriasGeneral() throws PersistenceException;
+    String validarCategoriaPorId(int id) throws PersistenceException;
 
 }

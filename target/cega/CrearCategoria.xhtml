@@ -46,18 +46,20 @@
                                     <input style=" height: 50px ; font-size: 40px" id="nombre" type="String"
                                            class="form-control" name="nombre" value="#{CategoriaBean.nombre}" required="true" autofocus="true"
                                            jsf:value="#{CategoriaBean.nombre}"/>
-                                    <div class="invalid-feedback">
-                                        Introduzca un Correo Electrónico válido.
-                                    </div>
+
 
                                     <label for="descripcion" style="font-size:250%">Descripción</label>
                                     <input style=" height: 300px ; font-size: 40px " id="descripcion" type="String"
                                            class="form-control" name="descripcion" value = "#{CategoriaBean.descripcion}" required="true" data-eye="true"
                                             jsf:value="#{CategoriaBean.descripcion}" />
-                                    <div class="invalid-feedback">
-                                        Introduzca Contraseña
-                                    </div>
+                                    <Br/>
 
+                                    <h:selectOneMenu id="estadoNames" value="#{CategoriaBean.valida}" class="form-control" >
+                                        <f:selectItem itemLabel="Seleccionar validez: " noSelectionOption="true"/>
+                                        <f:selectItem  itemLabel="Valida" itemValue="valida"  />
+                                        <f:selectItem  itemLabel="invalida" itemValue="invalida"/>
+                                    </h:selectOneMenu>
+                                    <Br/>
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
                                                      value="Crear categoria" actionListener="#{CategoriaBean.crearCategoria}" onclick="location.reload()">
                                         <f:ajax execute="@form" render="nombre descripcion" />

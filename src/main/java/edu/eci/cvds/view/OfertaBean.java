@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 
 import edu.eci.cvds.samples.entities.Necesidad;
 import edu.eci.cvds.samples.entities.Oferta;
+import edu.eci.cvds.samples.services.ServicioCategoria;
 import edu.eci.cvds.samples.services.ServicioOferta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 import edu.eci.cvds.shiro.Logger;
@@ -30,6 +31,8 @@ public class OfertaBean extends BasePageBean{
     @Inject
     private ServicioOferta servicioOferta;
     @Inject
+    private ServicioCategoria servicioCategoria;
+    @Inject
     private Logger logger;
 
     private int categoria_id;
@@ -54,16 +57,22 @@ public class OfertaBean extends BasePageBean{
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
         if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas ) {
-            try {
-                fechaDeCreacion = LocalDate.now();
-                estado = "activo";
-                fechaDeModificacion = LocalDate.now();
-                Oferta oferta = new Oferta(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, categoria_id, usuario_id);
-                servicioOferta.crearOferta(oferta);
-                message = "Oferta creada";
-            } catch (Exception e) {
-                message = "Error al crear la Oferta";
-                throw new SolidaridadEscuelaException(e.getMessage());
+            if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
+                try {
+                    fechaDeCreacion = LocalDate.now();
+                    estado = "activo";
+                    fechaDeModificacion = LocalDate.now();
+                    Oferta oferta = new Oferta(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, categoria_id, usuario_id);
+                    servicioOferta.crearOferta(oferta);
+                    message = "Oferta creada";
+                } catch (Exception e) {
+                    message = "Error al crear la Oferta";
+                    throw new SolidaridadEscuelaException(e.getMessage());
+                }
+            }
+            else{
+                message = "Categoria Invalida";
+                System.out.println(message);
             }
         }else{
             message = "Numero de ofertas creadas exedido";

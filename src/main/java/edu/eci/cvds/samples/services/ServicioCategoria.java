@@ -10,4 +10,5 @@ public interface ServicioCategoria {
     List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException;
     String consultarCategoriaPorId(int id ) throws SolidaridadEscuelaException;
     List<Categoria> consultarNombresCategoriasGeneral() throws SolidaridadEscuelaException;
+    String validarCategoriaPorId(int id) throws SolidaridadEscuelaException;
 }

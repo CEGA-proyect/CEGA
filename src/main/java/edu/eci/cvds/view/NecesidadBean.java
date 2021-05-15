@@ -76,17 +76,23 @@ public class NecesidadBean extends BasePageBean {
         usuario_id = (String) httpSession.getAttribute("email");
 
         if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) < maxNecesidades) {
-            try {
-                fechaDeCreacion = LocalDate.now();
-                estado = "activo";
-                fechaDeModificacion = LocalDate.now();
-                Necesidad necesidad = new Necesidad(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, urgencia, categoria_id, usuario_id);
-                servicioNecesidad.crearNecesidad(necesidad);
-                message = "Necesidad creada";
-            } catch (Exception e) {
-                message = "Error al crear la Necesidad";
-                throw new SolidaridadEscuelaException(e.getMessage());
+            if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
+                try {
+                    fechaDeCreacion = LocalDate.now();
+                    estado = "activo";
+                    fechaDeModificacion = LocalDate.now();
+                    Necesidad necesidad = new Necesidad(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, urgencia, categoria_id, usuario_id);
+                    servicioNecesidad.crearNecesidad(necesidad);
+                    message = "Necesidad creada";
+                } catch (Exception e) {
+                    message = "Error al crear la Necesidad";
+                    throw new SolidaridadEscuelaException(e.getMessage());
+                }
+            }else{
+                message = "categoria Invalida";
+                System.out.print(message);
             }
+
         } else {
             message = "numero de necesidades creadas excedido";
             System.out.print(message);

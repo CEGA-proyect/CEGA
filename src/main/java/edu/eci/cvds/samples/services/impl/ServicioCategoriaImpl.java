@@ -78,4 +78,13 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
             throw new SolidaridadEscuelaException(e.toString());
         }
     }
+    @Override
+    public String validarCategoriaPorId(int id) throws SolidaridadEscuelaException{
+        try {
+            return categoriaDAO.validarCategoriaPorId(id);
+        }catch (Exception e) {
+            throw new SolidaridadEscuelaException(e.toString());
+        }
+
+    }
 }

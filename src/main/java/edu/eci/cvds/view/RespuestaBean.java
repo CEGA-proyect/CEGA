@@ -1,7 +1,6 @@
 package edu.eci.cvds.view;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Oferta;
 import edu.eci.cvds.samples.entities.Respuesta;
 import edu.eci.cvds.samples.services.ServicioRespuesta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
@@ -19,7 +18,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 
 @ManagedBean(name = "RespuestaBean")
@@ -131,11 +129,13 @@ public class RespuestaBean extends BasePageBean {
         return oferta_id;
     }
 
-    public String redireccionamiento(Integer num,Integer num2){
-
-        return "/faces/CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num)+"&oferta_id="+String.valueOf(num2);
-
-    }
+    /**
+    public void redireccionamiento(Integer num,Integer num2) throws IOException {
+        //FacesContext.getCurrentInstance().getExternalContext().redirect("./CrearRespuestaEspecifica.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("./CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num)+"&oferta_id="+String.valueOf(num2));
+        //setOferta_id(num2);
+        //setNecesidad_id(num);
+    }**/
 
     public List<Respuesta> getRespuestas() throws SolidaridadEscuelaException {
         return servicioRespuesta.consultarRespuestas();

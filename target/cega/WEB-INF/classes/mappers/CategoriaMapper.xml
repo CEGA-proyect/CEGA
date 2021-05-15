@@ -11,12 +11,13 @@
         <result property='fechaDeCreacion' column='fechaDeCreacion'/>
         <result property='estado' column='estado'/>
         <result property='fechaDeModificacion' column='fechaDeModificacion'/>
+        <result property='valida' column='valida'/>
     </resultMap>
     <insert id="crearCategoria" parameterType="map">
         INSERT INTO categoria
-        (nombre,descripcion,fechadecreacion,estado,fechademodificacion)
+        (nombre,descripcion,fechadecreacion,estado,fechademodificacion,valida)
         values
-        (#{categoria.nombre},#{categoria.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE);
+        (#{categoria.nombre},#{categoria.descripcion},CURRENT_DATE,'Activa',CURRENT_DATE,#{categoria.valida});
 
     </insert>
 
@@ -55,6 +56,12 @@
     <select parameterType="map" id="consultarNombresCategoriasGeneral" resultMap="CategoriaResult">
         SELECT *
         FROM categoria as c
+    </select>
+
+    <select id="validarCategoriaPorId" resultType="String">
+        SELECT c.valida
+        FROM categoria as c
+        WHERE c.id = #{id};
     </select>
 
 
