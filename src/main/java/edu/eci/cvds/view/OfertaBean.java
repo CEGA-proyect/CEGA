@@ -15,10 +15,11 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,11 +53,12 @@ public class OfertaBean extends BasePageBean{
     }
 
 
-    public void crearOferta() throws SolidaridadEscuelaException {
+    public void crearOferta() throws SolidaridadEscuelaException, IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
-        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas ) {
+        System.out.println( Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario()));
+        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
                     fechaDeCreacion = LocalDate.now();
@@ -216,7 +218,6 @@ public class OfertaBean extends BasePageBean{
 
             }
         }
-
         model.set("Activas", activo);
         model.set("En proceso ", proceso);
         model.set("Resueltas", resuelta);
@@ -231,6 +232,8 @@ public class OfertaBean extends BasePageBean{
         model.setDataLabelFormatString("%d");
         return model;
     }
+
+
 
 
 

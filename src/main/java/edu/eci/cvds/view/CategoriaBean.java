@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import com.google.inject.Inject;
@@ -112,6 +113,7 @@ public class CategoriaBean extends BasePageBean {
         this.message = message;
     }
     public String getNombre() {
+
         return nombre;
     }
     public void setNombre(String nombre) {

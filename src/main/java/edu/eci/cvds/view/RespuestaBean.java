@@ -11,18 +11,17 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 
 @ManagedBean(name = "RespuestaBean")
 
-@SessionScoped
+@RequestScoped
 
 public class RespuestaBean extends BasePageBean {
     @ManagedProperty(value = "#{param.necesidad_id}")
@@ -47,8 +46,9 @@ public class RespuestaBean extends BasePageBean {
 
         try {
             fechaDeCreacion = LocalDate.now();
-            System.out.print(necesidad_id.getClass().getSimpleName());
-            System.out.print(necesidad_id);
+            System.out.println(necesidad_id);
+
+            System.out.println(oferta_id);
 
             if(necesidad_id == 0){
                 necesidad_id = null;
@@ -118,6 +118,7 @@ public class RespuestaBean extends BasePageBean {
         return necesidad_id;
     }
     public void setNecesidad_id(Integer necesidad_id) {
+        //System.out.println(necesidad_id);
         this.necesidad_id = necesidad_id;
     }
 
@@ -129,13 +130,13 @@ public class RespuestaBean extends BasePageBean {
         return oferta_id;
     }
 
-    /**
+
     public void redireccionamiento(Integer num,Integer num2) throws IOException {
         //FacesContext.getCurrentInstance().getExternalContext().redirect("./CrearRespuestaEspecifica.xhtml");
         FacesContext.getCurrentInstance().getExternalContext().redirect("./CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num)+"&oferta_id="+String.valueOf(num2));
         //setOferta_id(num2);
         //setNecesidad_id(num);
-    }**/
+    }
 
     public List<Respuesta> getRespuestas() throws SolidaridadEscuelaException {
         return servicioRespuesta.consultarRespuestas();
@@ -157,8 +158,5 @@ public class RespuestaBean extends BasePageBean {
             sheet.autoSizeColumn(i);
         }
     }
-
-
-
 }
 

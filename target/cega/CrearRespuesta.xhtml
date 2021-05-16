@@ -68,10 +68,11 @@
                                         #{oferta.usuario_id}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"></f:facet>
-                                        <a href="/faces/CrearRespuestaEspecifica.xhtml">
-                                            <input type="button" value="Responder" />
-                                        </a>
+                                        <h:column>
+                                            <p:commandButton type="submit" class="btn btn-primary btn-block"
+                                                             value="Responder" actionListener="#{RespuestaBean.redireccionamiento(0,oferta.id)}">
+                                            </p:commandButton>
+                                        </h:column>
                                     </h:column>
                                 </h:dataTable>
 

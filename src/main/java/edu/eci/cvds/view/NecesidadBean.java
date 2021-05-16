@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -70,12 +70,12 @@ public class NecesidadBean extends BasePageBean {
         }
     }
 
-    public void crearNecesidad() throws SolidaridadEscuelaException {
+    public void crearNecesidad() throws SolidaridadEscuelaException, IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
 
-        if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) < maxNecesidades) {
+        if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) <  Integer.parseInt(servicioNecesidad.consultarMaximoNecesidadesPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
                     fechaDeCreacion = LocalDate.now();

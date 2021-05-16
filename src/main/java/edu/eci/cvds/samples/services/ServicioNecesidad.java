@@ -3,6 +3,7 @@ package edu.eci.cvds.samples.services;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.samples.entities.Necesidad;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ServicioNecesidad {
@@ -12,4 +13,5 @@ public interface ServicioNecesidad {
     List<Necesidad> consultarNombresNecesidadGeneral() throws SolidaridadEscuelaException;
     int consultarNumeroNecesidadesUsuario(String usuario_id ) throws SolidaridadEscuelaException;
     String consultarNombreNecesidadPorId(int num) throws SolidaridadEscuelaException;
+    String consultarMaximoNecesidadesPorUsuario() throws SolidaridadEscuelaException, IOException;
 }

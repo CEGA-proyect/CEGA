@@ -6,9 +6,15 @@ import edu.eci.cvds.samples.entities.Oferta;
 import edu.eci.cvds.samples.services.ServicioOferta;
 import edu.eci.cvds.samples.services.SolidaridadEscuelaException;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class ServicioOfertaImpl implements ServicioOferta{
+    InputStream inputStream;
     @Inject
     private OfertaDAO ofertaDAO;
 
@@ -64,6 +70,34 @@ public class ServicioOfertaImpl implements ServicioOferta{
         }
     }
 
+    @Override
+    public String ConsultarMaximoOfertasPorUsuario() throws SolidaridadEscuelaException, IOException {
+        String result = "";
+        try {
+            Properties prop = new Properties();
+            String propFileName = "config.properties";
+            inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
+            // get the property value and print it out
+            result = prop.getProperty("numeromax");
+            System.out.println(prop.getProperty("username"));
+            System.out.println(prop.getProperty("password"));
+            System.out.println(result);
+
+            if (inputStream != null) {
+                prop.load(inputStream);
+            } else {
+                System.out.println("entro 1");
+                throw new SolidaridadEscuelaException("property file '" + propFileName + "' not found in the classpath");
+            }
+        } catch (Exception e) {
+            System.out.println("entro 2");
+            throw new SolidaridadEscuelaException(e.getMessage());
+        } finally {
+            System.out.println("entro 3");
+            inputStream.close();
+        }
+        return result;
+    }
 
 
 }
