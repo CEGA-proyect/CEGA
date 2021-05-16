@@ -74,8 +74,8 @@ public class NecesidadBean extends BasePageBean {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
-
-        if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) <  Integer.parseInt(servicioNecesidad.consultarMaximoNecesidadesPorUsuario())) {
+        if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) < maxNecesidades){
+        //if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) <  Integer.parseInt(servicioNecesidad.consultarMaximoNecesidadesPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
                     fechaDeCreacion = LocalDate.now();

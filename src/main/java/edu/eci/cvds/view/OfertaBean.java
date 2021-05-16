@@ -58,7 +58,8 @@ public class OfertaBean extends BasePageBean{
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
         System.out.println( Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario()));
-        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario())) {
+        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas){
+        //if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
                     fechaDeCreacion = LocalDate.now();
