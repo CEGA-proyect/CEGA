@@ -42,10 +42,14 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Respuesta</h1>
                             <h:form class="my-login-validation" id="formulario">
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
                                 <div class="form-group">
 
 
-                                <h2>ofertas</h2>
+                                <h2>Ofertas</h2>
                                 <h:dataTable value="#{OfertaBean.ofertasObjeto}" var="oferta" border="2">
                                     <h:column>
                                         <f:facet name="header">nombre</f:facet>

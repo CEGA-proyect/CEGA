@@ -48,7 +48,7 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
         try{
             categoriaMapper.actualizarNombreCategoria(id, nombreNuevo);;
         }catch(Exception e){
-            throw new PersistenceException("Error al actualizar el nombre de la categoria"); 
+            throw new PersistenceException("Error al actualizar el nombre de la categoria");
         }
         
     }
@@ -71,6 +71,7 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
             throw  new PersistenceException(e.toString());
         }
     }
+    @Override
     public List<Categoria> consultarNombresCategoriasGeneral() throws PersistenceException{
         try {
             return categoriaMapper.consultarNombresCategoriasGeneral() ;
@@ -78,11 +79,20 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
             throw new PersistenceException(e.toString());
         }
     }
+    @Override
     public String validarCategoriaPorId(int id) throws PersistenceException{
         try{
             return categoriaMapper.validarCategoriaPorId(id);
         }catch (Exception e) {
             throw new PersistenceException(e.toString());
+        }
+    }
+    @Override
+    public void actualizarValidezCategoria( int id, String valida )throws PersistenceException{
+        try{
+            categoriaMapper.actualizarValidezCategoria(id, valida);;
+        }catch(Exception e){
+            throw new PersistenceException("Error al actualizar el nombre de la categoria");
         }
     }
 

@@ -38,7 +38,10 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Categoria</h1>
                             <h:form class="my-login-validation" id="formulario">
-                                <p:messages id="messages" closable="true" />
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
 
                                 <div class="form-group">
 
@@ -61,7 +64,7 @@
                                     </h:selectOneMenu>
                                     <Br/>
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Crear categoria" actionListener="#{CategoriaBean.crearCategoria}" onclick="location.reload()">
+                                                     value="Crear categoria" actionListener="#{CategoriaBean.crearCategoria}">
                                         <f:ajax execute="@form" render="nombre descripcion" />
 
                                     </p:commandButton>

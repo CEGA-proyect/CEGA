@@ -38,6 +38,10 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Actualizar Necesidad</h1>
                             <h:form class="my-login-validation" id="formulario">
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
                                 <h:selectOneMenu id="NecesidadNames" value="#{NecesidadBean.id}" class="form-control" >
 
                                     <f:selectItem itemLabel="Seleccionar Necesidad: " noSelectionOption="true"/>
@@ -51,9 +55,6 @@
                                 </p>
 
                                 <h:selectOneMenu id="estadoNames" value="#{NecesidadBean.estado}" class="form-control" >
-
-                                    <f:selectItem itemLabel="Seleccionar Oferta: " noSelectionOption="true"/>
-
                                     <f:selectItem itemLabel="Seleccionar Estado: " noSelectionOption="true"/>
                                     <f:selectItem  itemLabel="Activa" itemValue="Activa"  />
                                     <f:selectItem  itemLabel="En Proceso" itemValue="En Proceso"/>
@@ -68,7 +69,7 @@
                                 <div class="form-group">
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Actualizar Estado" actionListener="#{NecesidadBean.actualizarEstadoNecesidad}" onclick="location.reload()">
+                                                     value="Actualizar Estado" actionListener="#{NecesidadBean.actualizarEstadoNecesidad}">
                                         <f:ajax execute="@form" render="nombre descripcion" />
 
                                     </p:commandButton>

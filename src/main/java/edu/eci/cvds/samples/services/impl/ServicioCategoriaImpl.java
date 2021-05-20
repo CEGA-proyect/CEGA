@@ -87,4 +87,12 @@ public class ServicioCategoriaImpl implements ServicioCategoria  {
         }
 
     }
+    @Override
+    public void actualizarValidezCategoria( int id, String valida )throws SolidaridadEscuelaException{
+        try {
+            categoriaDAO.actualizarValidezCategoria(id, valida);
+        } catch (Exception e) {
+            throw new SolidaridadEscuelaException(e.getMessage());
+        }
+    }
 }

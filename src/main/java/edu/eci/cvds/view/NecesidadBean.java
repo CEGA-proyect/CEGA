@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -74,8 +75,8 @@ public class NecesidadBean extends BasePageBean {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
-        if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) < maxNecesidades){
-        //if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) <  Integer.parseInt(servicioNecesidad.consultarMaximoNecesidadesPorUsuario())) {
+        //if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) < maxNecesidades){
+        if (servicioNecesidad.consultarNumeroNecesidadesUsuario(usuario_id) <  Integer.parseInt(servicioNecesidad.consultarMaximoNecesidadesPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
                     fechaDeCreacion = LocalDate.now();
@@ -86,23 +87,28 @@ public class NecesidadBean extends BasePageBean {
                     message = "Necesidad creada";
                 } catch (Exception e) {
                     message = "Error al crear la Necesidad";
-                    throw new SolidaridadEscuelaException(e.getMessage());
                 }
             }else{
-                message = "categoria Invalida";
-                System.out.print(message);
+                message = "Esta categoria no puede ser usada, para mas informacion comuniquese " +
+                        "con serviciosacademicos@mail.escuelaing.edu.co";
             }
-
         } else {
-            message = "numero de necesidades creadas excedido";
+            message = "numero de necesidades creadas por usuario excedido";
             System.out.print(message);
         }
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
     }
 
     public void actualizarEstadoNecesidad() throws SolidaridadEscuelaException {
-        System.out.println(id);
-        System.out.println(estado);
-        servicioNecesidad.actualizarEstadoNecesidad(id, estado);
+        try{
+            message = "Estado de la necesidad actualizado con exito";
+            servicioNecesidad.actualizarEstadoNecesidad(id, estado);
+        }catch (Exception e){
+            message = "Error al actualizar el estado de la necesidad";
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
     }
 
     public String getDescripcion() {

@@ -84,26 +84,18 @@ public class ServicioNecesidadImpl implements ServicioNecesidad{
             Properties prop = new Properties();
             String propFileName = "config.properties";
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
-            // get the property value and print it out
-            result = prop.getProperty("numeromax");
-            System.out.println(prop.getProperty("username"));
-            System.out.println(prop.getProperty("password"));
-            System.out.println(result);
-
             if (inputStream != null) {
-                prop.load(inputStream);
+                prop.load(inputStream); 
             } else {
-                System.out.println("entro 1");
                 throw new SolidaridadEscuelaException("property file '" + propFileName + "' not found in the classpath");
             }
+            result = prop.getProperty("numeromax");
+            
         } catch (Exception e) {
-            System.out.println("entro 2");
             throw new SolidaridadEscuelaException(e.getMessage());
-        } finally {
-            System.out.println("entro 3");
+        } finally {   
             inputStream.close();
         }
-
         return result;
     }
 

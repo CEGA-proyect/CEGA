@@ -76,6 +76,8 @@ CREATE TABLE public.oferta(
 
 alter sequence oferta_id_seq owned by oferta.id; 
 
+
+
 drop table public.oferta cascade ;
 drop table public.necesidad cascade ; 
 drop table public.respuesta cascade; 

@@ -12,5 +12,6 @@ public interface CategoriaMapper {
     String consultarCategoriaPorId(@Param("id") int id);
     List<Categoria> consultarNombresCategoriasGeneral();
     String validarCategoriaPorId(@Param("id") int id);
+    void actualizarValidezCategoria(@Param("id") int id,@Param("valida") String valida );
 
 }

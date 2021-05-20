@@ -1,12 +1,14 @@
 
 package edu.eci.cvds.view;
 import java.io.IOException;
+import java.security.spec.ECFieldF2m;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -72,11 +74,13 @@ public class CategoriaBean extends BasePageBean {
             Categoria categoria = new Categoria(nombre,descripcion,fechaDeCreacion,fechaDeModificacion,estado,valida);
             servicioCategoria.crearCategoria(categoria);
             message = "Categoria creada ";
-        } catch (SolidaridadEscuelaException e) {
-            message = "Error al crear la categoria";
-            throw new SolidaridadEscuelaException(e.getMessage());
+        } catch (Exception e) {
+            message = "Error al crear la categoria, verifique el nombre";
         }
+    
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
     }
+        
 
     public List<Categoria> consultarNombresCategorias() throws SolidaridadEscuelaException{
         return servicioCategoria.consultarNombresCategorias();
@@ -86,17 +90,54 @@ public class CategoriaBean extends BasePageBean {
     }
 
     public void actualizarDescripcionCategoria()throws SolidaridadEscuelaException{
+        try{
+            message = "Descripcion Actualizada"; 
+            servicioCategoria.actualizarDescripcionCategoria(id,descripcion);
+        }
+        catch(Exception e){
+            message = "Error Actualizando La Descripcion"; 
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
 
-        servicioCategoria.actualizarDescripcionCategoria(id,descripcion);
     }
-    public void actualizarEstadoCategoria()throws SolidaridadEscuelaException{
+    public void actualizarEstadoCategoria() throws SolidaridadEscuelaException{
+        try{
+            message = "Categoria Eliminada"; 
+            servicioCategoria.actualizarEstadoCategoria( id,estado);
+        }
+        catch(Exception e){
+            message = "Error Eliminando la Categoria"; 
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
 
-        servicioCategoria.actualizarEstadoCategoria( id,estado);
+
+
+
     }
+    public void actualizarValidezCategoria() throws SolidaridadEscuelaException{
+        try{
+            message = "Validez de la categoria actualizada";
+            servicioCategoria.actualizarValidezCategoria( id,valida);
+        }
+        catch(Exception e){
+            message = "Error actualizando la validez de la categoria";
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+    }
+
 
     public void actualizarNombreCategoria()throws SolidaridadEscuelaException{
-        System.out.println("Entro");
-        servicioCategoria.actualizarNombreCategoria(id, nombre);
+        try{
+            message = "Nombre de la Categoria Actualizado";
+            servicioCategoria.actualizarNombreCategoria(id, nombre);
+        }
+        catch(Exception e){
+            message = "Error actualizando el nombre de la categoria";
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
+
+
 
     }
 
@@ -162,7 +203,16 @@ public class CategoriaBean extends BasePageBean {
         this.id = id;
     }
     public void eliminarCategoria(int categoria) throws SolidaridadEscuelaException {
-        servicioCategoria.actualizarEstadoCategoria( categoria,"Inactiva");
+        try{
+            message = "Categoria Eliminada"; 
+            servicioCategoria.actualizarEstadoCategoria( categoria,"Inactiva");
+        }
+        catch(Exception e){
+            message = "Error Eliminando la Categoria"; 
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
+
     }
     public String consultarCategoriaPorId(int num) throws SolidaridadEscuelaException{
         return servicioCategoria.consultarCategoriaPorId(num);
@@ -176,10 +226,9 @@ public class CategoriaBean extends BasePageBean {
         this.valida = valida;
     }
 
-    public PieChartModel generarEstadisticaSolicitud() throws SolidaridadEscuelaException {
+    public PieChartModel generarEstadisticaSolicitudOferta() throws SolidaridadEscuelaException {
         PieChartModel model = new PieChartModel();
         List<Oferta> ofe = servicioOferta.consultarNombresOfertasGeneral();
-        List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
         List<Categoria> cate = servicioCategoria.consultarNombresCategoriasGeneral();
         List<Integer> contadores = new ArrayList<Integer>();
         for(int i = 0 ; i < cate.size(); i++){
@@ -192,19 +241,13 @@ public class CategoriaBean extends BasePageBean {
                 }
             }
         }
-        for(Necesidad n : nece){
-            for(int i = 0 ; i < cate.size(); i++){
-                if(n.getCategoria_id() == cate.get(i).getId()){
-                    contadores.set(i,contadores.get(i)+1);
-                }
-            }
-        }
+        
         for(int i = 0 ; i < cate.size(); i++) {
             if(contadores.get(i) != 0) {
                 model.set(cate.get(i).getNombre(), contadores.get(i));
             }
         }
-        model.setTitle("Categorias Mas Solicitadas");
+        model.setTitle("Categorias Mas Solicitadas Por Ofertas");
         model.setShowDataLabels(true);
         model.setDataLabelFormatString("%dK");
         model.setLegendPosition("e");
@@ -214,6 +257,40 @@ public class CategoriaBean extends BasePageBean {
         model.setDataLabelFormatString("%d");
         return model;
     }
+
+    public PieChartModel generarEstadisticaSolicitudNecesidad() throws SolidaridadEscuelaException {
+        PieChartModel model = new PieChartModel();
+        List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidadGeneral();
+        List<Categoria> cate = servicioCategoria.consultarNombresCategoriasGeneral();
+        List<Integer> contadores = new ArrayList<Integer>();
+        for(int i = 0 ; i < cate.size(); i++){
+            contadores.add(0);
+        }
+        for(Necesidad n : nece){
+            for(int i = 0 ; i < cate.size(); i++){
+                if(n.getCategoria_id() == cate.get(i).getId()){
+                    contadores.set(i,contadores.get(i)+1);
+                }
+            }
+        }
+        
+        for(int i = 0 ; i < cate.size(); i++) {
+            if(contadores.get(i) != 0) {
+                model.set(cate.get(i).getNombre(), contadores.get(i));
+            }
+        }
+        model.setTitle("Categorias Mas Solicitadas Por Necesidades");
+        model.setShowDataLabels(true);
+        model.setDataLabelFormatString("%dK");
+        model.setLegendPosition("e");
+        model.setShowDatatip(true);
+        model.setShowDataLabels(true);
+        model.setDataFormat("value");
+        model.setDataLabelFormatString("%d");
+        return model;
+    }
+
+    
 
     public int ofertasAsociadasCategoria(int id) throws SolidaridadEscuelaException {
         int num  = 0;

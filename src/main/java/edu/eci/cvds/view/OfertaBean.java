@@ -15,6 +15,8 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -58,8 +60,8 @@ public class OfertaBean extends BasePageBean{
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
         System.out.println( Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario()));
-        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas){
-        //if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario())) {
+        //if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas){
+        if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
                     fechaDeCreacion = LocalDate.now();
@@ -67,20 +69,21 @@ public class OfertaBean extends BasePageBean{
                     fechaDeModificacion = LocalDate.now();
                     Oferta oferta = new Oferta(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, categoria_id, usuario_id);
                     servicioOferta.crearOferta(oferta);
-                    message = "Oferta creada";
+                    message = "Oferta creada con exito";
                 } catch (Exception e) {
                     message = "Error al crear la Oferta";
                     throw new SolidaridadEscuelaException(e.getMessage());
                 }
             }
             else{
-                message = "Categoria Invalida";
-                System.out.println(message);
+                message = "Esta categoria no puede ser usada, para mas informacion comuniquese " +
+                        "con serviciosacademicos@mail.escuelaing.edu.co";
             }
         }else{
-            message = "Numero de ofertas creadas exedido";
-            System.out.println(message);
+            message = "Numero de ofertas creadas por usuario exedido";
+
         }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
 
     }
 
@@ -156,7 +159,14 @@ public class OfertaBean extends BasePageBean{
     }
 
     public void actulizarEstadoOferta() throws SolidaridadEscuelaException {
-        servicioOferta.actualizarEstadoOferta(id,estado);
+        try {
+            message = "Estado de la oferta Actualizado con exito";
+            servicioOferta.actualizarEstadoOferta(id,estado);
+
+        }catch (Exception e) {
+            message = "Error Actualizando el estado de la oferta";
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
     }
     public Map<String,Integer> getOfertas() throws  SolidaridadEscuelaException{
         ofertas = new HashMap<String,Integer>();
@@ -233,9 +243,4 @@ public class OfertaBean extends BasePageBean{
         model.setDataLabelFormatString("%d");
         return model;
     }
-
-
-
-
-
 }

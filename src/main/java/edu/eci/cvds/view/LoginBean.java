@@ -47,8 +47,9 @@ public class LoginBean extends BasePageBean{
             }
         } catch (Exception e) {
             message = "Credenciales incorrectas";
-            throw new SolidaridadEscuelaException(e.getMessage());
+
         }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
     }
 
     public void redireccionamiento() throws IOException{

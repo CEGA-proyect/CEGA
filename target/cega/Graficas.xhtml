@@ -50,9 +50,12 @@
                                 <h1>Categorias</h1>
                                 <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 100%;border-radius: 10px;background-color: white; color: black; height: 100%" type="pie" id="pie3"
                                          responsive="true"
-                                         model="#{CategoriaBean.generarEstadisticaSolicitud()}">
+                                         model="#{CategoriaBean.generarEstadisticaSolicitudOferta()}">
                                 </p:chart>
-
+                                <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 100%;border-radius: 10px;background-color: white; color: black; height: 100%" type="pie" id="pie4"
+                                         responsive="true"
+                                         model="#{CategoriaBean.generarEstadisticaSolicitudNecesidad()}">
+                                </p:chart>
                             </div>
 
                         </h:form>

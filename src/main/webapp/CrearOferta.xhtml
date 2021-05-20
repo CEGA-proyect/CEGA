@@ -38,11 +38,16 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Oferta</h1>
                             <h:form class="my-login-validation" id="formulario">
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
+
                                 <h:selectOneMenu id="OfertaNames" value="#{OfertaBean.categoria_id}" class="form-control" required="true" autofocus="true"  >
                                     <f:selectItem itemLabel="Seleccionar Categoria" noSelectionOption="true"/>
                                     <f:selectItems value="#{CategoriaBean.categoria}"/>
                                 </h:selectOneMenu>
-                                <p:messages id="messages" closable="true" />
+
 
                                 <div class="form-group">
 
@@ -63,7 +68,7 @@
 
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Crear Oferta" actionListener="#{OfertaBean.crearOferta}" onclick="history.go(0)">
+                                                     value="Crear Oferta" actionListener="#{OfertaBean.crearOferta}">
                                         <f:ajax execute="@form" render="nombre descripcion"  />
 
                                     </p:commandButton>

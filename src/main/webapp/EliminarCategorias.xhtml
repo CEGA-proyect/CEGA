@@ -37,6 +37,10 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Eliminar Categorias</h1>
                             <h:form class="my-login-validation" id="formulario">
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
 
                                 <i class="pi pi-bars p-px-2"/>
                                 <h:dataTable value="#{CategoriaBean.consultarNombresCategorias()}" var="categoria" border="2">
@@ -52,7 +56,7 @@
                                     <h:column >
                                         <f:facet name="header" ></f:facet>
 
-                                        <p:commandButton type="submit"  value= "Eliminar" class="btn btn-primary btn-block" style=" background-color: red; border: none" onclick="location.reload()"
+                                        <p:commandButton type="submit"  value= "Eliminar" class="btn btn-primary btn-block" style=" background-color: red; border: none"
                                                          actionListener="#{CategoriaBean.eliminarCategoria(categoria.id)}"  >
 
                                         </p:commandButton>

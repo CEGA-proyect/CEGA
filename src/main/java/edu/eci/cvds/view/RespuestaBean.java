@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -43,13 +44,8 @@ public class RespuestaBean extends BasePageBean {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
-
         try {
             fechaDeCreacion = LocalDate.now();
-            System.out.println(necesidad_id);
-
-            System.out.println(oferta_id);
-
             if(necesidad_id == 0){
                 necesidad_id = null;
             }
@@ -58,11 +54,14 @@ public class RespuestaBean extends BasePageBean {
             }
             Respuesta respuesta = new Respuesta(nombre,comentario,fechaDeCreacion,necesidad_id,oferta_id,usuario_id);
             servicioRespuesta.crearRespuesta(respuesta);
-            message = "respuesta creada";
+            message = "Respuesta creada con exito";
         } catch (Exception e) {
             message = "Error al crear la Oferta";
             throw new SolidaridadEscuelaException(e.getMessage());
         }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
+
     }
 
     public void setId(int id) {
