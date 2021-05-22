@@ -126,17 +126,17 @@ Para crear una neccesidad se necesita saber la categoria a la que pertenece, su 
 
 ## Enlace a la aplicación en Heroku
 
+https://cega.herokuapp.com/faces/login.xhtml
 
 ## Enlace al sistema de Integración Continua (Circle CI)
-	
-pendiente
 
+[![CircleCI](https://circleci.com/gh/CEGA-proyect/cega.svg?style=shield)](https://app.circleci.com/pipelines/github/CEGA-proyect)
 ## Enlace a Taiga
 
 https://tree.taiga.io/project/jgarciah-solidaridad-escuela/timeline
 ## Enlace a Codacy
 
-pendiente
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e37dbdaed5fa4eea9c59c13044810ff6)](https://www.codacy.com/gh/CEGA-proyect/cega/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CEGA-proyect/cega&amp;utm_campaign=Badge_Grade)
 
 ## Descripción del Proceso
 
