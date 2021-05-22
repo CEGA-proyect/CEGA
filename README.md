@@ -165,5 +165,3 @@ se implemento la posibilidad de eliminar categorias, las categorias no validas y
 * **Password:** 696d65463569a973f469eb4ecf40fa501f73dda8709878a860f4c44643bdb5bc
 
 * **URI:** postgres://brrlyybiheohdb:696d65463569a973f469eb4ecf40fa501f73dda8709878a860f4c44643bdb5bc@ec2-3-233-7-12.compute-1.amazonaws.com:5432/ddcvu5tsjj9ist
-
-* **Heroku CLI:** 
