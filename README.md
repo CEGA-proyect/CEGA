@@ -25,7 +25,8 @@ Julián Mauricio Velasco Briceño
 
 ### Descripción General
 
-La Plataforma Solidaridad Escuela, es una herramienta para generar un entorno de comunicación y ayuda dentro de la comunidad de la Escuela Colombiana de Ingeniería Julio Garavito.
+La Plataforma Solidaridad Escuela, es una herramienta para generar un entorno de comunicación y ayuda dentro de la comunidad de la Escuela Colombiana de Ingeniería Julio Garavito. Por medio de esta los estudiantes pueden generar **Necesidades**, que son problemas que ellos presenten al interior de la universidad, asi mismo el resto de usuarios de la plataforma pueden generar **ofertas**, cada una de estas estan asociadas a una categoria en especifico y pueden ser **respondidas** por otros miembros de la comunidad.El administrador de la plataforma tiene la posibilidad de ver diversos reportes que pueden ser usados al interior de la universidad para generar combios beneficiosos para la comunidad universitaria.
+
 
 
 ### Manual de Usuario:
@@ -126,7 +127,6 @@ Para crear una neccesidad se necesita saber la categoria a la que pertenece, su 
 ## Enlace a la aplicación en Heroku
 
 
-
 ## Enlace al sistema de Integración Continua (Circle CI)
 	
 pendiente
@@ -140,21 +140,23 @@ pendiente
 
 ## Descripción del Proceso
 
-
 ### Metodología
 No hubo ninguna reunión presencial, todas las reuniones fueron realizadas de forma 100% virtual utilizando la plataforma de **Microsoft Teams**, en la cual realizábamos las sustentaciones de retroalimentación con el profesor, trabajábamos grupalmente desarrollando los Sprints en el horario de clase, y por fuera del horario de clase cada uno por su cuenta realizó las tareas que les fueron asignadas en el **Taiga**.
 
 ## Sprint 1
 
-
+Se implemento el inicio de sesion por medio de Shiro, tomando usuarios de la base de datos y sus contraseñas, Posteriormente se crearon las categorias y necesidades , por ultimo se implemento la posibilidad de actualizar la categoria.
+![base](images/sprint1.png)
 
 ## Sprint 2
+se corrigieron errores y cosas incompletas del sprint 1 como un N maximo para la creacion de necesidades, si implementaron las ofertas, las respuestas y las actualizaciones de los parametros de cada una de estas.
 
-
-
-
+![base](images/sprint2.png)
 
 ## Sprint 3
+Se corriguieron los errores del sprint 3 como la navegabilidad de la aplicacion, el despliegue continuo, generar correctamente los excel y los PDF y los mensajes al usuario para tener una mejor experiencia
+se implemento la posibilidad de eliminar categorias, las categorias no validas y los reportes de ofertas, necesidades y categorias
+![base](images/sprint3.png)
 
 
 
