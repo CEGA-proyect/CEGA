@@ -1,12 +1,6 @@
-# Laboratorio de Informática
+# Ciclos de Vida del Desarrollo de Software
 
-## Nombre del Curso
-
-Ciclos de Vida del Desarrollo de Software
-
-## Período Académico
-
-2021-1
+## Período Académico 2021-1
 
 ## Integrantes
 
@@ -18,8 +12,6 @@ Ciclos de Vida del Desarrollo de Software
 ## Profesor
 
 Julián Mauricio Velasco Briceño
-
-
 
 ## Descripción del Producto
 
