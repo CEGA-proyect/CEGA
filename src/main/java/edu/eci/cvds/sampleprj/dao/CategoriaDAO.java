@@ -7,8 +7,8 @@ public interface CategoriaDAO {
     void crearCategoria(Categoria c) throws PersistenceException;
     void actualizarDescripcionCategoria(int id, String descripcion) throws PersistenceException;
     void actualizarEstadoCategoria( int id, String estado )throws PersistenceException;
-    void actualizarNombreCategoria( int id, String valida )throws PersistenceException;
-    void actualizarValidezCategoria( int id, String nombre )throws PersistenceException;
+    void actualizarNombreCategoria( int id, String nombre )throws PersistenceException;
+    void actualizarValidezCategoria( int id, String validez )throws PersistenceException;
     List<Categoria> consultarNombresCategorias() throws PersistenceException;
     String consultarCategoriaPorId(int id) throws PersistenceException;
     List<Categoria> consultarNombresCategoriasGeneral() throws PersistenceException;

@@ -92,7 +92,7 @@ public class MyBatisCategoriaDAO implements CategoriaDAO {
         try{
             categoriaMapper.actualizarValidezCategoria(id, valida);;
         }catch(Exception e){
-            throw new PersistenceException("Error al actualizar el nombre de la categoria");
+            throw new PersistenceException(e.getMessage());
         }
     }
 

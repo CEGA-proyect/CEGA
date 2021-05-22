@@ -2,6 +2,7 @@ package edu.eci.cvds.view;
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import edu.eci.cvds.shiro.Logger;
 import edu.eci.cvds.shiro.LoggerShiroImplementation;
 
 @ManagedBean(name = "loginBean")
-@SessionScoped
+@RequestScoped
 public class LoginBean extends BasePageBean{
 
     private static final long serialVersionUID = 1L;
@@ -27,18 +28,9 @@ public class LoginBean extends BasePageBean{
     private HttpSession session;
 
     public void login() throws IOException, SolidaridadEscuelaException{
-        System.out.println("========================================================");
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println("========================================================");
         boolean isLogger = logger.isLogged();
         try {
             if(!isLogger){
-            
-                System.out.println("========================================================"); 
-                System.out.println(email); 
-                System.out.println(password);
-                System.out.println("========================================================"); 
                 message = "Login Correcto";
                 logger.login(email, password, false);
                 redireccionamiento();
@@ -47,9 +39,9 @@ public class LoginBean extends BasePageBean{
             }
         } catch (Exception e) {
             message = "Credenciales incorrectas";
-
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", message));
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
     }
 
     public void redireccionamiento() throws IOException{
@@ -73,9 +65,6 @@ public class LoginBean extends BasePageBean{
 
             facesContext.getExternalContext().redirect("./user.xhtml");
         }
-
-        System.out.println(email);
-        System.out.println(session.getAttribute("email"));
     }
 
     public void sesionActiva() throws IOException{
@@ -86,7 +75,6 @@ public class LoginBean extends BasePageBean{
 
 
     public void logout() throws IOException{
-        System.out.print("LOGOUT");
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.getExternalContext().redirect("./login.xhtml");
         logger.logout();

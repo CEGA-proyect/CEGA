@@ -117,7 +117,7 @@ public class RespuestaBean extends BasePageBean {
         return necesidad_id;
     }
     public void setNecesidad_id(Integer necesidad_id) {
-        //System.out.println(necesidad_id);
+
         this.necesidad_id = necesidad_id;
     }
 
@@ -131,10 +131,9 @@ public class RespuestaBean extends BasePageBean {
 
 
     public void redireccionamiento(Integer num,Integer num2) throws IOException {
-        //FacesContext.getCurrentInstance().getExternalContext().redirect("./CrearRespuestaEspecifica.xhtml");
+
         FacesContext.getCurrentInstance().getExternalContext().redirect("./CrearRespuestaEspecifica.xhtml?necesidad_id=" + String.valueOf(num)+"&oferta_id="+String.valueOf(num2));
-        //setOferta_id(num2);
-        //setNecesidad_id(num);
+
     }
 
     public List<Respuesta> getRespuestas() throws SolidaridadEscuelaException {

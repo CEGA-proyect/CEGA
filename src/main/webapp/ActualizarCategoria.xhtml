@@ -53,34 +53,45 @@
 
                     <div class="form-group">
 
-                        <h:outputLabel for="descripcion" value="nueva descripcion: "/>
+                        <h:outputLabel for="descripcion" value="Nueva descripción: "/>
                         <p:inputText class="form-control" type="String" id="descripcion" value="#{CategoriaBean.descripcion}"/>
 
                     </div>
 
                     <div class="btn-group " role="group" aria-label="Basic example">
-                        <p:commandButton class="btn btn-primary" value="Actualizar descripcion" actionListener="#{CategoriaBean.actualizarDescripcionCategoria}"/>
+                        <p:commandButton class="btn btn-primary" value="Actualizar descripción" actionListener="#{CategoriaBean.actualizarDescripcionCategoria}"/>
                     </div>
 
                 </div>
 
                 <div class="form-group">
-                    <h:outputLabel for="nombre" value="nuevo nombre: "/>
+                    <h:outputLabel for="nombre" value="Nuevo nombre: "/>
                     <p:inputText class="form-control" type="String" id="nombre" value="#{CategoriaBean.nombre}"/>
 
                 </div>
                 <div class="btn-group " role="group" aria-label="Basic example">
                     <p:commandButton class="btn btn-primary" value="Actualizar Nombre" actionListener="#{CategoriaBean.actualizarNombreCategoria}"/>
                 </div>
+        <br/>
+        <br/>
 
         <h:selectOneMenu id="estadoNames" value="#{CategoriaBean.valida}" class="form-control" >
             <f:selectItem itemLabel="Seleccionar validez: " noSelectionOption="true"/>
             <f:selectItem  itemLabel="Valida" itemValue="valida"  />
             <f:selectItem  itemLabel="invalida" itemValue="invalida"/>
         </h:selectOneMenu>
-
+        <br/>
         <div class="btn-group " role="group" aria-label="Basic example">
             <p:commandButton class="btn btn-primary" value="Actualizar Validez" actionListener="#{CategoriaBean.actualizarValidezCategoria}"/>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="btn-group " role="group" aria-label="Basic example">
+            <p:commandButton class="btn btn-primary" value="Volver al menu" actionListener="#{loginBean.comeBack()}"/>
         </div>
                 
 

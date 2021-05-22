@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -29,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 @ManagedBean(name = "OfertaBean")
-@SessionScoped
+@RequestScoped
 public class OfertaBean extends BasePageBean{
     @Inject
     private ServicioOferta servicioOferta;
@@ -37,7 +38,6 @@ public class OfertaBean extends BasePageBean{
     private ServicioCategoria servicioCategoria;
     @Inject
     private Logger logger;
-
     private int categoria_id;
     private String nombre;
     private String descripcion;
@@ -46,10 +46,8 @@ public class OfertaBean extends BasePageBean{
     private String estado;
     private int id;
     private String message = "";
-    private Map<String,Integer> ofertas;
-    private List<Oferta> ofertasObjeto ;
     private String usuario_id = "1000950506";
-    private int maximoOfertas = 4;
+
 
     public OfertaBean() throws SolidaridadEscuelaException {
     }
@@ -59,8 +57,6 @@ public class OfertaBean extends BasePageBean{
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);
         usuario_id = (String) httpSession.getAttribute("email");
-        System.out.println( Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario()));
-        //if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < maximoOfertas){
         if(servicioOferta.consultarNumeroOfertasUsuario(usuario_id) < Integer.valueOf(servicioOferta.ConsultarMaximoOfertasPorUsuario())) {
             if(servicioCategoria.validarCategoriaPorId(categoria_id).equals("valida")) {
                 try {
@@ -70,20 +66,23 @@ public class OfertaBean extends BasePageBean{
                     Oferta oferta = new Oferta(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, categoria_id, usuario_id);
                     servicioOferta.crearOferta(oferta);
                     message = "Oferta creada con exito";
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
                 } catch (Exception e) {
                     message = "Error al crear la Oferta";
-                    throw new SolidaridadEscuelaException(e.getMessage());
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", message));
                 }
             }
             else{
                 message = "Esta categoria no puede ser usada, para mas informacion comuniquese " +
                         "con serviciosacademicos@mail.escuelaing.edu.co";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", message));
             }
         }else{
             message = "Numero de ofertas creadas por usuario exedido";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", message));
 
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
 
     }
 
@@ -169,7 +168,7 @@ public class OfertaBean extends BasePageBean{
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
     }
     public Map<String,Integer> getOfertas() throws  SolidaridadEscuelaException{
-        ofertas = new HashMap<String,Integer>();
+        Map<String,Integer> ofertas = new HashMap<String,Integer>();
         List<Oferta> ofe = servicioOferta.consultarNombresOfertas();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(true);

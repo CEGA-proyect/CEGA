@@ -29,11 +29,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
 @ManagedBean(name = "CategoriaBean")
-@SessionScoped
+@RequestScoped
 public class CategoriaBean extends BasePageBean {
-
     private static final long serialVersionUID = -1015621969065584379L;
-
     @Inject
     private ServicioCategoria servicioCategoria;
     @Inject
@@ -42,7 +40,6 @@ public class CategoriaBean extends BasePageBean {
     private ServicioNecesidad servicioNecesidad;
     @Inject
     private Logger logger;
-
     private int id;
     private String nombre;
     private String descripcion;
@@ -51,21 +48,8 @@ public class CategoriaBean extends BasePageBean {
     private LocalDate fechaDeModificacion;
     private String message = "";
     private String valida;
-    private Map<String,Integer  > categoria ;
 
 
-    public void comeBack() throws IOException{
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        if(logger.isAdmin()){
-            facesContext.getExternalContext().redirect("../admin.xhtml");
-        }
-        if(logger.isStudent()){
-            facesContext.getExternalContext().redirect("../Student.xhtml");
-        }
-        if(logger.isUser()){
-            facesContext.getExternalContext().redirect("../user.xhtml");
-        }
-    }
     public void crearCategoria() throws SolidaridadEscuelaException{
         try {
             fechaDeCreacion = LocalDate.now();
@@ -110,14 +94,11 @@ public class CategoriaBean extends BasePageBean {
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
 
-
-
-
     }
     public void actualizarValidezCategoria() throws SolidaridadEscuelaException{
         try{
             message = "Validez de la categoria actualizada";
-            servicioCategoria.actualizarValidezCategoria( id,valida);
+            servicioCategoria.actualizarValidezCategoria(id,valida);
         }
         catch(Exception e){
             message = "Error actualizando la validez de la categoria";
@@ -186,7 +167,7 @@ public class CategoriaBean extends BasePageBean {
     }
 
     public Map<String,Integer> getCategoria() throws  SolidaridadEscuelaException{
-        categoria = new HashMap<String,Integer>();
+        Map<String,Integer  > categoria = new HashMap<String,Integer>();
         List<Categoria> cate = servicioCategoria.consultarNombresCategorias();
         for (Categoria c: cate) {
             categoria.put(c.getNombre(),c.getId());

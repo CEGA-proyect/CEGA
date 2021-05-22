@@ -5,19 +5,19 @@
 
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.UsuarioMapper">
     <resultMap type='Usuario' id='UsuarioResult'>
-        <id property='identificacion' column='identificacion'/>
+        <id property='correo' column='correo'/>
+        <result property='documento' column='documento'/>
         <result property='tipoDeIdentificacion' column='tipoDeIdentificacion'/>
-        <result property='user' column='user'/>
+        <result property='usern' column='usern'/>
         <result property='estado' column='estado'/>
         <result property='nombre' column='nombre'/>
-        <result property='correo' column='correo'/>
         <result property='rol' column='rol'/>
+        <result property='contrasena' column='contrasena'/>
         <result property='fechaRegistro' column='fechaRegistro'/>
-
     </resultMap>
 
     <select id="consultarIdUsuarioPorCorreo" parameterType="map" resultMap="UsuarioResult">
-        SELECT u.documento, u.correo, u.nombre, u.contraseña, u.estado , u.user , u.tipoDeIdentificacion , u.fechaRegistro , u.rol
+        SELECT u.documento, u.correo, u.nombre, u.contrasena, u.estado , u.usern , u.tipoDeIdentificacion , u.fechaRegistro , u.rol
         FROM usuario u
         WHERE u.correo = #{correo};
     </select>

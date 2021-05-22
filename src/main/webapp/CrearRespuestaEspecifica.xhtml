@@ -52,17 +52,27 @@
 
                                     <label for="nombre" style="font-size:250%">Nombre</label>
                                     <input style=" height: 50px ; font-size: 40px" id="nombre" type="String"
-                                           class="form-control" name="nombre" value="#{RespuestaBean.nombre}" required="true" autofocus="true"
+                                           class="form-control" name="nombre" value="#{RespuestaBean.nombre}"  autofocus="true"
                                            jsf:value="#{RespuestaBean.nombre}"/>
 
                                     <label for="descripcion" style="font-size:250%">Comentario</label>
                                     <input style=" height: 300px ; font-size: 40px " id="descripcion" type="String"
-                                           class="form-control" name="descripcion" value = "#{RespuestaBean.comentario}" required="true" data-eye="true"
+                                           class="form-control" name="descripcion" value = "#{RespuestaBean.comentario}"  data-eye="true"
                                            jsf:value="#{RespuestaBean.comentario}" />
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
                                                      value="Crear Respuesta" actionListener="#{RespuestaBean.crearRespuesta}" >
                                     </p:commandButton>
+
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <div class="btn-group " role="group" aria-label="Basic example">
+                                        <p:commandButton class="btn btn-primary" value="Volver al menu" actionListener="#{loginBean.comeBack()}"/>
+                                    </div>
 
                                 </div>
 

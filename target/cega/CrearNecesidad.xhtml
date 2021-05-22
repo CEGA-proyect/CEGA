@@ -38,6 +38,11 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Necesidad</h1>
                             <h:form class="my-login-validation" id="formulario">
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
+
                                 <h:selectOneMenu id="NecesidadNames" value="#{NecesidadBean.categoria_id}" class="form-control" >
                                     <f:selectItem itemLabel="Seleccionar Categoria" noSelectionOption="true"/>
                                     <f:selectItems value="#{CategoriaBean.categoria}"/>
@@ -55,36 +60,34 @@
 
                                     <label for="nombre" style="font-size:250%">Nombre</label>
                                     <input style=" height: 50px ; font-size: 40px" id="nombre" type="String"
-                                           class="form-control" name="nombre" value="#{NecesidadBean.nombre}" required="true" autofocus="true"
+                                           class="form-control" name="nombre" value="#{NecesidadBean.nombre}"  autofocus="true"
                                            jsf:value="#{NecesidadBean.nombre}"/>
 
 
                                     <label for="descripcion" style="font-size:250%">Descripción</label>
                                     <input style=" height: 300px ; font-size: 40px " id="descripcion" type="String"
-                                           class="form-control" name="descripcion" value = "#{NecesidadBean.descripcion}" required="true" data-eye="true"
+                                           class="form-control" name="descripcion" value = "#{NecesidadBean.descripcion}"  data-eye="true"
                                            jsf:value="#{NecesidadBean.descripcion}" />
 
 
 
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Crear Necesidad" actionListener="#{NecesidadBean.crearNecesidad}" onclick="location.reload()">
-                                        <f:ajax execute="@form" render="nombre descripcion" />
+                                                     value="Crear Necesidad" actionListener="#{NecesidadBean.crearNecesidad}">
 
                                     </p:commandButton>
 
                                 </div>
 
-                                <div>
-                                    <h:form>
-                                        <p:chart style="opacity: 1;-moz-opacity: 1;filter: alpha(opacity=10);-khtml-opacity: 1;width: 70%;margin-left: 15%;border-radius: 10px;background-color: white; color: black;" type="pie" id="pie"
-                                                 responsive="true"
-                                                 model="#{NecesidadBean.generarEstadisticaEstado()}">
-
-                                        </p:chart>
-                                    </h:form>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="btn-group " role="group" aria-label="Basic example">
+                                    <p:commandButton class="btn btn-primary" value="Volver al menu" actionListener="#{loginBean.comeBack()}"/>
                                 </div>
-
 
                             </h:form>
                         </div>

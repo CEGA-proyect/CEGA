@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.primefaces.model.chart.PieChartModel;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 @ManagedBean(name = "NecesidadBean")
-@SessionScoped
+@RequestScoped
 public class NecesidadBean extends BasePageBean {
 
     private static final long serialVersionUID = -1015621969065584379L;
@@ -49,27 +50,12 @@ public class NecesidadBean extends BasePageBean {
     private LocalDate fechaDeModificacion;
     private String urgencia;
     private String usuario_id = "";
-
-    private int maxNecesidades = 10;
-
     private String message = "";
     private int categoria_id;
 
-    private Map<String, Integer> necesidades;
-    private List<Necesidad> necesidadesObjeto;
+    //private Map<String, Integer> necesidades;
+    //private List<Necesidad> necesidadesObjeto;
 
-    public void comeBack() throws IOException {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (logger.isAdmin()) {
-            facesContext.getExternalContext().redirect("../admin.xhtml");
-        }
-        if (logger.isStudent()) {
-            facesContext.getExternalContext().redirect("../Student.xhtml");
-        }
-        if (logger.isUser()) {
-            facesContext.getExternalContext().redirect("../user.xhtml");
-        }
-    }
 
     public void crearNecesidad() throws SolidaridadEscuelaException, IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -85,19 +71,22 @@ public class NecesidadBean extends BasePageBean {
                     Necesidad necesidad = new Necesidad(nombre, descripcion, fechaDeCreacion, fechaDeModificacion, estado, urgencia, categoria_id, usuario_id);
                     servicioNecesidad.crearNecesidad(necesidad);
                     message = "Necesidad creada";
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
                 } catch (Exception e) {
                     message = "Error al crear la Necesidad";
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", message));
                 }
             }else{
                 message = "Esta categoria no puede ser usada, para mas informacion comuniquese " +
                         "con serviciosacademicos@mail.escuelaing.edu.co";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", message));
             }
         } else {
             message = "numero de necesidades creadas por usuario excedido";
-            System.out.print(message);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fail", message));
         }
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", message));
+
 
     }
 
@@ -193,7 +182,7 @@ public class NecesidadBean extends BasePageBean {
     }
 
     public Map<String, Integer> getNecesidades() throws SolidaridadEscuelaException {
-        necesidades = new HashMap<String, Integer>();
+        Map<String, Integer> necesidades = new HashMap<String, Integer>();
         List<Necesidad> nece = servicioNecesidad.consultarNombresNecesidad();
 
         FacesContext facesContext = FacesContext.getCurrentInstance();

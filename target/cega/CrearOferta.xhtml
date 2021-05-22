@@ -38,11 +38,16 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Crear Oferta</h1>
                             <h:form class="my-login-validation" id="formulario">
-                                <h:selectOneMenu id="OfertaNames" value="#{OfertaBean.categoria_id}" class="form-control" required="true" autofocus="true"  >
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
+
+                                <h:selectOneMenu id="OfertaNames" value="#{OfertaBean.categoria_id}" class="form-control"  autofocus="true"  >
                                     <f:selectItem itemLabel="Seleccionar Categoria" noSelectionOption="true"/>
                                     <f:selectItems value="#{CategoriaBean.categoria}"/>
                                 </h:selectOneMenu>
-                                <p:messages id="messages" closable="true" />
+
 
                                 <div class="form-group">
 
@@ -50,25 +55,37 @@
 
                                     <label for="nombre" style="font-size:250%">Nombre</label>
                                     <input style=" height: 50px ; font-size: 40px" id="nombre" type="String"
-                                           class="form-control" name="nombre" value="#{OfertaBean.nombre}" required="true" autofocus="true"
+                                           class="form-control" name="nombre" value="#{OfertaBean.nombre}"  autofocus="true"
                                            jsf:value="#{OfertaBean.nombre}"/>
 
 
                                     <label for="descripcion" style="font-size:250%">Descripción</label>
                                     <input style=" height: 300px ; font-size: 40px " id="descripcion" type="String"
-                                           class="form-control" name="descripcion" value = "#{OfertaBean.descripcion}" required="true" data-eye="true"
+                                           class="form-control" name="descripcion" value = "#{OfertaBean.descripcion}"  data-eye="true"
                                            jsf:value="#{OfertaBean.descripcion}" />
 
 
 
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Crear Oferta" actionListener="#{OfertaBean.crearOferta}" onclick="history.go(0)">
-                                        <f:ajax execute="@form" render="nombre descripcion"  />
+                                                     value="Crear Oferta" actionListener="#{OfertaBean.crearOferta}">
+
 
                                     </p:commandButton>
 
                                 </div>
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="btn-group " role="group" aria-label="Basic example">
+                                    <p:commandButton class="btn btn-primary" value="Volver al menu" actionListener="#{loginBean.comeBack()}"/>
+                                </div>
+
+
 
 
                             </h:form>

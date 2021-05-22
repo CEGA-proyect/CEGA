@@ -44,7 +44,7 @@
 
                                     <label for="email" style="font-size:250%">Correo Electrónico</label>
                                     <input style=" height: 50px ; font-size: 40px" id="email" type="email"
-                                           class="form-control" name="email" value="" required="true" autofocus="true"
+                                           class="form-control" name="email" value="#{loginBean.email}" required="true" autofocus="true"
                                            jsf:value="#{loginBean.email}"/>
                                     <div class="invalid-feedback">
                                         Introduzca un Correo Electrónico válido.
@@ -62,11 +62,11 @@
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
                                                      value="Iniciar Sesión" actionListener="#{loginBean.login}" action="#{loginBean.info}">
-                                        <f:ajax execute="@form" render="email password" />
-
                                     </p:commandButton>
 
                                 </div>
+
+
 
                             </h:form>
                         </div>

@@ -38,6 +38,10 @@
                         <div class="card-body">
                             <h1 class="card-title" style="text-align: center ; font-size:450%">Actualizar Oferta</h1>
                             <h:form class="my-login-validation" id="formulario">
+                                <p:tooltip/>
+                                <p:messages id="messages" showDetail="true" closable="true">
+                                    <p:autoUpdate/>
+                                </p:messages>
                                 <h:selectOneMenu id="NecesidadNames" value="#{OfertaBean.id}" class="form-control" >
 
                                     <f:selectItem itemLabel="Seleccionar Ofertas: " noSelectionOption="true"/>
@@ -62,11 +66,21 @@
                                 <div class="form-group">
 
                                     <p:commandButton type="submit" class="btn btn-primary btn-block"
-                                                     value="Actualizar Estado" actionListener="#{OfertaBean.actulizarEstadoOferta}" onclick="location.reload()">
-                                        <f:ajax execute="@form" render="nombre descripcion" />
+                                                     value="Actualizar Estado" actionListener="#{OfertaBean.actulizarEstadoOferta}">
+
 
                                     </p:commandButton>
 
+                                </div>
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="btn-group " role="group" aria-label="Basic example">
+                                    <p:commandButton class="btn btn-primary" value="Volver al menu" actionListener="#{loginBean.comeBack()}"/>
                                 </div>
 
 
